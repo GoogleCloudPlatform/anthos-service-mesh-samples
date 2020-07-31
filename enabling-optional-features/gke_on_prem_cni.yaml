@@ -1,0 +1,16 @@
+# [START gke_on_prem_cni]
+apiVersion: install.istio.io/v1alpha1
+kind: IstioOperator
+spec:
+  components:
+    cni:
+      enabled: true
+      namespace: kube-system
+  values:
+    cni:
+      cniBinDir: /opt/cni/bin
+      excludeNamespaces:
+        - istio-system
+        - kube-system
+        - gke-system
+# [END gke_on_prem_cni]
