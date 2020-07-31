@@ -1,0 +1,7 @@
+# [START servicemesh_direct_envoy_stdout] 
+apiVersion: install.istio.io/v1alpha1
+kind: IstioOperator
+spec:
+  meshConfig:
+    accessLogFile: "/dev/stdout"
+# [END servicemesh_direct_envoy_stdout] 
