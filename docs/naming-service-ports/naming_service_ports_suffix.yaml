@@ -1,0 +1,11 @@
+# [START servicemesh_naming_service_ports_suffix]
+kind: Service
+metadata:
+  name: myservice
+spec:
+  ports:
+  - number: 3306
+    name: mysql
+  - number: 80
+    name: http-web
+# [END servicemesh_naming_service_ports_suffix]
