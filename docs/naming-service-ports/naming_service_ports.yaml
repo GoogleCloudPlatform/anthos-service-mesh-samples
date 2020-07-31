@@ -1,0 +1,13 @@
+# [START servicemesh_naming_service_ports]
+apiVersion: v1
+kind: Service
+metadata:
+  name: ratings
+  labels:
+    app: ratings
+    service: ratings
+spec:
+  ports:
+  - port: 9080
+    name: http
+# [END servicemesh_naming_service_ports]
