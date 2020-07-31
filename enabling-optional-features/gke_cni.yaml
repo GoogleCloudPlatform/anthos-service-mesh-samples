@@ -1,0 +1,15 @@
+# [START servicemesh_gke_cni]
+apiVersion: install.istio.io/v1alpha1
+kind: IstioOperator
+spec:
+  components:
+    cni:
+      enabled: true
+      namespace: kube-system
+  values:
+    cni:
+      cniBinDir: /home/kubernetes/bin
+      excludeNamespaces:
+        - istio-system
+        - kube-system
+# [END servicemesh_gke_cni]
