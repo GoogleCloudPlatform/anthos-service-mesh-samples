@@ -1,0 +1,11 @@
+# [START servicemesh_cloud_trace]
+apiVersion: install.istio.io/v1alpha1
+kind: IstioOperator
+spec:
+  meshConfig:
+    enableTracing: true
+  values:
+    global:
+       proxy:
+         tracer: stackdriver
+# [END servicemesh_cloud_trace]
