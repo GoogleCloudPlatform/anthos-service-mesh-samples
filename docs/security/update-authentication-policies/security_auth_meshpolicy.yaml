@@ -24,14 +24,3 @@ spec:
   - mtls:
       mode: PERMISSIVE
 # [END servicemesh_security_auth_meshpolicy]
----
-# [START servicemesh_security_auth_peerauthentication]
-apiVersion: "security.istio.io/v1beta1"
-kind: "PeerAuthentication"
-metadata:
-  name: "default"
-  namespace: "istio-system"
-spec:
-  mtls:
-    mode: PERMISSIVE
-# [END servicemesh_security_auth_peerauthentication]
