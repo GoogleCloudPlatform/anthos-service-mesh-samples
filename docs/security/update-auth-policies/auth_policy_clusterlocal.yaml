@@ -12,27 +12,6 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-# [START servicemesh_auth_policy_oldtd]
-apiVersion: security.istio.io/v1beta1
-kind: AuthorizationPolicy
-metadata:
-  name: service-httpbin.default.svc.cluster.local
-  namespace: default
-spec:
-  rules:
-  - from:
-    - source:
-        principals:
-        - old-td/ns/sleep-allow/sa/sleep
-    to:
-    - operation:
-        methods:
-        - GET
-  selector:
-    matchLabels:
-      app: httpbin
-# [END servicemesh_auth_policy_oldtd]
----
 # [START servicemesh_auth_policy_clusterlocal]
 apiVersion: security.istio.io/v1beta1
 kind: AuthorizationPolicy
