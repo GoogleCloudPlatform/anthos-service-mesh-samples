@@ -1,4 +1,3 @@
-#!/bin/bash
 # Copyright 2020 Google LLC
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
@@ -14,7 +13,6 @@
 # limitations under the License.
 
 # [START servicemesh_load_balancer_ingress]
-cat <<EOF | kubectl create -f -
 apiVersion: extensions/v1beta1
 kind: Ingress
 metadata:
@@ -27,5 +25,4 @@ spec:
   backend:
     serviceName: istio-ingressgateway
     servicePort: 80
-EOF
 # [END servicemesh_load_balancer_ingress]
