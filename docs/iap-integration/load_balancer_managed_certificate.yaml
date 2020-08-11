@@ -20,5 +20,5 @@ metadata:
   namespace: istio-system
 spec:
   domains:
-    - ${DOMAIN_NAME}
+    - <DOMAIN_NAME>
 # [END servicemesh_load_balancer_managed_certificate]

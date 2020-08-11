@@ -27,7 +27,7 @@ spec:
   - issuer: "https://cloud.google.com/iap"
     jwksUri: "https://www.gstatic.com/iap/verify/public_key-jwk"
     audiences:
-    - $RCTOKEN_AUD
+    - <RCTOKEN_AUD>
     fromHeaders:
     - name: ingress-authorization
       prefix: "Istio "
