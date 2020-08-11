@@ -1,4 +1,3 @@
-#!/bin/bash
 # Copyright 2020 Google LLC
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
@@ -14,7 +13,6 @@
 # limitations under the License.
 
 # [START servicemesh_load_balancer_managed_certificate]
-cat <<EOF | kubectl apply -f -
 apiVersion: networking.gke.io/v1beta1
 kind: ManagedCertificate
 metadata:
@@ -23,5 +21,4 @@ metadata:
 spec:
   domains:
     - ${DOMAIN_NAME}
-EOF
 # [END servicemesh_load_balancer_managed_certificate]
