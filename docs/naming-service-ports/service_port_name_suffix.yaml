@@ -12,7 +12,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-# [START servicemesh_naming_service_ports_suffix]
+# [START servicemesh_service_port_name_suffix]
 kind: Service
 metadata:
   name: myservice
@@ -22,4 +22,4 @@ spec:
     name: mysql
   - number: 80
     name: http-web
-# [END servicemesh_naming_service_ports_suffix]
+# [END servicemesh_service_port_name_suffix]
