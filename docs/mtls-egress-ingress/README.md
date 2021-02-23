@@ -1,4 +1,4 @@
-[![Open in Cloud Shell](https://gstatic.com/cloudssh/images/open-btn.svg)](https://ssh.cloud.google.com/cloudshell/editor?cloudshell_git_repo=https://github.com/vhamburger/anthos-service-mesh-samples/docs&mtls-egress-ingress=README.md&cloudshell_workspace=mtls-egress-ingress/)
+[![Open in Cloud Shell](https://gstatic.com/cloudssh/images/open-btn.svg)](https://ssh.cloud.google.com/cloudshell/editor?cloudshell_git_repo=https://github.com/vhamburger/anthos-service-mesh-samples&/docs/mtls-egress-ingress=README.md&cloudshell_workspace=/docs/mtls-egress-ingress/)
 
 *“Copyright 2021 Google LLC. This software is provided as-is, without warranty or representation for any use or purpose.*
 *Your use of it is subject to your agreements with Google.”*  
