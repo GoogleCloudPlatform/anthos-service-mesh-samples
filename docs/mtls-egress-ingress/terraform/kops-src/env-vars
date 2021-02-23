@@ -1,0 +1,3 @@
+export PROJECT=vch-anthos-demo
+export KOPS_STATE_STORE=gs://vch-anthos-demo-kops-clusters
+export KOPS_FEATURE_FLAGS=AlphaAllowGCE
