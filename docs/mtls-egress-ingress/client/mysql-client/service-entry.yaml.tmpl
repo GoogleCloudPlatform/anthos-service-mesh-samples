@@ -1,0 +1,20 @@
+apiVersion: networking.istio.io/v1alpha3
+kind: ServiceEntry
+metadata:
+  name: mysql-external
+spec:
+  hosts:
+    - SERVICE_URL
+  location: MESH_EXTERNAL
+  ports:
+    - number: 3306
+      name: tcp
+      protocol: TCP
+    - number: 13306
+      name: tls
+      protocol: TLS
+  resolution: DNS
+  endpoints:
+    - address: SERVICE_URL
+      ports:
+        tls: 13306

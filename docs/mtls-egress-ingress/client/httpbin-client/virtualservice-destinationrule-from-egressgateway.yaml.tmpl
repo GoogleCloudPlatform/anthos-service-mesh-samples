@@ -1,0 +1,70 @@
+apiVersion: networking.istio.io/v1alpha3
+kind: VirtualService
+metadata:
+  name: vs-alias
+spec:
+  hosts:
+    - httpbin-external
+  http:
+    - match:
+        - uri:
+            regex: ".*"
+      rewrite:
+        authority: SERVICE_URL
+      route:
+        - destination:
+            host: istio-egressgateway.istio-system.svc.cluster.local
+            subset: httpbin
+            port:
+              number: 443
+          weight: 100
+---
+apiVersion: networking.istio.io/v1alpha3
+kind: VirtualService
+metadata:
+  name: direct-httpbin-through-egress-gateway
+spec:
+  hosts:
+  - SERVICE_URL
+  gateways:
+  - istio-egressgateway-httpbin
+  - mesh
+  http:
+  - match:
+    - gateways:
+      - mesh
+      port: 80
+    route:
+    - destination:
+        host: istio-egressgateway.istio-system.svc.cluster.local
+        subset: httpbin
+        port:
+          number: 443
+      weight: 100
+  - match:
+    - gateways:
+      - istio-egressgateway-httpbin
+      port: 443
+    route:
+    - destination:
+        host: SERVICE_URL
+        port:
+          number: 443
+      weight: 100
+---
+apiVersion: networking.istio.io/v1alpha3
+kind: DestinationRule
+metadata:
+  name: originate-mtls-for-httpbin
+spec:
+  host: SERVICE_URL
+  trafficPolicy:
+    loadBalancer:
+      simple: ROUND_ROBIN
+    portLevelSettings:
+    - port:
+        number: 443
+      tls:
+        mode: MUTUAL
+        credentialName: client-credential
+        sni: SERVICE_URL

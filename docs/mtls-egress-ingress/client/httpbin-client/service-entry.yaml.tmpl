@@ -1,0 +1,20 @@
+apiVersion: networking.istio.io/v1alpha3
+kind: ServiceEntry
+metadata:
+  name: httpbin-serviceentry
+spec:
+  hosts:
+  - SERVICE_URL
+  location: MESH_EXTERNAL
+  ports:
+  - number: 80
+    name: http
+    protocol: HTTP
+  - number: 443
+    name: https
+    protocol: HTTPS
+  resolution: DNS
+  endpoints:
+  - address: SERVICE_URL
+    ports:
+      https: 443

@@ -1,0 +1,15 @@
+apiVersion: networking.istio.io/v1alpha3
+kind: VirtualService
+metadata:
+  name: mysql-virtual-service
+spec:
+  hosts:
+    - "SERVICE_URL"
+  gateways:
+    - mysql-gateway
+  tcp:
+    - route:
+        - destination:
+            port:
+              number: 3306
+            host: mysql.default.svc.cluster.local

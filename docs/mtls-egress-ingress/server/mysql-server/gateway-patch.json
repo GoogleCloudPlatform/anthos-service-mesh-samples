@@ -1,0 +1,10 @@
+[{
+  "op": "add",
+  "path": "/spec/ports/0",
+  "value": {
+    "name": "tls-mysql",
+    "protocol": "TCP",
+    "targetPort": 13306,
+    "port": 13306
+  }
+}]

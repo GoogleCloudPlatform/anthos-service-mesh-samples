@@ -1,0 +1,34 @@
+apiVersion: networking.istio.io/v1alpha3
+kind: Gateway
+metadata:
+  name: istio-egressgateway-mysql
+spec:
+  selector:
+    istio: egressgateway
+  servers:
+    - port:
+        number: 15443
+        name: tls
+        protocol: TLS
+      hosts:
+        - SERVICE_URL
+      tls:
+        mode: ISTIO_MUTUAL
+---
+apiVersion: networking.istio.io/v1alpha3
+kind: DestinationRule
+metadata:
+  name: egressgateway-for-mysql
+spec:
+  host: istio-egressgateway.istio-system.svc.cluster.local
+  subsets:
+    - name: mysql
+      trafficPolicy:
+        loadBalancer:
+          simple: ROUND_ROBIN
+        portLevelSettings:
+          - port:
+              number: 15443
+            tls:
+              mode: ISTIO_MUTUAL
+              sni: SERVICE_URL
