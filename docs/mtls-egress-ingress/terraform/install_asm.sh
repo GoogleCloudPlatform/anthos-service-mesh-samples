@@ -56,7 +56,7 @@ spec:
 EOF
 # Run istioctl isntallation
 echo "Installing istio into the cluster"
-bin/istioctl install --set profile=asm-multicloud --set revision=asm-${ASM_REVISION} -f "$TERRAFORM_ROOT/../$TYPE/features.yaml"
+bin/istioctl install --set profile=asm-multicloud --set revision=asm-${ASM_REVISION} -f "$TERRAFORM_ROOT/../$TYPE/features.yaml" -y
 kubectl apply -f $TERRAFORM_ROOT/istiod-service.yaml
 # Inject sidecare proxies
 kubectl label namespace default istio-injection- istio.io/rev=asm-${ASM_REVISION} --overwrite
