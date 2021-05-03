@@ -14,8 +14,13 @@ gateway.
  - If you use your local machine
    - Install and initialize the [Cloud SDK](https://cloud.google.com/sdk/docs/quickstarts) (the gcloud command-line tool).
    - Install `git` command line tool.
-   - Install `terraform` command line tool.
-
+   - Install `terraform` command line tool (see next step).
+ - This tutorial assumes you have Terraform 0.13.5 or later installed. You can temporarily use another version of Terraform by running the following commands:
+   ```
+   mkdir ~/bin
+   curl https://releases.hashicorp.com/terraform/0.13.5/terraform_0.13.5_linux_amd64.zip -o ~/bin/terraform.zip
+   unzip ~/bin/terraform.zip -d ~/bin/
+   ```
  - Setup you environment to have PROJECT_ID, REGION and ZONE
    ```
    export PROJECT_ID=YOUR_PROJECT_ID
@@ -78,7 +83,7 @@ Depending on if you already have two Anthos GKE clusters with ASM installed or n
 
 1. Change into the terraform folder
    ```
-   cd terraform
+   cd docs/mtls-egress-ingress/terraform
    ```
 
 1. Create a terraform.tfvars file (based on the environment variables you created before)
@@ -97,10 +102,10 @@ Depending on if you already have two Anthos GKE clusters with ASM installed or n
    both of them will appear under your GKE Clusters menu in the Cloud Console.  
 
    ```
-   terraform init
-   terraform plan
+   ~/bin/terraform init
+   ~/bin/terraform plan
    
-   terraform apply --auto-approve
+   ~/bin/terraform apply --auto-approve
    
    cd ..
    ```
