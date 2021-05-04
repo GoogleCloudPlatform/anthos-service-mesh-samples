@@ -231,7 +231,7 @@ resource "local_file" "kops-create-cluster" {
 resource "time_sleep" "wait_for_kops_startup" {
   depends_on = [local_file.kops-create-cluster]
 
-  create_duration = "3m"
+  create_duration = "4m"
 }
 
 resource "local_file" "kops-register-cluster" {
