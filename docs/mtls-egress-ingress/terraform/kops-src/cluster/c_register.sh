@@ -17,6 +17,8 @@ gcloud iam service-accounts keys create gkehub.json \
   --project=$PROJECT
 echo "Storing kOps kubeconfig in server-kubeconfig"
 ./kops export kubecfg server-cluster.k8s.local --kubeconfig $LOCATION/server-kubeconfig --state "gs://$PROJECT-kops-clusters/"/ --admin
+echo "Validating cluster - connection errors during validation are expected"
+./kops validate cluster server-cluster.k8s.local --state "gs://$PROJECT-kops-clusters"/ --wait 10m --count 1 --kubeconfig $LOCATION/server-kubeconfig
 echo "Registering kOps cluster into Anthos in project: $PROJECT"
 gcloud container hub memberships register server-cluster \
             --context=server-cluster.k8s.local \
