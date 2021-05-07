@@ -142,16 +142,6 @@ EOF
 data "google_client_config" "default" {
 }
 
-module "client-cluster-hub" {
-  source                  = "terraform-google-modules/kubernetes-engine/google//modules/hub"
-  project_id              = var.project_id
-  location                = module.client-cluster.location
-  cluster_name            = module.client-cluster.name
-  cluster_endpoint        = module.client-cluster.endpoint
-  gke_hub_membership_name = "${local.client_cluster_name}-asm-membership"
-  gke_hub_sa_name         = "${local.client_cluster_name}-gke-hub-sa"
-}
-
 # destroy gke fw rules, otherwise you can not delete the vpc
 resource "null_resource" "delete_gke_fw_rules" {
 
