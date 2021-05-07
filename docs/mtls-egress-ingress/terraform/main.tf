@@ -39,8 +39,8 @@ locals {
   # due to no variable usage in provisioners
   vpc_name              = "example-vpc"
   
-  ams_version           = "1.9.3-asm.2"
-  ams_revision          = "193-2"
+  asm_version           = "1.9.3-asm.2"
+  asm_revision          = "193-2"
 }
 
 data "google_project" "project" {
