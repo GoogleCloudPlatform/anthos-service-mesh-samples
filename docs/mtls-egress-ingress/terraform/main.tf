@@ -218,14 +218,8 @@ resource "local_file" "kops-create-cluster" {
   }
 }
 
-resource "time_sleep" "wait_for_kops_startup" {
-  depends_on = [local_file.kops-create-cluster]
-
-  create_duration = "4m"
-}
-
 resource "local_file" "kops-register-cluster" {
-  depends_on = [time_sleep.wait_for_kops_startup, data.template_file.kops-register, local_file.kops-create-cluster]
+  depends_on = [data.template_file.kops-register, local_file.kops-create-cluster]
   # render register script with TF vars
   content     = data.template_file.kops-register.rendered
   filename = "/tmp/register.sh"
