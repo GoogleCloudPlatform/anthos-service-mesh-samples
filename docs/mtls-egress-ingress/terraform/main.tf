@@ -38,6 +38,9 @@ locals {
   # the vpc_name is currently hardcoded in the FW destroy
   # due to no variable usage in provisioners
   vpc_name              = "example-vpc"
+  
+  ams_version           = "1.9.3-asm.2"
+  ams_revision          = "193-2"
 }
 
 data "google_project" "project" {
@@ -133,8 +136,8 @@ EOF
       ZONE = var.zones[0]
       TYPE = "client"
       TERRAFORM_ROOT = abspath(path.root)
-      ASM_VERSION    = "1.9.3-asm.2"
-      ASM_REVISION   = "193-2"
+      ASM_VERSION    = local.asm_version
+      ASM_REVISION   = local.asm_revision
     }
   }
 }
@@ -244,8 +247,8 @@ EOF
       ZONE = var.zones[0]
       TYPE = "server"
       TERRAFORM_ROOT = abspath(path.root)
-      ASM_VERSION    = "1.9.3-asm.2"
-      ASM_REVISION   = "193-2"
+      ASM_VERSION    = local.asm_version
+      ASM_REVISION   = local.asm_revision
     }
   }
 }
