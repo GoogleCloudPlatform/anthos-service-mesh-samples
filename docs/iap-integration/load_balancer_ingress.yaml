@@ -12,7 +12,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-# [START servicemesh_load_balancer_ingress]
+# [START servicemesh_iap_integration_load_balancer_ingress_ingress_example_ingress]
 apiVersion: extensions/v1beta1
 kind: Ingress
 metadata:
@@ -25,4 +25,4 @@ spec:
   backend:
     serviceName: istio-ingressgateway
     servicePort: 80
-# [END servicemesh_load_balancer_ingress]
+# [END servicemesh_iap_integration_load_balancer_ingress_ingress_example_ingress]

@@ -12,7 +12,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-# [START anthos-service-mesh_bank-of-anthos_deployment_loadgenerator ]
+# [START servicemesh_deployment_manifests_loadgenerator_deployment_loadgenerator]
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -46,4 +46,4 @@ spec:
           limits:
             cpu: 500m
             memory: 1Gi
-# [END anthos-service-mesh_bank-of-anthos_deployment_loadgenerator ]
+# [END servicemesh_deployment_manifests_loadgenerator_deployment_loadgenerator]

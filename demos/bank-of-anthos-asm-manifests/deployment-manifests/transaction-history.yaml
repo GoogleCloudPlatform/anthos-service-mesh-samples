@@ -12,7 +12,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-# [START anthos-service-mesh_bank-of-anthos_deployment_transactionhistory ]
+# [START servicemesh_deployment_manifests_transaction_history_deployment_transactionhistory]
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -85,9 +85,9 @@ spec:
           items:
           - key: jwtRS256.key.pub
             path: publickey
-# [END anthos-service-mesh_bank-of-anthos_deployment_transactionhistory ]
+# [END servicemesh_deployment_manifests_transaction_history_deployment_transactionhistory]
 ---
-# [START anthos-service-mesh_bank-of-anthos_service_transactionhistory ]
+# [START servicemesh_deployment_manifests_transaction_history_service_transactionhistory]
 apiVersion: v1
 kind: Service
 metadata:
@@ -100,9 +100,9 @@ spec:
   - name: http
     port: 8080
     targetPort: 8080
-# [END anthos-service-mesh_bank-of-anthos_service_transactionhistory ]
+# [END servicemesh_deployment_manifests_transaction_history_service_transactionhistory]
 ---
-# [START anthos-service-mesh_bank-of-anthos_virtualservice_transactionhistory ]
+# [START servicemesh_deployment_manifests_transaction_history_virtualservice_transactionhistory]
 apiVersion: networking.istio.io/v1beta1
 kind: VirtualService
 metadata:
@@ -115,9 +115,9 @@ spec:
     - destination:
         host: transactionhistory
         subset: v0-2-0
-# [END anthos-service-mesh_bank-of-anthos_virtualservice_transactionhistory ]
+# [END servicemesh_deployment_manifests_transaction_history_virtualservice_transactionhistory]
 ---
-# [START anthos-service-mesh_bank-of-anthos_destinationrule_transactionhistory-destination ]
+# [START servicemesh_deployment_manifests_transaction_history_destinationrule_transactionhistory_destination]
 apiVersion: networking.istio.io/v1beta1
 kind: DestinationRule
 metadata:
@@ -131,4 +131,4 @@ spec:
   - name: v0-2-0
     labels:
       version: v0.2.0
-# [END anthos-service-mesh_bank-of-anthos_destinationrule_transactionhistory-destination ]
+# [END servicemesh_deployment_manifests_transaction_history_destinationrule_transactionhistory_destination]

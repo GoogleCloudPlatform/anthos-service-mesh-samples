@@ -12,7 +12,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-# [START anthos-service-mesh_bank-of-anthos_configmap_environment-config ]
+# [START servicemesh_deployment_manifests_config_configmap_environment_config]
 apiVersion: v1
 kind: ConfigMap
 metadata:
@@ -50,4 +50,4 @@ data:
   DEFAULT_CONTACT_NAME_A: "Alice"
   DEFAULT_CONTACT_ACCOUNT_B: "1055757655"
   DEFAULT_CONTACT_NAME_B: "Bob"
-# [END anthos-service-mesh_bank-of-anthos_configmap_environment-config ]
+# [END servicemesh_deployment_manifests_config_configmap_environment_config]

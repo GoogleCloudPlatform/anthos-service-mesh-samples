@@ -12,7 +12,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-# [START servicemesh_asmgcp_profile]
+# [START servicemesh_enabling_optional_features_asmgcp_profile_istiooperator]
 apiVersion: install.istio.io/v1alpha1
 kind: IstioOperator
 spec:
@@ -23,4 +23,4 @@ spec:
         env:
         - name: CA_ADDR
           value: meshca.googleapis.com:443
-# [END servicemesh_asmgcp_profile]
+# [END servicemesh_enabling_optional_features_asmgcp_profile_istiooperator]

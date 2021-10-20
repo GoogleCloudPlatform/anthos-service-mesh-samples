@@ -12,7 +12,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-# [START anthos-service-mesh_bank-of-anthos_gateway_bank-of-anthos-gateway ]
+# [START servicemesh_deployment_manifests_asm_gateway_gateway_bank_of_anthos_gateway]
 apiVersion: networking.istio.io/v1beta1
 kind: Gateway
 metadata:
@@ -27,4 +27,4 @@ spec:
       protocol: HTTP
     hosts:
     - "*" 
-# [END anthos-service-mesh_bank-of-anthos_gateway_bank-of-anthos-gateway ]
+# [END servicemesh_deployment_manifests_asm_gateway_gateway_bank_of_anthos_gateway]

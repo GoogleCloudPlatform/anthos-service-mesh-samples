@@ -12,7 +12,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-# [START anthos-service-mesh_bank-of-anthos_deployment_frontend-custom ]
+# [START servicemesh_demo_manifests_frontend_custom_deployment_deployment_frontend_custom]
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -78,9 +78,9 @@ spec:
           items:
           - key: jwtRS256.key.pub
             path: publickey
-# [END anthos-service-mesh_bank-of-anthos_deployment_frontend-custom ]
+# [END servicemesh_demo_manifests_frontend_custom_deployment_deployment_frontend_custom]
 ---
-# [START anthos-service-mesh_bank-of-anthos_destinationrule_frontend-destination ]
+# [START servicemesh_demo_manifests_frontend_custom_deployment_destinationrule_frontend_destination]
 apiVersion: networking.istio.io/v1beta1
 kind: DestinationRule
 metadata:
@@ -97,4 +97,4 @@ spec:
   - name: v0-2-0-custom
     labels:
       version: v0.2.0-custom
-# [END anthos-service-mesh_bank-of-anthos_destinationrule_frontend-destination ]
+# [END servicemesh_demo_manifests_frontend_custom_deployment_destinationrule_frontend_destination]

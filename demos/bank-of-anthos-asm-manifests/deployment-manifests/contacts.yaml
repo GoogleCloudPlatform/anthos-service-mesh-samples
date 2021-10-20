@@ -12,7 +12,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-# [START anthos-service-mesh_bank-of-anthos_deployment_contacts ]
+# [START servicemesh_deployment_manifests_contacts_deployment_contacts]
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -65,9 +65,9 @@ spec:
           items:
           - key: jwtRS256.key.pub
             path: publickey
-# [END anthos-service-mesh_bank-of-anthos_deployment_contacts ]
+# [END servicemesh_deployment_manifests_contacts_deployment_contacts]
 ---
-# [START anthos-service-mesh_bank-of-anthos_service_contacts ]
+# [START servicemesh_deployment_manifests_contacts_service_contacts]
 apiVersion: v1
 kind: Service
 metadata:
@@ -80,9 +80,9 @@ spec:
   - name: http
     port: 8080
     targetPort: 8080
-# [end anthos-service-mesh_bank-of-anthos_service_contacts ]
+# [END servicemesh_deployment_manifests_contacts_service_contacts]
 ---
-# [START anthos-service-mesh_bank-of-anthos_virtualservice_contacts ]
+# [START servicemesh_deployment_manifests_contacts_virtualservice_contacts]
 apiVersion: networking.istio.io/v1beta1
 kind: VirtualService
 metadata:
@@ -95,9 +95,9 @@ spec:
     - destination:
         host: contacts
         subset: v0-2-0
-# [END anthos-service-mesh_bank-of-anthos_virtualservice_contacts ]
+# [END servicemesh_deployment_manifests_contacts_virtualservice_contacts]
 ---
-# [START anthos-service-mesh_bank-of-anthos_destinationrule_contacts-destination ]
+# [START servicemesh_deployment_manifests_contacts_destinationrule_contacts_destination]
 apiVersion: networking.istio.io/v1beta1
 kind: DestinationRule
 metadata:
@@ -111,4 +111,4 @@ spec:
   - name: v0-2-0
     labels:
       version: v0.2.0
-# [END anthos-service-mesh_bank-of-anthos_destinationrule_contacts-destination ]
+# [END servicemesh_deployment_manifests_contacts_destinationrule_contacts_destination]

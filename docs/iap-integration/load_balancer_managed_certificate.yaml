@@ -12,7 +12,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-# [START servicemesh_load_balancer_managed_certificate]
+# [START servicemesh_iap_integration_load_balancer_managed_certificate_managedcertificate_example_certificate]
 apiVersion: networking.gke.io/v1beta1
 kind: ManagedCertificate
 metadata:
@@ -21,4 +21,4 @@ metadata:
 spec:
   domains:
     - <DOMAIN_NAME>
-# [END servicemesh_load_balancer_managed_certificate]
+# [END servicemesh_iap_integration_load_balancer_managed_certificate_managedcertificate_example_certificate]

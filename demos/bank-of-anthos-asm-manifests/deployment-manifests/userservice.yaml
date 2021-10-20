@@ -12,7 +12,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-# [START anthos-service-mesh_bank-of-anthos_deployment_userservice ]
+# [START servicemesh_deployment_manifests_userservice_deployment_userservice]
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -74,9 +74,9 @@ spec:
             path: privatekey
           - key: jwtRS256.key.pub
             path: publickey
-# [END anthos-service-mesh_bank-of-anthos_deployment_userservice ]
+# [END servicemesh_deployment_manifests_userservice_deployment_userservice]
 ---
-# [START anthos-service-mesh_bank-of-anthos_service_userservice ]
+# [START servicemesh_deployment_manifests_userservice_service_userservice]
 apiVersion: v1
 kind: Service
 metadata:
@@ -89,9 +89,9 @@ spec:
   - name: http
     port: 8080
     targetPort: 8080
-# [END anthos-service-mesh_bank-of-anthos_service_userservice ]
+# [END servicemesh_deployment_manifests_userservice_service_userservice]
 ---
-# [START anthos-service-mesh_bank-of-anthos_virtualservice_userservice ]  
+# [START servicemesh_deployment_manifests_userservice_virtualservice_userservice]  
 apiVersion: networking.istio.io/v1beta1
 kind: VirtualService
 metadata:
@@ -104,9 +104,9 @@ spec:
     - destination:
         host: userservice
         subset: v0-2-0
-# [END anthos-service-mesh_bank-of-anthos_virtualservice_userservice ]  
+# [END servicemesh_deployment_manifests_userservice_virtualservice_userservice]  
 ---
-# [START anthos-service-mesh_bank-of-anthos_destinationrule_userservice-destination ]  
+# [START servicemesh_deployment_manifests_userservice_destinationrule_userservice_destination]  
 apiVersion: networking.istio.io/v1beta1
 kind: DestinationRule
 metadata:
@@ -120,4 +120,4 @@ spec:
   - name: v0-2-0
     labels:
       version: v0.2.0
-# [END anthos-service-mesh_bank-of-anthos_destinationrule_userservice-destination ]  
+# [END servicemesh_deployment_manifests_userservice_destinationrule_userservice_destination]  

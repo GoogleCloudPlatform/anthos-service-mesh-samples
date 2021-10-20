@@ -12,7 +12,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-# [START servicemesh_gke_on_prem_cni]
+# [START servicemesh_enabling_optional_features_gke_on_prem_cni_istiooperator]
 apiVersion: install.istio.io/v1alpha1
 kind: IstioOperator
 spec:
@@ -27,4 +27,4 @@ spec:
         - istio-system
         - kube-system
         - gke-system
-# [END servicemesh_gke_on_prem_cni]
+# [END servicemesh_enabling_optional_features_gke_on_prem_cni_istiooperator]

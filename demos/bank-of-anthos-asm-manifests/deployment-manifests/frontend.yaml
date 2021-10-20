@@ -12,7 +12,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-# [START anthos-service-mesh_bank-of-anthos_deployment_frontend ]
+# [START servicemesh_deployment_manifests_frontend_deployment_frontend]
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -75,9 +75,9 @@ spec:
           items:
           - key: jwtRS256.key.pub
             path: publickey
-# [END anthos-service-mesh_bank-of-anthos_deployment_frontend ]
+# [END servicemesh_deployment_manifests_frontend_deployment_frontend]
 ---
-# [START anthos-service-mesh_bank-of-anthos_service_frontend ]
+# [START servicemesh_deployment_manifests_frontend_service_frontend]
 apiVersion: v1
 kind: Service
 metadata:
@@ -90,9 +90,9 @@ spec:
   - name: http
     port: 80
     targetPort: 8080
-# [END anthos-service-mesh_bank-of-anthos_service_frontend ]
+# [END servicemesh_deployment_manifests_frontend_service_frontend]
 ---
-# [START anthos-service-mesh_bank-of-anthos_virtualservice_frontend ]
+# [START servicemesh_deployment_manifests_frontend_virtualservice_frontend]
 apiVersion: networking.istio.io/v1beta1
 kind: VirtualService
 metadata:
@@ -110,9 +110,9 @@ spec:
     - destination:
         host: frontend
         subset: v0-2-0
-# [END anthos-service-mesh_bank-of-anthos_virtualservice_frontend ]
+# [END servicemesh_deployment_manifests_frontend_virtualservice_frontend]
 ---
-# [START anthos-service-mesh_bank-of-anthos_destinationrule_frontend-destination ]
+# [START servicemesh_deployment_manifests_frontend_destinationrule_frontend_destination]
 apiVersion: networking.istio.io/v1beta1
 kind: DestinationRule
 metadata:
@@ -126,4 +126,4 @@ spec:
   - name: v0-2-0
     labels:
       version: v0.2.0
-# [END anthos-service-mesh_bank-of-anthos_destinationrule_frontend-destination ]
+# [END servicemesh_deployment_manifests_frontend_destinationrule_frontend_destination]

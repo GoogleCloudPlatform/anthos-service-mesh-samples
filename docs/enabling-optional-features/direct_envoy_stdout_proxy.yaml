@@ -12,11 +12,11 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-# [START servicemesh_direct_envoy_stdout_proxy]
+# [START servicemesh_enabling_optional_features_direct_envoy_stdout_proxy_istiooperator]
 apiVersion: install.istio.io/v1alpha1
 kind: IstioOperator
 spec:
   global:
     proxy:
       accessLogFile="/dev/stdout"
-# [END servicemesh_direct_envoy_stdout_proxy]
+# [END servicemesh_enabling_optional_features_direct_envoy_stdout_proxy_istiooperator]

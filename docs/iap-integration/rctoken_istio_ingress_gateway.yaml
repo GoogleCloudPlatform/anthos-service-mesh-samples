@@ -13,7 +13,7 @@
 # limitations under the License.
 
 
-# [START servicemesh_rctoken_istio_ingress_gateway]
+# [START servicemesh_iap_integration_rctoken_istio_ingress_gateway_requestauthentication_ingressgateway_jwt_policy]
 apiVersion: "security.istio.io/v1beta1"
 kind: "RequestAuthentication"
 metadata:
@@ -33,4 +33,4 @@ spec:
       prefix: "Istio "
     outputPayloadToHeader: "verified-jwt"
     forwardOriginalToken: true
-# [END servicemesh_rctoken_istio_ingress_gateway]
+# [END servicemesh_iap_integration_rctoken_istio_ingress_gateway_requestauthentication_ingressgateway_jwt_policy]

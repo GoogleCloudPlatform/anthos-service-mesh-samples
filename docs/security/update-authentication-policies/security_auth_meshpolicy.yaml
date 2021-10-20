@@ -12,7 +12,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-# [START servicemesh_security_auth_meshpolicy]
+# [START servicemesh_update_authentication_policies_security_auth_meshpolicy_meshpolicy_default]
 apiVersion: "authentication.istio.io/v1alpha1"
 kind: "MeshPolicy"
 metadata:
@@ -23,4 +23,4 @@ spec:
   peers:
   - mtls:
       mode: PERMISSIVE
-# [END servicemesh_security_auth_meshpolicy]
+# [END servicemesh_update_authentication_policies_security_auth_meshpolicy_meshpolicy_default]

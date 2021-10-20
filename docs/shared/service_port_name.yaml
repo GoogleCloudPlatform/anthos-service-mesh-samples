@@ -12,7 +12,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-# [START servicemesh_service_port_name]
+# [START servicemesh_shared_service_port_name_service_ratings]
 apiVersion: v1
 kind: Service
 metadata:
@@ -24,4 +24,4 @@ spec:
   ports:
   - port: 9080
     name: http
-# [END servicemesh_service_port_name]
+# [END servicemesh_shared_service_port_name_service_ratings]

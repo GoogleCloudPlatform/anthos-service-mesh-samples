@@ -12,7 +12,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-# [START servicemesh_auth_policy_clusterlocal]
+# [START servicemesh_update_auth_policies_auth_policy_clusterlocal_authorizationpolicy_service_httpbin]
 apiVersion: security.istio.io/v1beta1
 kind: AuthorizationPolicy
 metadata:
@@ -31,4 +31,4 @@ spec:
   selector:
     matchLabels:
       app: httpbin
-# [END servicemesh_auth_policy_clusterlocal]
+# [END servicemesh_update_auth_policies_auth_policy_clusterlocal_authorizationpolicy_service_httpbin]

@@ -12,7 +12,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-# [START servicemesh_asmmulticloud_profile]
+# [START servicemesh_enabling_optional_features_asmmulticloud_profile_istiooperator]
 apiVersion: install.istio.io/v1alpha1
 kind: IstioOperator
 spec:
@@ -20,4 +20,4 @@ spec:
     egressGateways:
       - name: istio-egressgateway
         enabled: true
-# [END servicemesh_asmmulticloud_profile]
+# [END servicemesh_enabling_optional_features_asmmulticloud_profile_istiooperator]

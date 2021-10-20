@@ -12,7 +12,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-# [START anthos-service-mesh_bank-of-anthos_statefulset_accounts-db ]
+# [START servicemesh_deployment_manifests_accounts_db_statefulset_accounts_db]
 kind: StatefulSet
 apiVersion: apps/v1
 metadata:
@@ -61,9 +61,9 @@ spec:
       volumes:
       - name: postgresdb
         emptyDir: {}
-# [END anthos-service-mesh_bank-of-anthos_statefulset_accounts-db ]
+# [END servicemesh_deployment_manifests_accounts_db_statefulset_accounts_db]
 ---
-# [START anthos-service-mesh_bank-of-anthos_service_accounts-db ]
+# [START servicemesh_deployment_manifests_accounts_db_service_accounts_db]
 apiVersion: v1
 kind: Service
 metadata:
@@ -80,9 +80,9 @@ spec:
   selector:
     app: accounts-db
     tier: db
-# [END anthos-service-mesh_bank-of-anthos_service_accounts-db ]
+# [END servicemesh_deployment_manifests_accounts_db_service_accounts_db]
 ---
-# [START anthos-service-mesh_bank-of-anthos_configmap_accounts-db-config ]
+# [START servicemesh_deployment_manifests_accounts_db_configmap_accounts_db_configmap]
 apiVersion: v1
 kind: ConfigMap
 metadata:
@@ -94,9 +94,9 @@ data:
   POSTGRES_USER: accounts-admin
   POSTGRES_PASSWORD: accounts-pwd
   ACCOUNTS_DB_URI: postgresql://accounts-admin:accounts-pwd@accounts-db:5432/accounts-db
-# [END anthos-service-mesh_bank-of-anthos_configmap_accounts-db-config ]
+# [END servicemesh_deployment_manifests_accounts_db_configmap_accounts_db_configmap]
 ---
-# [START anthos-service-mesh_bank-of-anthos_virtualservice_accounts-db ]
+# [START servicemesh_deployment_manifests_accounts_db_virtualservice_accounts_db]
 apiVersion: networking.istio.io/v1beta1
 kind: VirtualService
 metadata:
@@ -109,9 +109,9 @@ spec:
     - destination:
         host: accounts-db
         subset: v0-2-0
-# [END anthos-service-mesh_bank-of-anthos_virtualservice_accounts-db ]
+# [END servicemesh_deployment_manifests_accounts_db_virtualservice_accounts_db]
 ---
-# [START anthos-service-mesh_bank-of-anthos_destinationrule_accounts-db-destination ]
+# [START servicemesh_deployment_manifests_accounts_db_destinationrule_accounts_db_destination]
 apiVersion: networking.istio.io/v1beta1
 kind: DestinationRule
 metadata:
@@ -125,4 +125,4 @@ spec:
   - name: v0-2-0
     labels:
       version: v0.2.0
-# [END anthos-service-mesh_bank-of-anthos_destinationrule_accounts-db-destination ]
+# [END servicemesh_deployment_manifests_accounts_db_destinationrule_accounts_db_destination]

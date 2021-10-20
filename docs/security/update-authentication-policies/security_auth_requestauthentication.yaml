@@ -12,7 +12,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-# [START servicemesh_security_auth_requestauthentication]
+# [START servicemesh_update_authentication_policies_security_auth_requestauthentication_requestauthentication_jwt_example]
 apiVersion: "security.istio.io/v1beta1"
 kind: "RequestAuthentication"
 metadata:
@@ -24,4 +24,4 @@ spec:
   jwtRules:
   - issuer: "testing@secure.istio.io"
     jwksUri: "https://raw.githubusercontent.com/istio/istio/release-1.5/security/tools/jwt/samples/jwks.json"
-# [END servicemesh_security_auth_requestauthentication]
+# [END servicemesh_update_authentication_policies_security_auth_requestauthentication_requestauthentication_jwt_example]

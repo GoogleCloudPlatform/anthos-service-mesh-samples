@@ -12,7 +12,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-# [START anthos-service-mesh_bank-of-anthos_virtualservice_frontend ]
+# [START servicemesh_demo_manifests_asm_gateway_gateway_bank_of_anthos_gateway]
 apiVersion: networking.istio.io/v1beta1
 kind: VirtualService
 metadata:
@@ -30,9 +30,9 @@ spec:
     - destination:
         host: frontend
         subset: v0-2-0
-    fault:
-      abort:
-        httpStatus: 500
-        percentage:
-          value: 50
-# [END anthos-service-mesh_bank-of-anthos_virtualservice_frontend ]
+      weight: 50
+    - destination:
+        host: frontend
+        subset: v0-2-0-custom
+      weight: 50
+# [END servicemesh_demo_manifests_frontend_custom_50_50_virtualservice_frontend]

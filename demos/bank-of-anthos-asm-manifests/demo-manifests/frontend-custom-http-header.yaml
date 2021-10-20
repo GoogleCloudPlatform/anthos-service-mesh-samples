@@ -12,7 +12,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-# [START anthos-service-mesh_bank-of-anthos_virtualservice_frontend ]
+# [START servicemesh_demo_manifests_frontend_custom_http_header_virtualservice_frontend]
 apiVersion: networking.istio.io/v1beta1
 kind: VirtualService
 metadata:
@@ -26,13 +26,18 @@ spec:
   - match:
     - uri:
         prefix: /
+      headers:
+        X-Beta-Tester:
+          exact: "true"
+    route:
+    - destination:
+        host: frontend
+        subset: v0-2-0-custom
+  - match:
+    - uri:
+        prefix: /
     route:
     - destination:
         host: frontend
         subset: v0-2-0
-      weight: 50
-    - destination:
-        host: frontend
-        subset: v0-2-0-custom
-      weight: 50
-# [END anthos-service-mesh_bank-of-anthos_virtualservice_frontend ]
+# [END servicemesh_demo_manifests_frontend_custom_http_header_virtualservice_frontend]
