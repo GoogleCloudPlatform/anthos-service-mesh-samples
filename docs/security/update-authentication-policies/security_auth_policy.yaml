@@ -1,4 +1,5 @@
-# Copyright 2020 Google LLC
+
+# Copyright 2021 Google LLC
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -12,18 +13,17 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-# [START servicemesh_security_auth_policy]
-# Alpha policy for authentication to enable Origin Authentication for service foo.
-apiVersion: "authentication.istio.io/v1alpha1"
-kind: "Policy"
+# [START servicemesh_update_authentication_policies_security_auth_policy_policy_jwt_example]
+apiVersion: authentication.istio.io/v1alpha1
+kind: Policy
 metadata:
-  name: "jwt-example"
+  name: jwt-example
 spec:
   targets:
   - name: httpbin
   origins:
   - jwt:
-      issuer: "testing@secure.istio.io"
-      jwksUri: "https://raw.githubusercontent.com/istio/istio/release-1.5/security/tools/jwt/samples/jwks.json"
-# [END servicemesh_security_auth_policy]
-
+      issuer: testing@secure.istio.io
+      jwksUri: https://raw.githubusercontent.com/istio/istio/release-1.5/security/tools/jwt/samples/jwks.json
+# [END servicemesh_update_authentication_policies_security_auth_policy_policy_jwt_example]
+---

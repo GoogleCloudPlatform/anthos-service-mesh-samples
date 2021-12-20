@@ -1,3 +1,19 @@
+
+# Copyright 2021 Google LLC
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#      http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+# [START servicemesh_cluster_c_register]
 #!/bin/bash
 #source env-vars
 ## TF vars
@@ -35,3 +51,5 @@ SECRET_NAME=$(kubectl --kubeconfig $LOCATION/server-kubeconfig get serviceaccoun
 echo "Copy this token and use it to login to your cluster in cloud console"
 echo $(kubectl --kubeconfig $LOCATION/server-kubeconfig get secret -n kube-system $SECRET_NAME -o jsonpath='{$.data.token}' \
   | base64 -d | sed $'s/$/\\\n/g') >> server-cluster-ksa.token
+
+# [END servicemesh_cluster_c_register]

@@ -1,4 +1,5 @@
-# Copyright 2020 Google LLC
+
+# Copyright 2021 Google LLC
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -12,14 +13,14 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-# [START servicemesh_security_auth_peerauthentication]
-apiVersion: "security.istio.io/v1beta1"
-kind: "PeerAuthentication"
+# [START servicemesh_update_authentication_policies_security_auth_peerauthentication_peerauthentication_default]
+apiVersion: security.istio.io/v1beta1
+kind: PeerAuthentication
 metadata:
-  name: "default"
-  namespace: "istio-system"
+  name: default
+  namespace: istio-system
 spec:
   mtls:
     mode: PERMISSIVE
-# [END servicemesh_security_auth_peerauthentication]
-
+# [END servicemesh_update_authentication_policies_security_auth_peerauthentication_peerauthentication_default]
+---

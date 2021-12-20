@@ -1,4 +1,5 @@
-# Copyright 2020 Google LLC
+
+# Copyright 2021 Google LLC
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -12,16 +13,17 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-# [START servicemesh_security_auth_requestauthentication]
-apiVersion: "security.istio.io/v1beta1"
-kind: "RequestAuthentication"
+# [START servicemesh_update_authentication_policies_security_auth_requestauthentication_requestauthentication_jwt_example]
+apiVersion: security.istio.io/v1beta1
+kind: RequestAuthentication
 metadata:
-  name: "jwt-example"
+  name: jwt-example
 spec:
   selector:
     matchLabels:
       app: httpbin
   jwtRules:
-  - issuer: "testing@secure.istio.io"
-    jwksUri: "https://raw.githubusercontent.com/istio/istio/release-1.5/security/tools/jwt/samples/jwks.json"
-# [END servicemesh_security_auth_requestauthentication]
+  - issuer: testing@secure.istio.io
+    jwksUri: https://raw.githubusercontent.com/istio/istio/release-1.5/security/tools/jwt/samples/jwks.json
+# [END servicemesh_update_authentication_policies_security_auth_requestauthentication_requestauthentication_jwt_example]
+---

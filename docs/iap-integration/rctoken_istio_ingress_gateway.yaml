@@ -1,4 +1,5 @@
-# Copyright 2020 Google LLC
+
+# Copyright 2021 Google LLC
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -12,25 +13,25 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-
-# [START servicemesh_rctoken_istio_ingress_gateway]
-apiVersion: "security.istio.io/v1beta1"
-kind: "RequestAuthentication"
+# [START servicemesh_iap_integration_rctoken_istio_ingress_gateway_requestauthentication_ingressgateway_jwt_policy]
+apiVersion: security.istio.io/v1beta1
+kind: RequestAuthentication
 metadata:
-  name: "ingressgateway-jwt-policy"
-  namespace: "istio-system"
+  name: ingressgateway-jwt-policy
+  namespace: istio-system
 spec:
   selector:
     matchLabels:
       app: istio-ingressgateway
   jwtRules:
-  - issuer: "https://cloud.google.com/iap"
-    jwksUri: "https://www.gstatic.com/iap/verify/public_key-jwk"
+  - issuer: https://cloud.google.com/iap
+    jwksUri: https://www.gstatic.com/iap/verify/public_key-jwk
     audiences:
     - <RCTOKEN_AUD>
     fromHeaders:
     - name: ingress-authorization
-      prefix: "Istio "
-    outputPayloadToHeader: "verified-jwt"
+      prefix: 'Istio '
+    outputPayloadToHeader: verified-jwt
     forwardOriginalToken: true
-# [END servicemesh_rctoken_istio_ingress_gateway]
+# [END servicemesh_iap_integration_rctoken_istio_ingress_gateway_requestauthentication_ingressgateway_jwt_policy]
+---

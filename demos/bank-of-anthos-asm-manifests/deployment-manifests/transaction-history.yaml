@@ -1,4 +1,5 @@
-# Copyright 2019 Google LLC
+
+# Copyright 2021 Google LLC
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -12,7 +13,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-# [START anthos-service-mesh_bank-of-anthos_deployment_transactionhistory ]
+# [START servicemesh_deployment_manifests_transaction_history_deployment_transactionhistory]
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -33,30 +34,26 @@ spec:
         image: gcr.io/bank-of-anthos/transactionhistory:latest
         volumeMounts:
         - name: publickey
-          mountPath: "/root/.ssh"
+          mountPath: /root/.ssh
           readOnly: true
         env:
         - name: VERSION
-          value: "v0.2.0"
+          value: v0.2.0
         - name: PORT
-          value: "8080"
+          value: '8080'
         - name: POLL_MS
-          value: "100"
+          value: '100'
         - name: CACHE_SIZE
-          value: "1000"
+          value: '1000'
         - name: CACHE_MINUTES
-          value: "60"
+          value: '60'
         - name: HISTORY_LIMIT
-          value: "100"
-          # tell Java to obey container memory limits
+          value: '100'
         - name: JVM_OPTS
-          value: "-XX:+UnlockExperimentalVMOptions -XX:+UseCGroupMemoryLimitForHeap"
-        #- name: EXTRA_LATENCY_MILLIS
-        #  value: "5000"
+          value: -XX:+UnlockExperimentalVMOptions -XX:+UseCGroupMemoryLimitForHeap
         envFrom:
         - configMapRef:
             name: environment-config
-        # add ledger-db credentials from ConfigMap
         - configMapRef:
             name: ledger-db-config
         resources:
@@ -85,9 +82,9 @@ spec:
           items:
           - key: jwtRS256.key.pub
             path: publickey
-# [END anthos-service-mesh_bank-of-anthos_deployment_transactionhistory ]
+# [END servicemesh_deployment_manifests_transaction_history_deployment_transactionhistory]
 ---
-# [START anthos-service-mesh_bank-of-anthos_service_transactionhistory ]
+# [START servicemesh_deployment_manifests_transaction_history_service_transactionhistory]
 apiVersion: v1
 kind: Service
 metadata:
@@ -100,9 +97,9 @@ spec:
   - name: http
     port: 8080
     targetPort: 8080
-# [END anthos-service-mesh_bank-of-anthos_service_transactionhistory ]
+# [END servicemesh_deployment_manifests_transaction_history_service_transactionhistory]
 ---
-# [START anthos-service-mesh_bank-of-anthos_virtualservice_transactionhistory ]
+# [START servicemesh_deployment_manifests_transaction_history_virtualservice_transactionhistory]
 apiVersion: networking.istio.io/v1beta1
 kind: VirtualService
 metadata:
@@ -115,9 +112,9 @@ spec:
     - destination:
         host: transactionhistory
         subset: v0-2-0
-# [END anthos-service-mesh_bank-of-anthos_virtualservice_transactionhistory ]
+# [END servicemesh_deployment_manifests_transaction_history_virtualservice_transactionhistory]
 ---
-# [START anthos-service-mesh_bank-of-anthos_destinationrule_transactionhistory-destination ]
+# [START servicemesh_deployment_manifests_transaction_history_destinationrule_transactionhistory_destination]
 apiVersion: networking.istio.io/v1beta1
 kind: DestinationRule
 metadata:
@@ -131,4 +128,5 @@ spec:
   - name: v0-2-0
     labels:
       version: v0.2.0
-# [END anthos-service-mesh_bank-of-anthos_destinationrule_transactionhistory-destination ]
+# [END servicemesh_deployment_manifests_transaction_history_destinationrule_transactionhistory_destination]
+---

@@ -1,4 +1,5 @@
-# Copyright 2020 Google LLC
+
+# Copyright 2021 Google LLC
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -12,14 +13,14 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-# [START anthos-service-mesh_bank-of-anthos_virtualservice_frontend ]
+# [START servicemesh_demo_manifests_frontend_delay_fault_injection_virtualservice_frontend]
 apiVersion: networking.istio.io/v1beta1
 kind: VirtualService
 metadata:
   name: frontend
 spec:
   hosts:
-  - "*"
+  - '*'
   gateways:
   - bank-of-anthos-gateway
   http:
@@ -35,4 +36,5 @@ spec:
         fixedDelay: 10s
         percentage:
           value: 50
-# [END anthos-service-mesh_bank-of-anthos_virtualservice_frontend ]
+# [END servicemesh_demo_manifests_frontend_delay_fault_injection_virtualservice_frontend]
+---
