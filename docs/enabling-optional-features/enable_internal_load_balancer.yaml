@@ -1,4 +1,5 @@
-# Copyright 2020 Google LLC
+
+# Copyright 2021 Google LLC
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -12,24 +13,25 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-# [START servicemesh_enable_internal_load_balancer]
+# [START servicemesh_docs_enable_internal_load_balancer_istiooperator]
 apiVersion: install.istio.io/v1alpha1
 kind: IstioOperator
 spec:
   profile: empty
   components:
     ingressGateways:
-      - name: istio-ingressgateway
-        enabled: true
-        k8s:
-          serviceAnnotations:
-            cloud.google.com/load-balancer-type: "internal"
-          service:
-            ports:
-              - name: status-port
-                port: 15020
-              - name: http2
-                port: 80
-              - name: https
-                port: 443
-# [END servicemesh_enable_internal_load_balancer]
+    - name: istio-ingressgateway
+      enabled: true
+      k8s:
+        serviceAnnotations:
+          cloud.google.com/load-balancer-type: internal
+        service:
+          ports:
+          - name: status-port
+            port: 15020
+          - name: http2
+            port: 80
+          - name: https
+            port: 443
+# [END servicemesh_docs_enable_internal_load_balancer_istiooperator]
+---

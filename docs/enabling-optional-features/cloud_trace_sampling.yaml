@@ -1,4 +1,5 @@
-# Copyright 2020 Google LLC
+
+# Copyright 2021 Google LLC
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -12,7 +13,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-# [START servicemesh_cloud_trace_sampling]
+# [START servicemesh_docs_cloud_trace_sampling_istiooperator]
 apiVersion: install.istio.io/v1alpha1
 kind: IstioOperator
 spec:
@@ -22,6 +23,7 @@ spec:
     pilot:
       traceSampling: 100
     global:
-       proxy:
-         tracer: stackdriver
-# [END servicemesh_cloud_trace_sampling]
+      proxy:
+        tracer: stackdriver
+# [END servicemesh_docs_cloud_trace_sampling_istiooperator]
+---

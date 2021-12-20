@@ -1,4 +1,5 @@
-# Copyright 2020 Google LLC
+
+# Copyright 2021 Google LLC
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -12,7 +13,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-# [START servicemesh_load_balancer_managed_certificate]
+# [START servicemesh_docs_iap_integration_managedcertificate_example_certificate]
 apiVersion: networking.gke.io/v1beta1
 kind: ManagedCertificate
 metadata:
@@ -20,5 +21,6 @@ metadata:
   namespace: istio-system
 spec:
   domains:
-    - <DOMAIN_NAME>
-# [END servicemesh_load_balancer_managed_certificate]
+  - <DOMAIN_NAME>
+# [END servicemesh_docs_iap_integration_managedcertificate_example_certificate]
+---

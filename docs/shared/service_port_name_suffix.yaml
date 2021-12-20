@@ -1,4 +1,5 @@
-# Copyright 2020 Google LLC
+
+# Copyright 2021 Google LLC
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -12,7 +13,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-# [START servicemesh_service_port_name_suffix]
+# [START servicemesh_docs_shared_service_myservice]
 kind: Service
 metadata:
   name: myservice
@@ -22,4 +23,5 @@ spec:
     name: mysql
   - number: 80
     name: http-web
-# [END servicemesh_service_port_name_suffix]
+# [END servicemesh_docs_shared_service_myservice]
+---

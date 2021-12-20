@@ -1,4 +1,5 @@
-# Copyright 2020 Google LLC
+
+# Copyright 2021 Google LLC
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -12,7 +13,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-# [START servicemesh_gke_cni]
+# [START servicemesh_docs_gke_cni_istiooperator]
 apiVersion: install.istio.io/v1alpha1
 kind: IstioOperator
 spec:
@@ -24,6 +25,7 @@ spec:
     cni:
       cniBinDir: /home/kubernetes/bin
       excludeNamespaces:
-        - istio-system
-        - kube-system
-# [END servicemesh_gke_cni]
+      - istio-system
+      - kube-system
+# [END servicemesh_docs_gke_cni_istiooperator]
+---

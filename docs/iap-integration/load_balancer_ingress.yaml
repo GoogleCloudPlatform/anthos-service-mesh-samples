@@ -1,4 +1,5 @@
-# Copyright 2020 Google LLC
+
+# Copyright 2021 Google LLC
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -12,7 +13,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-# [START servicemesh_load_balancer_ingress]
+# [START servicemesh_docs_iap_integration_ingress_example_ingress]
 apiVersion: extensions/v1beta1
 kind: Ingress
 metadata:
@@ -25,4 +26,5 @@ spec:
   backend:
     serviceName: istio-ingressgateway
     servicePort: 80
-# [END servicemesh_load_balancer_ingress]
+# [END servicemesh_docs_iap_integration_ingress_example_ingress]
+---

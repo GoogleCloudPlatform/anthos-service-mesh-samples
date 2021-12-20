@@ -1,4 +1,5 @@
-# Copyright 2020 Google LLC
+
+# Copyright 2021 Google LLC
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -12,14 +13,14 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-# [START anthos-service-mesh_bank-of-anthos_virtualservice_frontend ]
+# [START servicemesh_bank_of_anthos_asm_manifests_demo_manifests_virtualservice_frontend2]
 apiVersion: networking.istio.io/v1beta1
 kind: VirtualService
 metadata:
   name: frontend
 spec:
   hosts:
-  - "*"
+  - '*'
   gateways:
   - bank-of-anthos-gateway
   http:
@@ -28,7 +29,7 @@ spec:
         prefix: /
       headers:
         X-Beta-Tester:
-          exact: "true"
+          exact: 'true'
     route:
     - destination:
         host: frontend
@@ -40,4 +41,5 @@ spec:
     - destination:
         host: frontend
         subset: v0-2-0
-# [END anthos-service-mesh_bank-of-anthos_virtualservice_frontend ]
+# [END servicemesh_bank_of_anthos_asm_manifests_demo_manifests_virtualservice_frontend2]
+---
