@@ -1,4 +1,5 @@
-# Copyright 2019 Google LLC
+
+# Copyright 2021 Google LLC
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -12,13 +13,13 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-# [START anthos-service-mesh_bank-of-anthos_statefulset_ledger-db ]
+# [START servicemesh_deployment_manifests_ledger_db_statefulset_ledger_db]
 kind: StatefulSet
 apiVersion: apps/v1
 metadata:
   name: ledger-db
 spec:
-  serviceName: "ledger-db"
+  serviceName: ledger-db
   replicas: 1
   selector:
     matchLabels:
@@ -30,34 +31,34 @@ spec:
         version: v0.2.0
     spec:
       containers:
-        - name: postgres
-          image: gcr.io/bank-of-anthos/ledger-db:latest
-          ports:
-            - containerPort: 5432
-          envFrom:
-            - configMapRef:
-                name: environment-config
-            - configMapRef:
-                name: ledger-db-config
-            - configMapRef:
-                name: default-data-config
-          resources:
-            requests:
-              cpu: 100m
-              memory: 512Mi
-            limits:
-              cpu: 500m
-              memory: 1Gi
-          volumeMounts:
-            - name: postgresdb
-              mountPath: /var/lib/postgresql/data
-              subPath: postgres
-      volumes:
+      - name: postgres
+        image: gcr.io/bank-of-anthos/ledger-db:latest
+        ports:
+        - containerPort: 5432
+        envFrom:
+        - configMapRef:
+            name: environment-config
+        - configMapRef:
+            name: ledger-db-config
+        - configMapRef:
+            name: default-data-config
+        resources:
+          requests:
+            cpu: 100m
+            memory: 512Mi
+          limits:
+            cpu: 500m
+            memory: 1Gi
+        volumeMounts:
         - name: postgresdb
-          emptyDir: {}
-# [END anthos-service-mesh_bank-of-anthos_statefulset_ledger-db ]
+          mountPath: /var/lib/postgresql/data
+          subPath: postgres
+      volumes:
+      - name: postgresdb
+        emptyDir: {}
+# [END servicemesh_deployment_manifests_ledger_db_statefulset_ledger_db]
 ---
-# [START anthos-service-mesh_bank-of-anthos_configmap_ledger-db-config ]
+# [START servicemesh_deployment_manifests_ledger_db_configmap_ledger_db_config]
 apiVersion: v1
 kind: ConfigMap
 metadata:
@@ -66,14 +67,14 @@ metadata:
     app: postgres
 data:
   POSTGRES_DB: postgresdb
-  POSTGRES_USER: admin
+  POSTGRES_USER: admin 
   POSTGRES_PASSWORD: password
   SPRING_DATASOURCE_URL: jdbc:postgresql://ledger-db:5432/postgresdb
   SPRING_DATASOURCE_USERNAME: admin # should match POSTGRES_USER
   SPRING_DATASOURCE_PASSWORD: password # should match POSTGRES_PASSWORD
-# [END anthos-service-mesh_bank-of-anthos_configmap_ledger-db-config ]
+# [END servicemesh_deployment_manifests_ledger_db_configmap_ledger_db_config]
 ---
-# [START anthos-service-mesh_bank-of-anthos_service_ledger-db-config ]
+# [START servicemesh_deployment_manifests_ledger_db_service_ledger_db]
 apiVersion: v1
 kind: Service
 metadata:
@@ -86,9 +87,9 @@ spec:
   - name: tcp-postgres
     port: 5432
     targetPort: 5432
-# [END anthos-service-mesh_bank-of-anthos_service_ledger-db-config ]
+# [END servicemesh_deployment_manifests_ledger_db_service_ledger_db]
 ---
-# [START anthos-service-mesh_bank-of-anthos_virtualservice_ledger-db ]
+# [START servicemesh_deployment_manifests_ledger_db_virtualservice_ledger_db]
 apiVersion: networking.istio.io/v1beta1
 kind: VirtualService
 metadata:
@@ -101,9 +102,9 @@ spec:
     - destination:
         host: ledger-db
         subset: v0-2-0
-# [END anthos-service-mesh_bank-of-anthos_virtualservice_ledger-db ]
+# [END servicemesh_deployment_manifests_ledger_db_virtualservice_ledger_db]
 ---
-# [START anthos-service-mesh_bank-of-anthos_destinationrule_ledger-db-destination ]
+# [START servicemesh_deployment_manifests_ledger_db_destinationrule_ledger_db_destination]
 apiVersion: networking.istio.io/v1beta1
 kind: DestinationRule
 metadata:
@@ -117,4 +118,5 @@ spec:
   - name: v0-2-0
     labels:
       version: v0.2.0
-# [END anthos-service-mesh_bank-of-anthos_destinationrule_ledger-db-destination ]
+# [END servicemesh_deployment_manifests_ledger_db_destinationrule_ledger_db_destination]
+---

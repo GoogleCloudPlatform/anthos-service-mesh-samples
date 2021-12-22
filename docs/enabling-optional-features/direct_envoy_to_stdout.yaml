@@ -1,4 +1,5 @@
-# Copyright 2020 Google LLC
+
+# Copyright 2021 Google LLC
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -12,10 +13,11 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-# [START servicemesh_direct_envoy_stdout] 
+# [START servicemesh_enabling_optional_features_direct_envoy_to_stdout_istiooperator]
 apiVersion: install.istio.io/v1alpha1
 kind: IstioOperator
 spec:
   meshConfig:
-    accessLogFile: "/dev/stdout"
-# [END servicemesh_direct_envoy_stdout] 
+    accessLogFile: /dev/stdout
+# [END servicemesh_enabling_optional_features_direct_envoy_to_stdout_istiooperator]
+---

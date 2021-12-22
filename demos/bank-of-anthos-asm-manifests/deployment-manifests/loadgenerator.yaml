@@ -1,4 +1,5 @@
-# Copyright 2020 Google LLC
+
+# Copyright 2021 Google LLC
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -12,7 +13,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-# [START anthos-service-mesh_bank-of-anthos_deployment_loadgenerator ]
+# [START servicemesh_deployment_manifests_loadgenerator_deployment_loadgenerator]
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -27,7 +28,7 @@ spec:
       labels:
         app: loadgenerator
       annotations:
-        sidecar.istio.io/rewriteAppHTTPProbers: "true"
+        sidecar.istio.io/rewriteAppHTTPProbers: 'true'
     spec:
       terminationGracePeriodSeconds: 5
       restartPolicy: Always
@@ -36,9 +37,9 @@ spec:
         image: gcr.io/bank-of-anthos/loadgenerator:latest
         env:
         - name: FRONTEND_ADDR
-          value: "frontend:80"
+          value: frontend:80
         - name: USERS
-          value: "5"
+          value: '5'
         resources:
           requests:
             cpu: 100m
@@ -46,4 +47,5 @@ spec:
           limits:
             cpu: 500m
             memory: 1Gi
-# [END anthos-service-mesh_bank-of-anthos_deployment_loadgenerator ]
+# [END servicemesh_deployment_manifests_loadgenerator_deployment_loadgenerator]
+---

@@ -1,4 +1,5 @@
-# Copyright 2020 Google LLC
+
+# Copyright 2021 Google LLC
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -12,7 +13,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-# [START anthos-service-mesh_bank-of-anthos_deployment_frontend-custom ]
+# [START servicemesh_demo_manifests_frontend_custom_deployment_deployment_frontend_custom]
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -34,15 +35,15 @@ spec:
         image: gcr.io/bjm-public-container-images/bank-of-anthos/frontend-temp@sha256:d252c140896fc6b87681f6cf81e7084cf95f8e82d1dd9b1a42ea5f3fd2b41dd2
         volumeMounts:
         - name: publickey
-          mountPath: "/root/.ssh"
+          mountPath: /root/.ssh
           readOnly: true
         env:
         - name: VERSION
-          value: "v0.2.0-custom"
+          value: v0.2.0-custom
         - name: PORT
-          value: "8080"
+          value: '8080'
         - name: BANK_NAME
-          value: "Bank of Custom"
+          value: Bank of Custom
         - name: DEFAULT_USERNAME
           valueFrom:
             configMapKeyRef:
@@ -78,9 +79,9 @@ spec:
           items:
           - key: jwtRS256.key.pub
             path: publickey
-# [END anthos-service-mesh_bank-of-anthos_deployment_frontend-custom ]
+# [END servicemesh_demo_manifests_frontend_custom_deployment_deployment_frontend_custom]
 ---
-# [START anthos-service-mesh_bank-of-anthos_destinationrule_frontend-destination ]
+# [START servicemesh_demo_manifests_frontend_custom_deployment_destinationrule_frontend_destination]
 apiVersion: networking.istio.io/v1beta1
 kind: DestinationRule
 metadata:
@@ -97,4 +98,5 @@ spec:
   - name: v0-2-0-custom
     labels:
       version: v0.2.0-custom
-# [END anthos-service-mesh_bank-of-anthos_destinationrule_frontend-destination ]
+# [END servicemesh_demo_manifests_frontend_custom_deployment_destinationrule_frontend_destination]
+---
