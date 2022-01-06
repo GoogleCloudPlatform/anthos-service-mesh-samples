@@ -22,7 +22,7 @@ metadata:
     app: accounts-db
     tier: db
 spec:
-  serviceName: accounts-db
+  serviceName: "accounts-db"
   replicas: 1
   selector:
     matchLabels:
@@ -35,19 +35,20 @@ spec:
         tier: db
         version: v0.2.0
     spec:
+      serviceAccountName: default
       containers:
       - name: accounts-db
-        image: gcr.io/bank-of-anthos/accounts-db:latest
+        image: gcr.io/bank-of-anthos-ci/accounts-db:latest
         envFrom:
-        - configMapRef:
-            name: environment-config
-        - configMapRef:
-            name: accounts-db-config
-        - configMapRef:
-            name: default-data-config
+          - configMapRef:
+              name: environment-config
+          - configMapRef:
+              name: accounts-db-config
+          - configMapRef:
+              name: demo-data-config
         ports:
-        - containerPort: 5432
-          name: postgredb
+          - containerPort: 5432
+            name: postgredb
         resources:
           requests:
             cpu: 100m
@@ -74,10 +75,10 @@ metadata:
     tier: db
 spec:
   ports:
-  - port: 5432
-    name: tcp-postgredb
-    targetPort: 5432
-    protocol: TCP
+    - port: 5432
+      name: tcp
+      targetPort: 5432
+      protocol: TCP
   selector:
     app: accounts-db
     tier: db

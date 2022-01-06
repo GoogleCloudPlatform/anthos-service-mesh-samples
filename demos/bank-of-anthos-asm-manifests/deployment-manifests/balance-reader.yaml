@@ -28,26 +28,40 @@ spec:
         app: balancereader
         version: v0.2.0
     spec:
+      serviceAccountName: default
       terminationGracePeriodSeconds: 5
       containers:
-      - name: reader
-        image: gcr.io/bank-of-anthos/balancereader:latest
+      - name: balancereader
+        image: gcr.io/bank-of-anthos-ci/balancereader:latest
         volumeMounts:
         - name: publickey
-          mountPath: /root/.ssh
+          mountPath: "/root/.ssh"
           readOnly: true
         env:
         - name: VERSION
-          value: v0.2.0
+          value: "v0.5.2"
         - name: PORT
-          value: '8080'
+          value: "8080"
+        # toggle Cloud Trace export
+        - name: ENABLE_TRACING
+          value: "true"
+        - name: ENABLE_METRICS
+          value: "true"
         - name: POLL_MS
-          value: '100'
+          value: "100"
         - name: CACHE_SIZE
-          value: '1000000'
+          value: "1000000"
         # tell Java to obey container memory limits
         - name: JVM_OPTS
-          value: -XX:+UnlockExperimentalVMOptions -XX:+UseCGroupMemoryLimitForHeap
+          value: "-XX:+UnlockExperimentalVMOptions -XX:+UseCGroupMemoryLimitForHeap"
+        # Valid levels are debug, info, warn, error, fatal.
+        # If no valid level is set, will default to info.
+        - name: LOG_LEVEL
+          value: "info"
+        - name: NAMESPACE
+          valueFrom:
+            fieldRef:
+              fieldPath: metadata.namespace
         envFrom:
         - configMapRef:
             name: environment-config
@@ -65,14 +79,16 @@ spec:
           httpGet:
             path: /ready
             port: 8080
-          initialDelaySeconds: 5
+          initialDelaySeconds: 60
           periodSeconds: 5
+          timeoutSeconds: 10
         livenessProbe:
           httpGet:
             path: /healthy
             port: 8080
           initialDelaySeconds: 120
           periodSeconds: 5
+          timeoutSeconds: 10
       volumes:
       - name: publickey
         secret:

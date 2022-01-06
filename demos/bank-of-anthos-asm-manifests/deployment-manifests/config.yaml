@@ -19,8 +19,8 @@ kind: ConfigMap
 metadata:
   name: environment-config
 data:
-  LOCAL_ROUTING_NUM: '123456789'
-  PUB_KEY_PATH: /root/.ssh/publickey
+  LOCAL_ROUTING_NUM: "883745000"
+  PUB_KEY_PATH: "/root/.ssh/publickey"
 # [END servicemesh_deployment_manifests_config_configmap_environment_config]
 ---
 # [START servicemesh_deployment_manifests_config_configmap_service_api_config]
@@ -29,31 +29,22 @@ kind: ConfigMap
 metadata:
   name: service-api-config
 data:
-  TRANSACTIONS_API_ADDR: ledgerwriter:8080
-  BALANCES_API_ADDR: balancereader:8080
-  HISTORY_API_ADDR: transactionhistory:8080
-  CONTACTS_API_ADDR: contacts:8080
-  USERSERVICE_API_ADDR: userservice:8080
+  TRANSACTIONS_API_ADDR: "ledgerwriter:8080"
+  BALANCES_API_ADDR: "balancereader:8080"
+  HISTORY_API_ADDR: "transactionhistory:8080"
+  CONTACTS_API_ADDR: "contacts:8080"
+  USERSERVICE_API_ADDR: "userservice:8080"
 # [END servicemesh_deployment_manifests_config_configmap_service_api_config]
 ---
 # [START servicemesh_deployment_manifests_config_configmap_default_data_config]
 apiVersion: v1
 kind: ConfigMap
 metadata:
-  name: default-data-config
+  name: demo-data-config
 data:
-  # All default user accounts are hardcoded to use the login password 'password'
-  USE_DEFAULT_DATA: 'True'
-  DEFAULT_LOGIN_PASSWORD: password
-  DEFAULT_USER_ACCOUNT: '1033623433'
-  DEFAULT_USER_USERNAME: testuser
-  DEFAULT_USER_NAME: Eve
-  DEFAULT_DEPOSIT_ACCOUNT: '9099791699'
-  DEFAULT_DEPOSIT_ROUTING: '808889588'
-  DEFAULT_DEPOSIT_LABEL: External Bank
-  DEFAULT_CONTACT_ACCOUNT_A: '1044226144'
-  DEFAULT_CONTACT_NAME_A: Alice
-  DEFAULT_CONTACT_ACCOUNT_B: '1055757655'
-  DEFAULT_CONTACT_NAME_B: Bob
+  USE_DEMO_DATA: "True"
+  DEMO_LOGIN_USERNAME: "testuser"
+  # All demo user accounts are hardcoded to use the login password 'password'
+  DEMO_LOGIN_PASSWORD: "password"
 # [END servicemesh_deployment_manifests_config_configmap_default_data_config]
 ---
