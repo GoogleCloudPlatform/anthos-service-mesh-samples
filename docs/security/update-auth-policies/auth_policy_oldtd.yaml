@@ -1,4 +1,5 @@
-# Copyright 2020 Google LLC
+
+# Copyright 2021 Google LLC
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -12,7 +13,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-# [START servicemesh_auth_policy_oldtd]
+# [START servicemesh_update_auth_policies_auth_policy_oldtd_authorizationpolicy_service_httpbin.default.svc.cluster.local]
 apiVersion: security.istio.io/v1beta1
 kind: AuthorizationPolicy
 metadata:
@@ -31,4 +32,5 @@ spec:
   selector:
     matchLabels:
       app: httpbin
-# [END servicemesh_auth_policy_oldtd]
+# [END servicemesh_update_auth_policies_auth_policy_oldtd_authorizationpolicy_service_httpbin.default.svc.cluster.local]
+---
