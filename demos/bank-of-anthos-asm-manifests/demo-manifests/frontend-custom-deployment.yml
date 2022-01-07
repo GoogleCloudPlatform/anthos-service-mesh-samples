@@ -26,7 +26,7 @@ spec:
     metadata:
       labels:
         app: frontend
-        version: v0.2.0-custom
+        version: v0.5.2-custom
     spec:
       serviceAccountName: default
       terminationGracePeriodSeconds: 5
@@ -39,7 +39,7 @@ spec:
           readOnly: true
         env:
         - name: VERSION
-          value: "v0.5.2"
+          value: "v0.5.2-custom"
         - name: PORT
           value: "8080"
         - name: ENABLE_TRACING
@@ -111,11 +111,11 @@ spec:
     tls:
       mode: ISTIO_MUTUAL
   subsets:
-  - name: v0-2-0
+  - name: v0-5-2
     labels:
-      version: v0.2.0
-  - name: v0-2-0-custom
+      version: v0.5.2
+  - name: v0-5-2-custom
     labels:
-      version: v0.2.0-custom
+      version: v0.5.2-custom
 # [END servicemesh_demo_manifests_frontend_custom_deployment_destinationrule_frontend_destination]
 ---

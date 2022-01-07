@@ -33,7 +33,7 @@ spec:
       labels:
         app: accounts-db
         tier: db
-        version: v0.2.0
+        version: v0.5.2
     spec:
       serviceAccountName: default
       containers:
@@ -110,7 +110,7 @@ spec:
   - route:
     - destination:
         host: accounts-db
-        subset: v0-2-0
+        subset: v0-5-2
 # [END servicemesh_deployment_manifests_accounts_db_virtualservice_accounts_db]
 ---
 # [START servicemesh_deployment_manifests_accounts_db_destinationrule_accounts_db_destination]
@@ -124,8 +124,8 @@ spec:
     tls:
       mode: ISTIO_MUTUAL
   subsets:
-  - name: v0-2-0
+  - name: v0-5-2
     labels:
-      version: v0.2.0
+      version: v0.5.2
 # [END servicemesh_deployment_manifests_accounts_db_destinationrule_accounts_db_destination]
 ---

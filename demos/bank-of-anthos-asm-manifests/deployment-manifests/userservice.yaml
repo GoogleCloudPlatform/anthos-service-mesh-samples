@@ -26,7 +26,7 @@ spec:
     metadata:
       labels:
         app: userservice
-        version: v0.2.0
+        version: v0.5.2
     spec:
       serviceAccountName: default
       terminationGracePeriodSeconds: 5
@@ -111,7 +111,7 @@ spec:
   - route:
     - destination:
         host: userservice
-        subset: v0-2-0
+        subset: v0-5-2
 # [END servicemesh_deployment_manifests_userservice_virtualservice_userservice]
 ---
 # [START servicemesh_deployment_manifests_userservice_destinationrule_userservice_destination]
@@ -125,8 +125,8 @@ spec:
     tls:
       mode: ISTIO_MUTUAL
   subsets:
-  - name: v0-2-0
+  - name: v0-5-2
     labels:
-      version: v0.2.0
+      version: v0.5.2
 # [END servicemesh_deployment_manifests_userservice_destinationrule_userservice_destination]
 ---

@@ -26,7 +26,7 @@ spec:
     metadata:
       labels:
         app: transactionhistory
-        version: v0.2.0
+        version: v0.5.2
     spec:
       serviceAccountName: default
       terminationGracePeriodSeconds: 5
@@ -130,7 +130,7 @@ spec:
   - route:
     - destination:
         host: transactionhistory
-        subset: v0-2-0
+        subset: v0-5-2
 # [END servicemesh_deployment_manifests_transaction_history_virtualservice_transactionhistory]
 ---
 # [START servicemesh_deployment_manifests_transaction_history_destinationrule_transactionhistory_destination]
@@ -144,8 +144,8 @@ spec:
     tls:
       mode: ISTIO_MUTUAL
   subsets:
-  - name: v0-2-0
+  - name: v0-5-2
     labels:
-      version: v0.2.0
+      version: v0.5.2
 # [END servicemesh_deployment_manifests_transaction_history_destinationrule_transactionhistory_destination]
 ---

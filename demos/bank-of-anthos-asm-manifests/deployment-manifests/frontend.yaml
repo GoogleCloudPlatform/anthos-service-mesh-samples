@@ -26,7 +26,7 @@ spec:
     metadata:
       labels:
         app: frontend
-        version: v0.2.0
+        version: v0.5.2
     spec:
       serviceAccountName: default
       terminationGracePeriodSeconds: 5
@@ -132,7 +132,7 @@ spec:
     route:
     - destination:
         host: frontend
-        subset: v0-2-0
+        subset: v0-5-2
 # [END servicemesh_deployment_manifests_frontend_virtualservice_frontend]
 ---
 # [START servicemesh_deployment_manifests_frontend_destinationrule_frontend_destination]
@@ -146,8 +146,8 @@ spec:
     tls:
       mode: ISTIO_MUTUAL
   subsets:
-  - name: v0-2-0
+  - name: v0-5-2
     labels:
-      version: v0.2.0
+      version: v0.5.2
 # [END servicemesh_deployment_manifests_frontend_destinationrule_frontend_destination]
 ---

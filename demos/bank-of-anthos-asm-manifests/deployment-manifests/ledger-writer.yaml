@@ -26,7 +26,7 @@ spec:
     metadata:
       labels:
         app: ledgerwriter
-        version: v0.2.0
+        version: v0.5.2
     spec:
       serviceAccountName: default
       terminationGracePeriodSeconds: 5
@@ -114,7 +114,7 @@ spec:
   - route:
     - destination:
         host: ledgerwriter
-        subset: v0-2-0
+        subset: v0-5-2
 # [END servicemesh_deployment_manifests_ledger_writer_virtualservice_ledgerwriter]
 ---
 # [START servicemesh_deployment_manifests_ledger_writer_destinationrule_ledgerwriter_destination]
@@ -128,8 +128,8 @@ spec:
     tls:
       mode: ISTIO_MUTUAL
   subsets:
-  - name: v0-2-0
+  - name: v0-5-2
     labels:
-      version: v0.2.0
+      version: v0.5.2
 # [END servicemesh_deployment_manifests_ledger_writer_destinationrule_ledgerwriter_destination]
 ---
