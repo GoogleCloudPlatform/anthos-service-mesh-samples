@@ -28,12 +28,12 @@ spec:
     metadata:
       labels:
         app: ledger-db
-        version: v0.5.2
+        version: v0.5.3
     spec:
       serviceAccountName: default
       containers:
         - name: postgres
-          image: gcr.io/bank-of-anthos-ci/ledger-db:v0.5.2
+          image: gcr.io/bank-of-anthos-ci/ledger-db:v0.5.3
           ports:
             - containerPort: 5432
           envFrom:
@@ -102,7 +102,7 @@ spec:
   - route:
     - destination:
         host: ledger-db
-        subset: v0-5-2
+        subset: v0-5-3
 # [END servicemesh_deployment_manifests_ledger_db_virtualservice_ledger_db]
 ---
 # [START servicemesh_deployment_manifests_ledger_db_destinationrule_ledger_db_destination]
@@ -116,8 +116,8 @@ spec:
     tls:
       mode: ISTIO_MUTUAL
   subsets:
-  - name: v0-5-2
+  - name: v0-5-3
     labels:
-      version: v0.5.2
+      version: v0.5.3
 # [END servicemesh_deployment_manifests_ledger_db_destinationrule_ledger_db_destination]
 ---

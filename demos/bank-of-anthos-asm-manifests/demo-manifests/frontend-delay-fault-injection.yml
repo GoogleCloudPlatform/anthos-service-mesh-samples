@@ -30,7 +30,7 @@ spec:
     route:
     - destination:
         host: frontend
-        subset: v0-5-2
+        subset: v0-5-3
     fault:
       delay:
         fixedDelay: 10s

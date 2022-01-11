@@ -26,20 +26,20 @@ spec:
     metadata:
       labels:
         app: ledgerwriter
-        version: v0.5.2
+        version: v0.5.3
     spec:
       serviceAccountName: default
       terminationGracePeriodSeconds: 5
       containers:
       - name: ledgerwriter
-        image: gcr.io/bank-of-anthos-ci/ledgerwriter:v0.5.2
+        image: gcr.io/bank-of-anthos-ci/ledgerwriter:v0.5.3
         volumeMounts:
         - name: publickey
           mountPath: "/root/.ssh"
           readOnly: true
         env:
         - name: VERSION
-          value: "v0.5.2"
+          value: "v0.5.3"
         - name: PORT
           value: "8080"
         - name: ENABLE_TRACING
@@ -114,7 +114,7 @@ spec:
   - route:
     - destination:
         host: ledgerwriter
-        subset: v0-5-2
+        subset: v0-5-3
 # [END servicemesh_deployment_manifests_ledger_writer_virtualservice_ledgerwriter]
 ---
 # [START servicemesh_deployment_manifests_ledger_writer_destinationrule_ledgerwriter_destination]
@@ -128,8 +128,8 @@ spec:
     tls:
       mode: ISTIO_MUTUAL
   subsets:
-  - name: v0-5-2
+  - name: v0-5-3
     labels:
-      version: v0.5.2
+      version: v0.5.3
 # [END servicemesh_deployment_manifests_ledger_writer_destinationrule_ledgerwriter_destination]
 ---

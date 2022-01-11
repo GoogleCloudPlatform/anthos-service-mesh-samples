@@ -26,20 +26,20 @@ spec:
     metadata:
       labels:
         app: frontend
-        version: v0.5.2-custom
+        version: v0.5.3-custom
     spec:
       serviceAccountName: default
       terminationGracePeriodSeconds: 5
       containers:
       - name: front
-        image: gcr.io/bank-of-anthos-ci/frontend:v0.5.2
+        image: gcr.io/bank-of-anthos-ci/frontend:v0.5.3
         volumeMounts:
         - name: publickey
           mountPath: "/root/.ssh"
           readOnly: true
         env:
         - name: VERSION
-          value: "v0.5.2-custom"
+          value: "v0.5.3-custom"
         - name: PORT
           value: "8080"
         - name: ENABLE_TRACING
@@ -111,11 +111,11 @@ spec:
     tls:
       mode: ISTIO_MUTUAL
   subsets:
-  - name: v0-5-2
+  - name: v0-5-3
     labels:
-      version: v0.5.2
-  - name: v0-5-2-custom
+      version: v0.5.3
+  - name: v0-5-3-custom
     labels:
-      version: v0.5.2-custom
+      version: v0.5.3-custom
 # [END servicemesh_demo_manifests_frontend_custom_deployment_destinationrule_frontend_destination]
 ---

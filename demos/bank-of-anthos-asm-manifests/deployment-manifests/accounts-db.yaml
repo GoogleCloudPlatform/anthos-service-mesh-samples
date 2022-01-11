@@ -33,12 +33,12 @@ spec:
       labels:
         app: accounts-db
         tier: db
-        version: v0.5.2
+        version: v0.5.3
     spec:
       serviceAccountName: default
       containers:
       - name: accounts-db
-        image: gcr.io/bank-of-anthos-ci/accounts-db:v0.5.2
+        image: gcr.io/bank-of-anthos-ci/accounts-db:v0.5.3
         envFrom:
           - configMapRef:
               name: environment-config
@@ -110,7 +110,7 @@ spec:
   - route:
     - destination:
         host: accounts-db
-        subset: v0-5-2
+        subset: v0-5-3
 # [END servicemesh_deployment_manifests_accounts_db_virtualservice_accounts_db]
 ---
 # [START servicemesh_deployment_manifests_accounts_db_destinationrule_accounts_db_destination]
@@ -124,8 +124,8 @@ spec:
     tls:
       mode: ISTIO_MUTUAL
   subsets:
-  - name: v0-5-2
+  - name: v0-5-3
     labels:
-      version: v0.5.2
+      version: v0.5.3
 # [END servicemesh_deployment_manifests_accounts_db_destinationrule_accounts_db_destination]
 ---

@@ -26,13 +26,13 @@ spec:
     metadata:
       labels:
         app: userservice
-        version: v0.5.2
+        version: v0.5.3
     spec:
       serviceAccountName: default
       terminationGracePeriodSeconds: 5
       containers:
       - name: userservice
-        image: gcr.io/bank-of-anthos-ci/userservice:v0.5.2
+        image: gcr.io/bank-of-anthos-ci/userservice:v0.5.3
         volumeMounts:
         - name: keys
           mountPath: "/root/.ssh"
@@ -42,7 +42,7 @@ spec:
           containerPort: 8080
         env:
         - name: VERSION
-          value: "v0.5.2"
+          value: "v0.5.3"
         - name: PORT
           value: "8080"
         - name: ENABLE_TRACING
@@ -111,7 +111,7 @@ spec:
   - route:
     - destination:
         host: userservice
-        subset: v0-5-2
+        subset: v0-5-3
 # [END servicemesh_deployment_manifests_userservice_virtualservice_userservice]
 ---
 # [START servicemesh_deployment_manifests_userservice_destinationrule_userservice_destination]
@@ -125,8 +125,8 @@ spec:
     tls:
       mode: ISTIO_MUTUAL
   subsets:
-  - name: v0-5-2
+  - name: v0-5-3
     labels:
-      version: v0.5.2
+      version: v0.5.3
 # [END servicemesh_deployment_manifests_userservice_destinationrule_userservice_destination]
 ---

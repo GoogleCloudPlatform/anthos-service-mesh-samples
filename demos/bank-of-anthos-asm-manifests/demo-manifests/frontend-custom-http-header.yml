@@ -33,13 +33,13 @@ spec:
     route:
     - destination:
         host: frontend
-        subset: v0-5-2-custom
+        subset: v0-5-3-custom
   - match:
     - uri:
         prefix: /
     route:
     - destination:
         host: frontend
-        subset: v0-5-2
+        subset: v0-5-3
 # [END servicemesh_demo_manifests_frontend_custom_http_header_virtualservice_frontend]
 ---
