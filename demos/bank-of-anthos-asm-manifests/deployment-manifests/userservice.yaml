@@ -26,28 +26,34 @@ spec:
     metadata:
       labels:
         app: userservice
-        version: v0.2.0
+        version: v0.5.3
     spec:
+      serviceAccountName: default
       terminationGracePeriodSeconds: 5
       containers:
       - name: userservice
-        image: gcr.io/bank-of-anthos/userservice:latest
+        image: gcr.io/bank-of-anthos-ci/userservice:v0.5.3
         volumeMounts:
         - name: keys
-          mountPath: /root/.ssh
+          mountPath: "/root/.ssh"
           readOnly: true
         ports:
         - name: http-server
           containerPort: 8080
         env:
         - name: VERSION
-          value: v0.2.0
+          value: "v0.5.3"
         - name: PORT
-          value: '8080'
+          value: "8080"
+        - name: ENABLE_TRACING
+          value: "true"
         - name: TOKEN_EXPIRY_SECONDS
-          value: '3600'
+          value: "3600"
         - name: PRIV_KEY_PATH
-          value: /root/.ssh/privatekey
+          value: "/root/.ssh/privatekey"
+        # Valid levels are debug, info, warning, error, critical. If no valid level is set, gunicorn will default to info.
+        - name: LOG_LEVEL
+          value: "info"
         envFrom:
         - configMapRef:
             name: environment-config
@@ -57,8 +63,9 @@ spec:
           httpGet:
             path: /ready
             port: 8080
-          initialDelaySeconds: 5
+          initialDelaySeconds: 10
           periodSeconds: 5
+          timeoutSeconds: 10
         resources:
           requests:
             cpu: 100m
@@ -104,7 +111,7 @@ spec:
   - route:
     - destination:
         host: userservice
-        subset: v0-2-0
+        subset: v0-5-3
 # [END servicemesh_deployment_manifests_userservice_virtualservice_userservice]
 ---
 # [START servicemesh_deployment_manifests_userservice_destinationrule_userservice_destination]
@@ -118,8 +125,8 @@ spec:
     tls:
       mode: ISTIO_MUTUAL
   subsets:
-  - name: v0-2-0
+  - name: v0-5-3
     labels:
-      version: v0.2.0
+      version: v0.5.3
 # [END servicemesh_deployment_manifests_userservice_destinationrule_userservice_destination]
 ---

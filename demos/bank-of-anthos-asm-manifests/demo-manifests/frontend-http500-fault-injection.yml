@@ -30,7 +30,7 @@ spec:
     route:
     - destination:
         host: frontend
-        subset: v0-2-0
+        subset: v0-5-3
     fault:
       abort:
         httpStatus: 500
