@@ -1,0 +1,10 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+resources:
+- authorizationpolicies.yaml
+- deployment.yaml
+- gateway.yaml
+- namespace.yaml
+- peerauthentication.yaml
+- service.yaml
+namespace: asm-ingress
