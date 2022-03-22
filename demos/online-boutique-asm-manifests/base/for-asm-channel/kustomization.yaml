@@ -7,4 +7,4 @@ patches:
       metadata:
         name: ONLINEBOUTIQUE_NAMESPACE
         labels:
-          istio.io/rev: ASM_REVISION
+          istio.io/rev: ASM_VERSION

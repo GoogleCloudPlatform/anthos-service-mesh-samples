@@ -3,3 +3,4 @@ kind: Kustomization
 resources:
 - kubernetes-manifests.yaml
 - virtualservice.yaml
+- namespace.yaml
