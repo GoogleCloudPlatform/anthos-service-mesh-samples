@@ -23,9 +23,9 @@ spec:
   egress:
   - hosts:
     - istio-system/*
-    - ./cartservice.default.svc.cluster.local
-    - ./currencyservice.default.svc.cluster.local
-    - ./emailservice.default.svc.cluster.local
-    - ./paymentservice.default.svc.cluster.local
-    - ./productcatalogservice.default.svc.cluster.local
-    - ./shippingservice.default.svc.cluster.local
+    - ./cartservice.onlineboutique.svc.cluster.local
+    - ./currencyservice.onlineboutique.svc.cluster.local
+    - ./emailservice.onlineboutique.svc.cluster.local
+    - ./paymentservice.onlineboutique.svc.cluster.local
+    - ./productcatalogservice.onlineboutique.svc.cluster.local
+    - ./shippingservice.onlineboutique.svc.cluster.local

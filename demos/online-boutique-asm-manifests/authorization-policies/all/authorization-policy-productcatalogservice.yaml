@@ -24,9 +24,9 @@ spec:
   - from:
     - source:
         principals:
-        - cluster.local/ns/default/sa/frontend
-        - cluster.local/ns/default/sa/checkoutservice
-        - cluster.local/ns/default/sa/recommendationservice
+        - cluster.local/ns/onlineboutique/sa/frontend
+        - cluster.local/ns/onlineboutique/sa/checkoutservice
+        - cluster.local/ns/onlineboutique/sa/recommendationservice
     to:
     - operation:
         paths:

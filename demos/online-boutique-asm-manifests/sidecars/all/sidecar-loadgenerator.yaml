@@ -23,4 +23,4 @@ spec:
   egress:
   - hosts:
     - istio-system/*
-    - ./frontend.default.svc.cluster.local
+    - ./frontend.onlineboutique.svc.cluster.local

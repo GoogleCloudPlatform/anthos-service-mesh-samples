@@ -23,4 +23,4 @@ spec:
   egress:
   - hosts:
     - istio-system/*
-    - ./redis-cart.default.svc.cluster.local
+    - ./redis-cart.onlineboutique.svc.cluster.local

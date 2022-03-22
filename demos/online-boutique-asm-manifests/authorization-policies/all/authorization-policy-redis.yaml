@@ -24,7 +24,7 @@ spec:
   - from:
     - source:
         principals:
-        - cluster.local/ns/default/sa/cartservice
+        - cluster.local/ns/onlineboutique/sa/cartservice
     to:
     - operation:
         ports:

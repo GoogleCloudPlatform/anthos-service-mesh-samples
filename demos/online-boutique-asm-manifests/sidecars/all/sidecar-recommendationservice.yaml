@@ -23,4 +23,4 @@ spec:
   egress:
   - hosts:
     - istio-system/*
-    - ./productcatalogservice.default.svc.cluster.local
+    - ./productcatalogservice.onlineboutique.svc.cluster.local

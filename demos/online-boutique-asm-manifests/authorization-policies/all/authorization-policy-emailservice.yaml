@@ -24,7 +24,7 @@ spec:
   - from:
     - source:
         principals:
-        - cluster.local/ns/default/sa/checkoutservice
+        - cluster.local/ns/onlineboutique/sa/checkoutservice
     to:
     - operation:
         paths:
