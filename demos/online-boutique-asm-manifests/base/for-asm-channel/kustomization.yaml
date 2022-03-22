@@ -5,6 +5,6 @@ patches:
       apiVersion: v1
       kind: Namespace
       metadata:
-        name: ONLINEBOUTIQUE_NAMESPACE
+        name: onlineboutique
         labels:
           istio.io/rev: ASM_VERSION

@@ -12,12 +12,33 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-# Sample to illustrate how to customize the ASM channel, you need to replace the variables ASM_VERSION in for-asm-channel/kustomization.yaml before deploying this file.
-# As an example: sed -i "s/ASM_VERSION/asm-managed-rapid/g" for-asm-channel/kustomization.yaml
+# Sample to illustrate how to customize the OnlineBoutique deployments, you need to replace:
+# ONLINEBOUTIQUE_NAMESPACE in this current kustomization.yaml
+# ONLINEBOUTIQUE_NAMESPACE in base/for-namespace/kustomization.yaml
+# ONLINEBOUTIQUE_NAMESPACE and ASM_VERSION in base/for-asm-channel/kustomization.yaml
+# ONLINEBOUTIQUE_NAMESPACE in authorization-policies/for-namespace/kustomization.yaml
+# ONLINEBOUTIQUE_NAMESPACE, INGRESS_GATEWAY_NAMESPACE and INGRESS_GATEWAY_NAME in authorization-policies/for-ingress-gateway/kustomization.yaml
+# ONLINEBOUTIQUE_NAMESPACE in sidecars/for-namespace/kustomization.yaml
+# before deploying this file.
+# As an example:
+# sed -i "s/ONLINEBOUTIQUE_NAMESPACE/onlineboutique/g" kustomization.yaml
+# sed -i "s/ONLINEBOUTIQUE_NAMESPACE/onlineboutique/g" base/for-namespace/kustomization.yaml
+# sed -i "s/ONLINEBOUTIQUE_NAMESPACE/onlineboutique/g;s/ASM_VERSION/asm-managed-rapid/g" authorization-policies/base/for-asm-channel/kustomization.yaml
+# sed -i "s/ONLINEBOUTIQUE_NAMESPACE/onlineboutique/g" for-namespace/kustomization.yaml
+# sed -i "s/ONLINEBOUTIQUE_NAMESPACE/onlineboutique/g;s/INGRESS_GATEWAY_NAMESPACE/asm-ingress/g;s/INGRESS_GATEWAY_NAME/asm-ingressgateway/g" authorization-policies/for-ingress-gateway/kustomization.yaml
+# sed -i "s/ONLINEBOUTIQUE_NAMESPACE/onlineboutique/g" sidecars/for-namespace/kustomization.yaml
 
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 resources:
-- base
+- base/all
 components:
-- for-asm-channel
+- base/for-asm-channel
+- base/for-namespace
+- service-accounts/all
+- authorization-policies/all
+- authorization-policies/for-ingress-gateway
+- authorization-policies/for-namespace
+- sidecars/all
+- sidecars/for-namespace
+namespace: ONLINEBOUTIQUE_NAMESPACE
