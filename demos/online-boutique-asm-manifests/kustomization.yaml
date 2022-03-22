@@ -24,7 +24,7 @@
 # sed -i "s/ONLINEBOUTIQUE_NAMESPACE/onlineboutique/g" kustomization.yaml
 # sed -i "s/ONLINEBOUTIQUE_NAMESPACE/onlineboutique/g" base/for-namespace/kustomization.yaml
 # sed -i "s/ONLINEBOUTIQUE_NAMESPACE/onlineboutique/g;s/ASM_VERSION/asm-managed-rapid/g" authorization-policies/base/for-asm-channel/kustomization.yaml
-# sed -i "s/ONLINEBOUTIQUE_NAMESPACE/onlineboutique/g" for-namespace/kustomization.yaml
+# sed -i "s/ONLINEBOUTIQUE_NAMESPACE/onlineboutique/g" authorization-policies/for-namespace/kustomization.yaml
 # sed -i "s/ONLINEBOUTIQUE_NAMESPACE/onlineboutique/g;s/INGRESS_GATEWAY_NAMESPACE/asm-ingress/g;s/INGRESS_GATEWAY_NAME/asm-ingressgateway/g" authorization-policies/for-ingress-gateway/kustomization.yaml
 # sed -i "s/ONLINEBOUTIQUE_NAMESPACE/onlineboutique/g" sidecars/for-namespace/kustomization.yaml
 
