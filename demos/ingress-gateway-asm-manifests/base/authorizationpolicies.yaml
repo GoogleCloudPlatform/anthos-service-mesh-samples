@@ -12,7 +12,7 @@ metadata:
 spec:
   selector:
     matchLabels:
-      app: asm-ingressgateway
+      asm: ingressgateway
   rules:
   - to:
     - operation:
