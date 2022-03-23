@@ -37,9 +37,10 @@ resource "google_service_account" "canary_example" {
 resource "google_container_cluster" "canary_example" {
   name               = "canary_example"
   location           = var.region
-  initial_node_count = 3
+  initial_node_count = 4
   node_config {
     service_account = google_service_account.canary_example
+    machine_type = "e2-standard-4"
   }
 }
 
