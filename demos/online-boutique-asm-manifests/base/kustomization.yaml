@@ -27,4 +27,5 @@ resources:
 components:
 - for-asm-channel
 - for-namespace
+- for-ingress-gateway
 #- for-memorystore
