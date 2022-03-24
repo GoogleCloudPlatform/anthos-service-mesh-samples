@@ -18,3 +18,10 @@ resources:
 - kubernetes-manifests.yaml
 - virtualservice.yaml
 - namespace.yaml
+patchesStrategicMerge:
+- |-
+  apiVersion: v1
+  kind: Service
+  metadata:
+    name: frontend-external
+  $patch: delete
