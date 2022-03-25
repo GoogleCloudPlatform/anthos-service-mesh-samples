@@ -19,4 +19,3 @@ resources:
 - gateway.yaml
 - namespace.yaml
 - service.yaml
-namespace: asm-ingress
