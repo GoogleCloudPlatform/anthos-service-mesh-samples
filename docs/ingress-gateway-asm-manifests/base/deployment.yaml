@@ -55,4 +55,4 @@ spec:
         runAsGroup: 1337
         runAsNonRoot: true
         runAsUser: 1337
-      serviceAccountName: default
+      serviceAccountName: asm-ingressgateway
