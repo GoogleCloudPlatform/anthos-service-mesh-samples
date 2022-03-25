@@ -15,5 +15,13 @@
 apiVersion: security.istio.io/v1beta1
 kind: AuthorizationPolicy
 metadata:
-  name: deny-all
-spec: {}
+  name: asm-ingressgateway
+spec:
+  selector:
+    matchLabels:
+      asm: ingressgateway
+  rules:
+  - to:
+    - operation:
+        ports:
+        - "8080"

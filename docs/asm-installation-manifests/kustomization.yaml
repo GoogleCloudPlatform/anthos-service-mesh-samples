@@ -21,5 +21,6 @@ namespace: istio-system
 resources:
 - base
 - with-strict-mtls
+- with-default-deny-authorization-policy
 components:
 - for-asm-channel

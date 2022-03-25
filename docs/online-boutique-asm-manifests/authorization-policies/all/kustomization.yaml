@@ -19,7 +19,6 @@ resources:
 - authorization-policy-cartservice.yaml
 - authorization-policy-checkoutservice.yaml
 - authorization-policy-currencyservice.yaml
-- authorization-policy-denyall.yaml
 - authorization-policy-emailservice.yaml
 - authorization-policy-frontend.yaml
 - authorization-policy-paymentservice.yaml
