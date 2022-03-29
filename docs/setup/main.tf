@@ -14,40 +14,56 @@
  * limitations under the License.
  */
 
-terraform {
-  required_version = ">= 0.13.5"
-  required_providers {
-    google = {
-      source  = "hashicorp/google"
-      version = ">= 4.11.0"
-    }
-  }
+locals {
+  cluster_type = "simple-asm"
 }
 
-provider "google" {
-  project = var.project_id
-  region  = var.region
+data "google_client_config" "default" {}
+
+provider "kubernetes" {
+  host                   = "https://${module.gke.endpoint}"
+  token                  = data.google_client_config.default.access_token
+  cluster_ca_certificate = base64decode(module.gke.ca_certificate)
 }
 
-resource "google_service_account" "canary_example" {
-  account_id   = "service-account_id"
-  display_name = "Service Account"
+data "google_project" "project" {
+  project_id = var.project_id
 }
 
-resource "google_container_cluster" "canary_example" {
-  name               = "canary_example"
-  location           = var.region
-  initial_node_count = 4
-  node_config {
-    service_account = google_service_account.canary_example
-    machine_type = "e2-standard-4"
-  }
+module "gke" {
+  source                  = "../../"
+  project_id              = var.project_id
+  name                    = "${local.cluster_type}-cluster${var.cluster_name_suffix}"
+  regional                = false
+  region                  = var.region
+  zones                   = var.zones
+  release_channel         = "REGULAR"
+  network                 = var.network
+  subnetwork              = var.subnetwork
+  ip_range_pods           = var.ip_range_pods
+  ip_range_services       = var.ip_range_services
+  network_policy          = false
+  cluster_resource_labels = { "mesh_id" : "proj-${data.google_project.project.number}" }
+  identity_namespace      = "${var.project_id}.svc.id.goog"
+  node_pools = [
+    {
+      name         = "asm-node-pool"
+      autoscaling  = false
+      auto_upgrade = true
+      node_count   = 3
+      machine_type = "e2-standard-4"
+    },
+  ]
 }
 
-resource "kubernetes_manifest" "canary_example_asm" {
-  manifest = {
-    apiVersion = "mesh.cloud.google.com/v1alpha1"
-    kind       = "ControlPlaneRevision"
-  }
-
+module "asm" {
+  source                    = "../../modules/asm"
+  version                   = ">=20.0.0"
+  project_id                = var.project_id
+  cluster_name              = module.gke.name
+  cluster_location          = module.gke.location
+  multicluster_mode         = "connected"
+  enable_cni                = true
+  enable_fleet_registration = true
+  enable_mesh_feature       = true
 }
