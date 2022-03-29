@@ -10,12 +10,17 @@ The following services will be required for this:
 * cloudresourcemanager.googlesapis.com
 * mesh.cloud.googleapis.com
 
+You can follow this setup with either a new Google Cloud Project or a pre-existing Google Cloud Project
 ### 1.  Clone this repo and cd to this directory
 ```
 git clone https://github.com/GoogleCloudPlatform/anthos-service-mesh-samples
 cd docs/setup
 ```
-### 2. **[Create a Google Cloud Platform project](https://cloud.google.com/resource-manager/docs/creating-managing-projects#creating_a_project)** or use an existing project. 
+### 2.  Setup Terraform authentication
+```
+gcloud auth application-default login --no-browser
+```
+### 3. **[Create a Google Cloud Platform project](https://cloud.google.com/resource-manager/docs/creating-managing-projects#creating_a_project)** or use an existing project. 
 Set the `PROJECT_ID` environment variable and ensure the Google Kubernetes Engine and Cloud Operations APIs are enabled.
 
 To enable the above services, run the following in your terminal
@@ -30,21 +35,12 @@ mesh.cloud.googleapis.com
 
 ```
 
-### 3.  Setup Terraform authentication
+### 3.  Replace the variables in variables.tfvars with your values
 ```
-gcloud auth application-default login --no-browser
-```
-
-### 4.  Deploy the Terrform module to set up your GKE cluster
-```
-terraform init
-terraform plan 
-terraform apply -var project_id=<YOUR_PROJECT_ID>
 ```
 
 ### 6.  Deploy the Terrform module to set up your ASM on the GKE Cluster
 ```
-cd asm/
 terraform init
 terraform plan 
 terraform apply --auto-approve
