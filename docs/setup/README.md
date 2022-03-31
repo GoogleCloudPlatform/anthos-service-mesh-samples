@@ -16,7 +16,7 @@ You can follow this setup with either a new Google Cloud Project or a pre-existi
 git clone https://github.com/GoogleCloudPlatform/anthos-service-mesh-samples
 cd docs/setup
 ```
-### 2.  Setup Terraform authentication
+### 2.  Authenticate yourself with `gcloud`
 ```
 gcloud auth application-default login --no-browser
 ```
@@ -35,16 +35,26 @@ mesh.cloud.googleapis.com
 
 ```
 
-### 3.  Replace the variables in variables.tfvars with your values
+### 4.  Update the variables in `variables.tfvars` with variables specific to your environment
 ```
+# variables.tfvars file
+project_id        = "<YOUR_PROJECT_ID>"
+region            = "<REGION>" # ex: "us-east1"
+zones             = ["ZONE"]   # ex: ["us-east1-b"]
+...
+
+```
+
+### 5.  Deploy the Terrform module to set up your ASM on the GKE Cluster
+```
+terraform init
+terraform plan --var-file="variables.tfvars"
+terraform apply --var-file="variables.tfvars"
 ```
 
 ### 6.  Deploy the Terrform module to set up your ASM on the GKE Cluster
-```
-terraform init
-terraform plan 
-terraform apply --auto-approve
-```
+> *Note*: When prompted to confirm the Terraform plan, type 'Yes' and enter
+
 
 You will see the following outputs:
 
@@ -94,7 +104,7 @@ kube-system   pdcsi-node-qfbm2                                                 2
 ```
 
 #### Congrats! You can now have a GKE + ASM cluster provisioned. You can now check out the sample 
-
+---
 ### Cleanup
 To cleanup the resources from your GCP project, 
 ### 1. Navigate to this directory
@@ -102,4 +112,6 @@ To cleanup the resources from your GCP project,
 ```
 terraform destroy
 ```
-Follow the CLI prompts to input the variable outputs
+Follow the CLI prompts to input the variable outputs 
+
+> *Note*: When prompted to confirm the Terraform destroy, type 'Yes' and enter. It may take a few minutes to finish.

@@ -1,7 +1,11 @@
 # Canary Testing 
 
 ## Introduction 
-In this example, we will learn how to Traffic Split to performa Canary deployment on [Google Kubernetes Engine](https://cloud.google.com/kubernetes-engine/)..
+Canary Testing is integral with testing when completing upgrades on your cluster.
+This directory covers 2 main cases when completing canary upgrades:
+
+* In `canary-service`, we will learn how to Traffic Split to perform a Canary deployment on [Google Kubernetes Engine](https://cloud.google.com/kubernetes-engine/).
+* In `canary-cp`, we will learn how to safely complete a Control Plane Canary upgrade with ASM 
 
 In this sample, `productcatalogservice-v2` introduces a 3-second
 [latency](https://github.com/GoogleCloudPlatform/microservices-demo/tree/main/src/productcatalogservice#latency-injection) into all server requests. We’ll show how to use Cloud Operations and ASM together to
