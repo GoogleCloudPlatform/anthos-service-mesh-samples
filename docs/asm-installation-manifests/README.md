@@ -3,7 +3,7 @@
 ```
 ASM_VERSION=asm-managed-rapid
 ASM_CHANNEL=rapid
-sed -i 's/ASM_VERSION/${ASM_VERSION}/g;s/ASM_CHANNEL/${ASM_CHANNEL}/g' for-asm-channel/kustomization.yaml
+sed -i "s/ASM_VERSION/${ASM_VERSION}/g;s/ASM_CHANNEL/${ASM_CHANNEL}/g" for-asm-channel/kustomization.yaml
 kubectl apply -k .
 ```
 
