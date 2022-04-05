@@ -35,7 +35,6 @@ resources:
 components:
 - base/for-asm-channel
 - base/for-namespace
-- base/for-ingress-gateway
 - service-accounts/all
 - authorization-policies/all
 - authorization-policies/for-ingress-gateway

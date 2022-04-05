@@ -12,9 +12,6 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-# Sample to illustrate how to customize the ASM channel, you need to replace the variable ASM_VERSION in for-asm-channel/kustomization.yaml before deploying this file.
-# As an example: sed -i "s/ASM_VERSION/asm-managed-rapid/g" for-asm-channel/kustomization.yaml
-
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 namespace: asm-ingress
