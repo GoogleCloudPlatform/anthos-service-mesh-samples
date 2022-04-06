@@ -12,11 +12,6 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-# Sample to illustrate how to customize the OnlineBoutique's VirtualService with a specific host name rather than '*', you need to replace:
-# HOST_NAME in this current file before including this file in another kustomization.yaml file.
-# As an example:
-# sed -i "s/HOST_NAME/your-host-name/g" kustomization.yaml
-
 apiVersion: kustomize.config.k8s.io/v1alpha1
 kind: Component
 patchesJson6902:

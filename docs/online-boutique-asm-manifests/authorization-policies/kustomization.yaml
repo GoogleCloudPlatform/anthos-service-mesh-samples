@@ -12,18 +12,9 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-# Sample to illustrate how to customize the OnlineBoutique namespace and the Ingress Gateway information, you need to replace:
-# ONLINEBOUTIQUE_NAMESPACE in for-namespace/kustomization.yaml
-# and ONLINEBOUTIQUE_NAMESPACE, INGRESS_GATEWAY_NAMESPACE and INGRESS_GATEWAY_NAME in for-ingress-gateway/kustomization.yaml
-# before deploying this file.
-# As an example:
-# sed -i "s/ONLINEBOUTIQUE_NAMESPACE/onlineboutique/g" for-namespace/kustomization.yaml
-# sed -i "s/ONLINEBOUTIQUE_NAMESPACE/onlineboutique/g;s/INGRESS_GATEWAY_NAMESPACE/asm-ingress/g;s/INGRESS_GATEWAY_NAME/asm-ingressgateway/g" for-ingress-gateway/kustomization.yaml
-
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 components:
 - all
 - for-ingress-gateway
 - for-namespace
-#- for-memorystore

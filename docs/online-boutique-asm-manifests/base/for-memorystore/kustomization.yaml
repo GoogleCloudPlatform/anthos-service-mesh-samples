@@ -12,11 +12,6 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-# Sample to illustrate how to customize the OnlineBoutique's cartservice to use Memorystore (redis) instead of in-cluster redis container, you need to replace:
-# REDIS_IP and REDIS_PORT in this current file before including this file in another kustomization.yaml file.
-# As an example:
-# sed -i "s/REDIS_IP/0.0.0.0/g;s/REDIS_PORT/6379/g" kustomization.yaml
-
 apiVersion: kustomize.config.k8s.io/v1alpha1
 kind: Component
 patchesJson6902:
