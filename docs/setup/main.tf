@@ -31,7 +31,7 @@ data "google_project" "project" {
 }
 
 module "gke" {
-  source                  = "../../"
+  source                  = "terraform-google-modules/kubernetes-engine/google"
   project_id              = var.project_id
   name                    = "${local.cluster_type}-cluster${var.cluster_name_suffix}"
   regional                = false
@@ -57,7 +57,7 @@ module "gke" {
 }
 
 module "asm" {
-  source                    = "../../modules/asm"
+  source                    = "terraform-google-modules/kubernetes-engine/google//modules/asm"
   version                   = ">=20.0.0"
   project_id                = var.project_id
   cluster_name              = module.gke.name

@@ -2,7 +2,7 @@
 This is a general setup for the examples in the `docs` folder. 
 This setup uses `Terraform` to setup your GKE clusters with ASM installed. 
 
-Note: the following will setup an environment for a single cluster.
+Note: the following will setup an environment for a single cluster, with a _Managed Control Plane_.
 
 The following services will be required for this: 
 * container.googleapis.com
@@ -37,6 +37,10 @@ mesh.cloud.googleapis.com
 
 ### 3.  Replace the variables in variables.tfvars with your values
 ```
+# In variables.tfvars
+project_id = "<YOUR_PROJECT_ID>"
+region = "<REGION>"
+zones  = ["<ZONE>"]
 ```
 
 ### 6.  Deploy the Terrform module to set up your ASM on the GKE Cluster
