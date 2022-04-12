@@ -21,7 +21,7 @@ patchesJson6902:
   patch: |-
     - op: replace
       path: /metadata/name
-      value: ${ASM_VERSION}
+      value: ASM_VERSION
     - op: replace
       path: /spec/channel
-      value: ${ASM_CHANNEL}
+      value: ASM_CHANNEL
