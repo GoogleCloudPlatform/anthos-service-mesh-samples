@@ -1,4 +1,3 @@
-
 # Copyright 2022 Google LLC
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
@@ -19,7 +18,7 @@ kind: ControlPlaneRevision
 metadata:
   name: asm-managed
   labels:
-    mesh.cloud.google.com/managed-cni-enabled: 'true'
+    mesh.cloud.google.com/managed-cni-enabled: "true"
 spec:
   type: managed_service
   channel: regular

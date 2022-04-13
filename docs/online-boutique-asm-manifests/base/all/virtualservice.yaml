@@ -20,7 +20,7 @@ metadata:
   name: frontend
 spec:
   hosts:
-  - '*'
+  - "*"
   gateways:
   - asm-ingress/asm-ingressgateway
   http:
@@ -30,4 +30,3 @@ spec:
         port:
           number: 80
 # [END servicemesh_all_virtualservice_virtualservice_frontend]
----

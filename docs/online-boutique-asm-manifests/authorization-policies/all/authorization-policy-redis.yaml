@@ -29,5 +29,5 @@ spec:
     to:
     - operation:
         ports:
-        - '6379'
+        - "6379"
 # [END servicemesh_all_authorization_policy_redis_authorizationpolicy_redis_cart]
