@@ -12,6 +12,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+# [START servicemesh_base_for_virtualservice_host_kustomization_component]
 apiVersion: kustomize.config.k8s.io/v1alpha1
 kind: Component
 patchesJson6902:
@@ -23,3 +24,4 @@ patchesJson6902:
       path: /spec/hosts
       value:
         - HOST_NAME
+# [END servicemesh_base_for_virtualservice_host_kustomization_component]

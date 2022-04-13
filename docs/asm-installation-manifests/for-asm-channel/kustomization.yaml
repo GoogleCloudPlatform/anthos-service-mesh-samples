@@ -12,6 +12,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+# [START servicemesh_asm_installation_manifests_for_asm_channel_kustomization_component]
 apiVersion: kustomize.config.k8s.io/v1alpha1
 kind: Component
 patchesJson6902:
@@ -25,3 +26,4 @@ patchesJson6902:
     - op: replace
       path: /spec/channel
       value: ASM_CHANNEL
+# [END servicemesh_asm_installation_manifests_for_asm_channel_kustomization_component]

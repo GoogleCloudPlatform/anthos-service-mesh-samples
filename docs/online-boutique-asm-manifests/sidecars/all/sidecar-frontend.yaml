@@ -12,6 +12,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+# [START servicemesh_all_sidecar_frontend_sidecar_frontend]
 apiVersion: networking.istio.io/v1beta1
 kind: Sidecar
 metadata:
@@ -30,3 +31,4 @@ spec:
     - ./productcatalogservice.onlineboutique.svc.cluster.local
     - ./recommendationservice.onlineboutique.svc.cluster.local
     - ./shippingservice.onlineboutique.svc.cluster.local
+# [END servicemesh_all_sidecar_frontend_sidecar_frontend]

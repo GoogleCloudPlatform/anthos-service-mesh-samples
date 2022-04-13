@@ -12,6 +12,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+# [START servicemesh_docs_ingress_gateway_asm_manifests_kustomization_kustomization]
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 namespace: asm-ingress
@@ -20,3 +21,4 @@ resources:
 components:
 - for-asm-channel
 - with-authorization-policies
+# [END servicemesh_docs_ingress_gateway_asm_manifests_kustomization_kustomization]

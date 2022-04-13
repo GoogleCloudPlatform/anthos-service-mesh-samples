@@ -12,6 +12,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+# [START servicemesh_authorization_policies_for_namespace_kustomization_component]
 apiVersion: kustomize.config.k8s.io/v1alpha1
 kind: Component
 patchesJson6902:
@@ -100,3 +101,4 @@ patchesJson6902:
       value:
         - cluster.local/ns/ONLINEBOUTIQUE_NAMESPACE/sa/frontend
         - cluster.local/ns/ONLINEBOUTIQUE_NAMESPACE/sa/checkoutservice
+# [END servicemesh_authorization_policies_for_namespace_kustomization_component]

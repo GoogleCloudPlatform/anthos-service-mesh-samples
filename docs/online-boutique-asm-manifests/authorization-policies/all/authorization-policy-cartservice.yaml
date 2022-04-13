@@ -12,6 +12,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+# [START servicemesh_all_authorization_policy_cartservice_authorizationpolicy_cartservice]
 apiVersion: security.istio.io/v1beta1
 kind: AuthorizationPolicy
 metadata:
@@ -36,3 +37,4 @@ spec:
         - POST
         ports:
         - "7070"
+# [END servicemesh_all_authorization_policy_cartservice_authorizationpolicy_cartservice]

@@ -12,6 +12,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+# [START servicemesh_all_sidecar_cartservice_sidecar_cartservice]
 apiVersion: networking.istio.io/v1beta1
 kind: Sidecar
 metadata:
@@ -24,3 +25,4 @@ spec:
   - hosts:
     - istio-system/*
     - ./redis-cart.onlineboutique.svc.cluster.local
+# [END servicemesh_all_sidecar_cartservice_sidecar_cartservice]

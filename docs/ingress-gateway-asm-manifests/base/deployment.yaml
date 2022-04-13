@@ -12,6 +12,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+# [START servicemesh_base_deployment_deployment_asm_ingressgateway]
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -56,3 +57,4 @@ spec:
         runAsNonRoot: true
         runAsUser: 1337
       serviceAccountName: asm-ingressgateway
+# [END servicemesh_base_deployment_deployment_asm_ingressgateway]
