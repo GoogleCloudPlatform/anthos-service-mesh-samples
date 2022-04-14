@@ -12,6 +12,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+# [START servicemesh_all_authorization_policy_redis_authorizationpolicy_redis_cart]
 apiVersion: security.istio.io/v1beta1
 kind: AuthorizationPolicy
 metadata:
@@ -29,3 +30,4 @@ spec:
     - operation:
         ports:
         - "6379"
+# [END servicemesh_all_authorization_policy_redis_authorizationpolicy_redis_cart]

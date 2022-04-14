@@ -12,9 +12,11 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+# [START servicemesh_all_namespace_namespace_onlineboutique]
 apiVersion: v1
 kind: Namespace
 metadata:
   name: onlineboutique
   labels:
     istio.io/rev: asm-managed
+# [END servicemesh_all_namespace_namespace_onlineboutique]

@@ -12,6 +12,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+# [START servicemesh_authorization_policies_all_kustomization_component]
 apiVersion: kustomize.config.k8s.io/v1alpha1
 kind: Component
 resources:
@@ -26,3 +27,4 @@ resources:
 - authorization-policy-recommendationservice.yaml
 - authorization-policy-redis.yaml
 - authorization-policy-shippingservice.yaml
+# [END servicemesh_authorization_policies_all_kustomization_component]

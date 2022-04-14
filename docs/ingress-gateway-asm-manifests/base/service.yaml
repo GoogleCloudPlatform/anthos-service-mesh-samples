@@ -12,6 +12,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+# [START servicemesh_base_service_service_asm_ingressgateway]
 apiVersion: v1
 kind: Service
 metadata:
@@ -26,3 +27,4 @@ spec:
   selector:
     asm: ingressgateway
   type: LoadBalancer
+# [END servicemesh_base_service_service_asm_ingressgateway]

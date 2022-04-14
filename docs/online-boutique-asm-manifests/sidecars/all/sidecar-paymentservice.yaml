@@ -12,6 +12,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+# [START servicemesh_all_sidecar_paymentservice_sidecar_paymentservice]
 apiVersion: networking.istio.io/v1beta1
 kind: Sidecar
 metadata:
@@ -23,3 +24,4 @@ spec:
   egress:
   - hosts:
     - istio-system/*
+# [END servicemesh_all_sidecar_paymentservice_sidecar_paymentservice]

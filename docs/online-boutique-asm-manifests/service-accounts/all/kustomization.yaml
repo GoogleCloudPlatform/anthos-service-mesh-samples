@@ -12,6 +12,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+# [START servicemesh_service_accounts_all_kustomization_component]
 apiVersion: kustomize.config.k8s.io/v1alpha1
 kind: Component
 resources:
@@ -112,3 +113,4 @@ patchesJson6902:
     - op: replace
       path: /spec/template/spec/serviceAccountName
       value: shippingservice
+# [END servicemesh_service_accounts_all_kustomization_component]

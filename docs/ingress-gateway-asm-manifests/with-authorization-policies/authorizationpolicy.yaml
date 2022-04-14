@@ -12,6 +12,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+# [START servicemesh_with_authorization_policies_authorizationpolicy_authorizationpolicy_asm_ingressgateway]
 apiVersion: security.istio.io/v1beta1
 kind: AuthorizationPolicy
 metadata:
@@ -25,3 +26,4 @@ spec:
     - operation:
         ports:
         - "8080"
+# [END servicemesh_with_authorization_policies_authorizationpolicy_authorizationpolicy_asm_ingressgateway]

@@ -12,6 +12,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+# [START servicemesh_base_gateway_gateway_asm_ingressgateway]
 apiVersion: networking.istio.io/v1alpha3
 kind: Gateway
 metadata:
@@ -26,3 +27,4 @@ spec:
         protocol: HTTP
       hosts:
         - "*"
+# [END servicemesh_base_gateway_gateway_asm_ingressgateway]

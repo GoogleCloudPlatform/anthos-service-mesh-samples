@@ -12,9 +12,11 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+# [START servicemesh_online_boutique_asm_manifests_authorization_policies_kustomization_kustomization]
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 components:
 - all
 - for-ingress-gateway
 - for-namespace
+# [END servicemesh_online_boutique_asm_manifests_authorization_policies_kustomization_kustomization]
