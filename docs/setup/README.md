@@ -1,8 +1,8 @@
 ### Setup 
-This is a general setup for the examples in the `docs` folder. 
-This setup uses `Terraform` to setup your GKE clusters with ASM installed. 
+This is a general setup using Terraform for the examples in the `docs` folder. 
 
-Note: the following will setup an environment for a single cluster, with a _Managed Control Plane_.
+
+The following will set up a GKE cluster with Anthos Service Mesh (ASM) with a _Managed Control Plane_ installed . 
 
 The following services will be required for this: 
 * container.googleapis.com
@@ -10,7 +10,7 @@ The following services will be required for this:
 * cloudresourcemanager.googlesapis.com
 * mesh.cloud.googleapis.com
 
-You can follow this setup with either a new Google Cloud Project or a pre-existing Google Cloud Project
+You can follow this setup with either a new Google Cloud Project or a pre-existing Google Cloud Project. It is recommended to create a new Google Cloud Project, for an easier cleanup.
 ### 1.  Clone this repo and cd to this directory
 ```
 git clone https://github.com/GoogleCloudPlatform/anthos-service-mesh-samples
@@ -25,9 +25,11 @@ Set the `PROJECT_ID` environment variable and ensure the Google Kubernetes Engin
 
 To enable the above services, run the following in your terminal
 ```
-gcloud config set project "<YOUR_PROJECT_ID>"
+export PROJECT_ID="<YOUR_PROJECT_ID>"
 
-gcloud --project="<YOUR_PROJECT_ID>" services enable \
+gcloud config set project $PROJECT_ID
+
+gcloud --project=$PROJECT_ID services enable \
 container.googleapis.com \
 compute.googleapis.com \
 cloudresourcemanager.googleapis.com \
@@ -95,6 +97,12 @@ kube-system   netd-nr4vv                                                       1
 kube-system   pdcsi-node-dtfbv                                                 2/2     Running   0          23h
 kube-system   pdcsi-node-dxc5f                                                 2/2     Running   0          23h
 kube-system   pdcsi-node-qfbm2                                                 2/2     Running   0          23h
+```
+
+You can also run the following : 
+```
+kubectl describe controlplanerevision asm-managed -n istio-system
+
 ```
 
 #### Congrats! You can now have a GKE + ASM cluster provisioned. You can now check out the sample 
