@@ -28,3 +28,18 @@ variable "zones" {
   default     = ["us-central1-a"]
   description = "The zone to host the cluster in (required if is a zonal cluster)"
 }
+variable "network" {
+  type        = string
+  description = "The VPC network where the cluster will be created"
+  default     = "asm-tutorial"
+}
+
+variable "subnetwork" {
+  type        = string
+  description = "The subnet where the cluster will be created"
+  default     = "subnet-01"
+}
+variable "enable_cni" {
+  type    = bool
+  default = "true"
+}
