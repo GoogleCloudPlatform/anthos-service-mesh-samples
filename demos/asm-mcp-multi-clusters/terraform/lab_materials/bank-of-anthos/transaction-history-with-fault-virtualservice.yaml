@@ -1,0 +1,20 @@
+apiVersion: networking.istio.io/v1alpha3
+kind: VirtualService
+metadata:
+  name: transactionhistory-with-fault
+spec:
+  hosts:
+  - transactionhistory
+  http:
+  - route:
+    - destination:
+        host: transactionhistory
+    fault:
+      abort:
+        percentage:
+          value: 50
+        httpStatus: 500
+      delay:
+        fixedDelay: 10s
+        percentage:
+          value: 50

@@ -1,0 +1,17 @@
+apiVersion: networking.gke.io/v1beta1
+kind: MultiClusterService
+metadata:
+  name: frontend-multi-cluster-service
+spec:
+  template:
+    spec:
+      selector:
+        asm: ingressgateway
+      ports:
+      - name: frontend
+        protocol: TCP
+        port: 80 # servicePort defined in MultiClusterIngress
+        targetPort: 8080 # port on the asm-ingressgateway Pod that requests gets sent to (container port)
+  clusters:
+  - link: "us-west2-a/gke-west2-a"
+  - link: "us-central1-a/gke-central1-a"

@@ -1,0 +1,6 @@
+applySpecVersion: 1
+spec:
+  policyController:
+    enabled: true
+    templateLibraryInstalled: true
+    referentialRulesEnabled: true
