@@ -7,17 +7,19 @@
 
 ## Overview
 
-This lab shows you how to run distributed services on multiple Google Kubernetes Engine (GKE) clusters in Google Cloud Platform (GCP) using Anthos Service Mesh (ASM). ASM is Google’s fully managed Istio-compliant service mesh, which ultimately unburdens your operations and development teams.
+This lab shows you how to run distributed services on multiple Google Kubernetes Engine (GKE) clusters in Google Cloud Platform (GCP) using Anthos Service Mesh. Anthos Service Mesh is Google’s fully managed Istio-compliant service mesh, which ultimately unburdens your operations and development teams.
 
 You will perform the following steps:
-- Install the Anthos Service Mesh (ASM) Managed Control Plane (MCP).
+- Install Anthos Service Mesh Managed Control Plane.
 - Deploy Bank of Anthos, a sample app comprised of 6 stateless services and 2 databases, into your mesh.
 - Deploy an Ingress Gateway to allow ingress to Bank of Anthos through a public IP address.
 - See in action distributed services across two clusters.
-- Understand the value of the two features Managed Control Plane and Managed Data Plane
 - Use Google Cloud's Multi Cluster Ingress controller to load balance ingress across clusters.
+- Understand the value of the two Anthos Service Mesh features: Managed Control Plane and Managed Data Plane.
+- Enforce policy constraints to improve your security posture with your clusters and your mesh with Policy Controller, a component of Anthos Config Management.
 - Explore the Google Cloud Console (UI) to view health and performance of your services in your mesh.
-- Enforce policies (sidecar proxies injection + `STRICT` mTLS) to improve your security posture with your clusters and your mesh with Policy Controller, a component of Anthos Config Management.
+- Define SLO, generate fault injections and SLO burn rate alerts
+
 
 ![Architecture](./img/architecture.png)
 
@@ -741,7 +743,70 @@ Click on **Metrics** from the left hand side navigation menu to view the [golden
 ![frontend service metrics](./img/frontend-service-metrics.png)
 
 
-From here, what we want to do now is injecting errors and delays in the `transactionhistory` service in order to see how these metrics behave. We will leverage the native Istio's `VirtualService` resource to accomplish this, which allows fault injection without actually updating the code of your application. Really convenient to put in place a chaos monkey setup!
+## Define SLO and alert
+
+In this section, you will define one SLO for the `frontend` service to track how healthy this service is. You will also set up one SLO burn rate alert in order to get notified as soon as the you have incident based on your SLO definition. 
+
+Navigate to the **Health** view of the `frontend` service. Click on the link displayed by the command below:
+```bash
+echo -e "https://console.cloud.google.com/anthos/services/service/${BANK_OF_ANTHOS_NAMESPACE}/frontend/health?project=${PROJECT_ID}"
+```
+
+![SLO setup step 1](./img/slo-setup-1.png)
+
+Click on the **+ Create SLO** button on the right of this screen to navigate to the **Set your service-level indicator (SLI)** step of the **Create a Service Level Objective (SLO)** wizard.
+
+![SLO setup step 2](./img/slo-setup-2.png)
+
+Select **Latency** in the **Choose a metric** section and click on **Continue** to navigate to the **Define SLI details** step.
+
+![SLO setup step 3](./img/slo-setup-3.png)
+
+Set the **Latency threshold** field to `2000` ms in the **Performance metric** section and click on **Continue** to navigate to the **Set your service-level objective (SLO)** step.
+
+![SLO setup step 4](./img/slo-setup-4.png)
+
+Set the **Performance goal** field to `99.9` % and click on **Continue** to navigate to the **Review and save** step.
+
+![SLO setup step 5](./img/slo-setup-5.png)
+
+You can see the generated `JSON` value of this setup which could be potentially reused with your automation tool via the associated API, Terraform module, etc. The value of this `JSON` definition is similar to:
+```output
+{
+  "displayName": "99.9% - Latency - Rolling 28 days",
+  "goal": 0.999,
+  "rollingPeriod": "2419200s",
+  "serviceLevelIndicator": {
+    "basicSli": {
+      "latency": {
+        "threshold": "2s"
+      }
+    }
+  }
+}
+```
+
+Click on the **Create SLO** button. You will now see this SLO created for the `frontend` service:
+
+![SLO setup step 6](./img/slo-setup-6.png)
+
+On the right of this screen, click on the **Create SLO alert** button associated to this SLO to navigate to the **Set SLO alert conditions** step of the **Create SLO burn rate policy** wizard.
+
+![SLO setup step 7](./img/slo-setup-7.png)
+
+Set the **Lookback duration** field to `1` minute(s), click on **Next**.
+
+![SLO setup step 8](./img/slo-setup-8.png)
+
+Click again on **Next** on the **Who should be notified** step and finally on **Save** on the last **What are the steps to fix the issue** step.
+
+Congratulations! You now have your SLO and its associated burn rate alert.
+
+
+
+## Generate fault injections and SLO burn rate alert
+
+In this section, you will inject errors and delays in the `transactionhistory` service in order to see how these metrics and SLOs previously defined behave. We will leverage the native Istio's `VirtualService` resource to accomplish this, which allows fault injection without actually updating the code of your application. Really convenient to put in place a chaos monkey test.
 
 Deploy a new `VirtualService` in clusters 1 and 2 for the `transactionhistory` service in order to `abort` 50% of the requests by returning a `500` HTTP status code and add `delay` for 50% of the requests.
 ```bash
@@ -751,11 +816,11 @@ kubectl --context=${CLUSTER_2} -n ${BANK_OF_ANTHOS_NAMESPACE} \
   apply -f ${HOME}/bank-of-anthos/transaction-history-with-fault-virtualservice.yaml
 ```
 
-Navigate to one of your Bank of Anthos website through one of the Public IP addresses generated earlier, and from there if you hit refresh multiple times, you will see that the `frontend` will have both higher response to display the list of the transactions (because of the `delay` we just added) and will safely display an error message **Error: Could Not Load Transactions** when `transactionhistory` is returning an error (because of the `abort` we just added).
+Navigate to one of your Bank of Anthos website through one of the Public IP addresses generated earlier. From there if you hit refresh multiple times, you will see that the `frontend` will have both higher response time to display the list of the transactions (because of the `delay` we just added) and will properly display an error message **Error: Could Not Load Transactions** when `transactionhistory` is returning an error (because of the `abort` we just added).
 
 ![Bank of Anthos's home page with transactions history load failing](./img/bankofanthos-home-transactionhistory-error.png)
 
-Wait for a few minutes, the `loadgenerator` application will generate more traffic with these errors injected and from there you could see the degradation for both `transactionhistory` and `frontend`.
+Wait for a few minutes, while the `loadgenerator` application is generating more traffic with these errors injected and from there you will see the degradation for both `transactionhistory` and `frontend` services.
 
 Navigate to the **Metrics** view of the `frontend` service to see that the **Requests per second** and **Latency** metrics for example are showing the degradation. Click on the link displayed by the command below:
 ```bash
@@ -771,19 +836,48 @@ echo -e "https://console.cloud.google.com/anthos/services/service/${BANK_OF_ANTH
 
 !![transactionhistory service metrics degradated](./img/transactionhistory-service-metrics-degradated.png)
 
-## Further and complementary resources
+Navigate to the **Anthos > Anthos Service Mesh** dashboard. Click on the link displayed by the command below:
+```bash
+echo -e "https://console.cloud.google.com/anthos/services?project=${PROJECT_ID}"
+```
+
+![SLO burn rate alert 1](./img/burn-rate-alert-1.png)
+
+You can see the message **1 service requires immediate action** after waiting for a few minutes. You can also see the associated red icon next to the `frontend` service in the table view of your **Services**. Navigate to the details view of the `frontend` service by clicking on it in this table.
+
+![SLO burn rate alert 2](./img/burn-rate-alert-2.png)
+
+In the **Service status: alert firing** section, click on **--> See SLO details**.
+
+![SLO burn rate alert 3](./img/burn-rate-alert-3.png)
+
+Click on the **Alerts firing 1/1** tab and then click on **View policy** to get more details about this burn rate alert:
+
+![SLO burn rate alert 4](./img/burn-rate-alert-4.png)
+
+From there you can take actions by fixing the issue, get webhooks or emails set up for the burn rate alerts, etc.
+
+
+
+
+Congratulations! You made it until the end of this workshop!
+
+
+## Complementary resources
 
 - [Managed Anthos Service Mesh supported features](https://cloud.google.com/service-mesh/docs/managed/supported-features-mcp)
 - [Anthos Service Mesh security best practices](https://cloud.google.com/service-mesh/docs/security/anthos-service-mesh-security-best-practices)
 - [Policy Controller's `Constraints` template library](https://cloud.google.com/anthos-config-management/docs/reference/constraint-template-library)
 - [Anthos Service Mesh security policy constraints bundle](https://cloud.google.com/anthos-config-management/docs/how-to/using-asm-security-policy)
 - [From edge to mesh: Exposing service mesh applications through GKE Ingress](https://cloud.google.com/architecture/exposing-service-mesh-apps-through-gke-ingress)
+- [Multi Cluster Ingress](https://cloud.google.com/kubernetes-engine/docs/concepts/multi-cluster-ingress)
+- [Site Reliability Engineering (SRE) books](https://sre.google/books/)
 
 ![[/fragments/endqwiklab]]
 
 ![[/fragments/copyright]]
 
 
-##### Manual Last Updated April 26, 2022
+##### Manual Last Updated April 27, 2022
 
-##### Lab Last Tested April 26, 2022
+##### Lab Last Tested April 27, 2022
