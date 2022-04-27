@@ -8,7 +8,7 @@ The actual instructions of the workshop could be found [here](./instructions/en.
 Here is the architecture diagram for this setup:
 ![Architecture diagram](./instructions/img/architecture.png)
 
-This workshop is leveraging the Bank of Anthos sample apps:
+This workshop is leveraging the [Bank of Anthos sample apps](https://github.com/GoogleCloudPlatform/bank-of-anthos):
 ![Bank of Anthos services](./instructions/img/bankofanthos-services.png)
 
 This content is to show case different services such as:
