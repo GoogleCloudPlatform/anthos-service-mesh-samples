@@ -13,7 +13,6 @@ variable "gcp_zone" {
 variable "gcp_user_id" {
   type        = string
   description = "User Id"
-  default     = "mikegcoleman@cloudadvocacy.joonix.net"
 }
 
 variable "cluster1" {
