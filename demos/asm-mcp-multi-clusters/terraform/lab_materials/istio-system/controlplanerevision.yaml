@@ -1,0 +1,9 @@
+apiVersion: mesh.cloud.google.com/v1beta1
+kind: ControlPlaneRevision
+metadata:
+  name: asm-managed
+  labels:
+    mesh.cloud.google.com/managed-cni-enabled: "true"
+spec:
+  type: managed_service
+  channel: regular
