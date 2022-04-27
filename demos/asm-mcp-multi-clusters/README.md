@@ -12,10 +12,9 @@ This workshop is leveraging the [Bank of Anthos sample apps](https://github.com/
 ![Bank of Anthos services](./instructions/img/bankofanthos-services.png)
 
 This content is to show case different services such as:
-- Google Kubernetes Engine (GKE)
-- Anthos Service Mesh (ASM) with Managed Control Plane (MCP) and Managed Data Plane (MDP) in Multi-clusters setup
-- Anthos Config Management (ACM) with Policy Controller
-- Multi-cluster Ingress (MCI)
-- Cloud Trace
-- Cloud Monitoring
-- SLOs
+- [Google Kubernetes Engine (GKE)](https://cloud.google.com/kubernetes-engine)
+- [Anthos Service Mesh (ASM)](https://cloud.google.com/service-mesh/docs) with Managed Control Plane (MCP) and Managed Data Plane (MDP) in Multi-clusters setup
+- [Anthos Config Management (ACM)](https://cloud.google.com/anthos/config-management) with Policy Controller
+- [Multi-cluster Ingress (MCI)](https://cloud.google.com/kubernetes-engine/docs/concepts/multi-cluster-ingress)
+- [Cloud Trace](https://cloud.google.com/trace)
+- [Cloud Monitoring](https://cloud.google.com/monitoring) with creation of SLOs
