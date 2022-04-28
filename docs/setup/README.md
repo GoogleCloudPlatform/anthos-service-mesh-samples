@@ -1,6 +1,6 @@
-### Setup 
-This is a general setup using Terraform for the examples in the `docs` folder. 
+## Managed Anthos Service Mesh on GKE with Terraform 
 
+This is a general setup using Terraform for the examples in the `docs` folder. 
 
 The following will set up a GKE cluster with Anthos Service Mesh (ASM) with a _Managed Control Plane_ installed . 
 
@@ -10,18 +10,22 @@ The following services will be required for this:
 * cloudresourcemanager.googlesapis.com
 * mesh.cloud.googleapis.com
 
-You can follow this setup with either a new Google Cloud Project or a pre-existing Google Cloud Project. It is recommended to create a new Google Cloud Project, for an easier cleanup.
+This Terraform setup will enable these APIs for you.
+
+### Prerequisites
+* This tutorial is best suited for [Cloud Shell](https://shell.cloud.google.com), which comes ready with the Google Cloud SDK and Terraform.
+*  You can follow this setup with either a [new Google Cloud Project](https://cloud.google.com/resource-manager/docs/creating-managing-projects#creating_a_project) or a pre-existing Google Cloud Project. It is recommended to create a new Google Cloud Project, for an easier cleanup.
+
+## Quickstart with Terraform
+In your Cloud Shell, follow the steps outlined:
 ### 1.  Clone this repo and cd to this directory
 ```
 git clone https://github.com/GoogleCloudPlatform/anthos-service-mesh-samples
 cd docs/setup
 ```
-### 2.  Setup Terraform authentication
-```
-gcloud auth application-default login --no-browser
-```
-### 3. **[Create a Google Cloud Platform project](https://cloud.google.com/resource-manager/docs/creating-managing-projects#creating_a_project)** or use an existing project. 
-Set the `PROJECT_ID` environment variable and ensure the Google Kubernetes Engine and Cloud Operations APIs are enabled.
+### 2. Set your Google Cloud Platform `PROJECT_ID`
+
+Set the `PROJECT_ID` environment variable:
 
 To enable the above services, run the following in your terminal
 ```
@@ -29,14 +33,7 @@ export PROJECT_ID="<YOUR_PROJECT_ID>"
 
 gcloud config set project $PROJECT_ID
 
-gcloud --project=$PROJECT_ID services enable \
-container.googleapis.com \
-compute.googleapis.com \
-cloudresourcemanager.googleapis.com \
-mesh.cloud.googleapis.com
-
 ```
-
 ### 3.  Replace the variables in variables.tfvars with your values
 ```
 # In variables.tfvars
@@ -49,8 +46,9 @@ zones  = ["<ZONE>"]
 ```
 terraform init
 terraform plan 
-terraform apply --auto-approve
+terraform apply 
 ```
+Enter `yes` to confirm the Terraform apply step.
 
 You will see the following outputs:
 
@@ -58,57 +56,27 @@ You will see the following outputs:
     wait: An output to use when depending on the ASM installation finishing.
 
 `terraform apply` will take 5 minutes to provision on GCP
-### 7.  Verify that your ASM + GKE Cluster are running
-Check that your cluster is running with ASM installed
-```
-kubectl get pods -A
-```
-You should see an output similar to the following:
-```
-NAMESPACE     NAME                                                             READY   STATUS    RESTARTS   AGE
-kube-system   event-exporter-gke-5479fd58c8-zbstj                              2/2     Running   0          23h
-kube-system   fluentbit-gke-5nfnp                                              2/2     Running   0          23h
-kube-system   fluentbit-gke-kzfbk                                              2/2     Running   0          23h
-kube-system   fluentbit-gke-ttmvh                                              2/2     Running   0          23h
-kube-system   gke-metadata-server-97z84                                        1/1     Running   0          23h
-kube-system   gke-metadata-server-p6w8n                                        1/1     Running   0          23h
-kube-system   gke-metadata-server-v87q6                                        1/1     Running   0          23h
-kube-system   gke-metrics-agent-bl5sk                                          1/1     Running   0          23h
-kube-system   gke-metrics-agent-j92hk                                          1/1     Running   0          23h
-kube-system   gke-metrics-agent-vkwbt                                          1/1     Running   0          23h
-kube-system   istio-cni-node-2xdrz                                             2/2     Running   0          23h
-kube-system   istio-cni-node-krthc                                             2/2     Running   0          23h
-kube-system   istio-cni-node-nw4xz                                             2/2     Running   0          23h
-kube-system   konnectivity-agent-autoscaler-ddccb8b95-lsv27                    1/1     Running   0          23h
-kube-system   konnectivity-agent-f844bf4db-fl5kv                               1/1     Running   0          23h
-kube-system   konnectivity-agent-f844bf4db-ldjbs                               1/1     Running   0          23h
-kube-system   konnectivity-agent-f844bf4db-s92qn                               1/1     Running   0          23h
-kube-system   kube-dns-697dc8fc8b-rzzf8                                        4/4     Running   0          23h
-kube-system   kube-dns-697dc8fc8b-z55ls                                        4/4     Running   0          23h
-kube-system   kube-dns-autoscaler-844c9d9448-wmgk6                             1/1     Running   0          23h
-kube-system   kube-proxy-gke-simple-zonal-asm-cl-asm-node-pool-37045628-2c3c   1/1     Running   0          23h
-kube-system   kube-proxy-gke-simple-zonal-asm-cl-asm-node-pool-37045628-97d4   1/1     Running   0          23h
-kube-system   kube-proxy-gke-simple-zonal-asm-cl-asm-node-pool-37045628-lcjl   1/1     Running   0          23h
-kube-system   l7-default-backend-69fb9fd9f9-dswkm                              1/1     Running   0          23h
-kube-system   metrics-server-v0.4.5-bbb794dcc-ngnl4                            2/2     Running   0          23h
-kube-system   netd-54nxz                                                       1/1     Running   0          23h
-kube-system   netd-lgglg                                                       1/1     Running   0          23h
-kube-system   netd-nr4vv                                                       1/1     Running   0          23h
-kube-system   pdcsi-node-dtfbv                                                 2/2     Running   0          23h
-kube-system   pdcsi-node-dxc5f                                                 2/2     Running   0          23h
-kube-system   pdcsi-node-qfbm2                                                 2/2     Running   0          23h
-```
 
-You can also run the following : 
+## Verify Anthos Service Mesh Installation
+### 1.  Verify that your GKE Cluster membership to a `Fleet` was successful 
+A **[Fleet](https://cloud.google.com/anthos/multicluster-management/fleets)** is the term used to logically organized clusters and other resources, for easier management of multi-clusters projects. 
+```
+gcloud container hub memberships list --project $PROJECT_ID
+```
+### 2. Retrieve your GKE Cluster credentials: 
+```
+gcloud container clusters get-credentials "asm-cluster-1" --region "us-central1" --project $PROJECT_ID
+```
+### 3. Inspect your `controlplanerevision` Custom Resource 
 ```
 kubectl describe controlplanerevision asm-managed -n istio-system
-
 ```
-
+Ensure the following field: 
+* `Conditions` :  `Reason` should be `Provisioned`
 #### Congrats! You can now have a GKE + ASM cluster provisioned. You can now check out the sample 
 
-### Cleanup
-To cleanup the resources from your GCP project, 
+## Cleanup
+To cleanup the resources from your GCP project, the easiest is to delete the project that you created for this Setup.
 ### 1. Navigate to this directory
 ### 2. Run the following:
 ```
