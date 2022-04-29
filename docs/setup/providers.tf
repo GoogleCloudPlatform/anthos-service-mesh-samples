@@ -13,19 +13,18 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+#Terraform providers to use
 terraform {
-  required_version = ">= 0.13"
   required_providers {
-    google = {
-      source  = "hashicorp/google"
-      version = "~> 4.0"
-    }
     google-beta = {
       source  = "hashicorp/google-beta"
-      version = "~> 4.0"
-    }
-    kubernetes = {
-      source = "hashicorp/kubernetes"
+      version = "3.90.1"
     }
   }
+}
+
+provider "google-beta" {
+  project = var.project_id
+  region  = var.region
+  zone    = var.zone
 }
