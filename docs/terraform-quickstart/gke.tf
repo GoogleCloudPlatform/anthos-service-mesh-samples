@@ -47,9 +47,9 @@ module "gke" {
   subnetwork              = var.subnet_name
   ip_range_pods           = "${var.subnet_name}-pod-cidr"
   ip_range_services       = "${var.subnet_name}-svc1-cidr"
-  config_connector        = true
+  config_connector        = false
   enable_private_endpoint = false
-  enable_private_nodes    = true
+  enable_private_nodes    = false
   master_ipv4_cidr_block  = "172.16.0.0/28"
   cluster_resource_labels = { "mesh_id" : "proj-${data.google_project.project.number}" }
 }
