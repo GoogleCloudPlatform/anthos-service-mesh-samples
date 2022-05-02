@@ -76,5 +76,5 @@ variable "gke_channel" {
 
 variable "asm_channel" {
   type    = string
-  default = "REGULAR"
+  default = "regular"
 }
