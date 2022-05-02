@@ -66,12 +66,71 @@ gcloud container clusters get-credentials "asm-cluster" --region "us-central1" -
 ### 3. Inspect your `controlplanerevision` Custom Resource 
 Run the command to check that the Anthos Service Mesh Control Plane has been succesfully enabled in your cluster
 ```
-kubectl  -n istio-system wait --for=condition=ProvisioningFinished controlplanerevision asm-managed
+kubectl describe controlplanerevision asm-managed -n istio-system
 ```
 
-The output should be the following:
+The output should be similar to the following. Note that the `Reason` is set to `Provisioned`
 ```
-controlplanerevision.mesh.cloud.google.com/asm-managed condition met
+Name:         asm-managed
+Namespace:    istio-system
+Labels:       mesh.cloud.google.com/managed-cni-enabled=true
+Annotations:  mesh.cloud.google.com/vpcsc: false
+API Version:  mesh.cloud.google.com/v1beta1
+Kind:         ControlPlaneRevision
+Metadata:
+  Creation Timestamp:  2022-05-02T19:53:44Z
+  Generation:          1
+  Managed Fields:
+    API Version:  mesh.cloud.google.com/v1beta1
+    Fields Type:  FieldsV1
+    fieldsV1:
+      f:metadata:
+        f:annotations:
+          .:
+          f:kubectl.kubernetes.io/last-applied-configuration:
+          f:mesh.cloud.google.com/vpcsc:
+        f:labels:
+          .:
+          f:mesh.cloud.google.com/managed-cni-enabled:
+      f:spec:
+        .:
+        f:channel:
+        f:type:
+    Manager:      kubectl-client-side-apply
+    Operation:    Update
+    Time:         2022-05-02T19:53:44Z
+    API Version:  mesh.cloud.google.com/v1alpha1
+    Fields Type:  FieldsV1
+    fieldsV1:
+      f:status:
+        .:
+        f:conditions:
+    Manager:         Google-GKEHub-Controllers-Servicemesh
+    Operation:       Update
+    Time:            2022-05-02T19:54:04Z
+  Resource Version:  3443
+  UID:               265b6435-4709-45d2-86e5-34f8ec7bebd8
+Spec:
+  Channel:  regular
+  Type:     managed_service
+Status:
+  Conditions:
+    Last Transition Time:  2022-05-02T19:56:58Z
+    Message:               The provisioning process has completed successfully
+    Reason:                Provisioned
+    Status:                True
+    Type:                  Reconciled
+    Last Transition Time:  2022-05-02T19:56:58Z
+    Message:               Provisioning has finished
+    Reason:                ProvisioningFinished
+    Status:                True
+    Type:                  ProvisioningFinished
+    Last Transition Time:  2022-05-02T19:56:58Z
+    Message:               Provisioning has not stalled
+    Reason:                NotStalled
+    Status:                False
+    Type:                  Stalled
+Events:                    <none>
 ```
 Look at the status of your `controlplanerevision` CRD with the following command: 
 ```
