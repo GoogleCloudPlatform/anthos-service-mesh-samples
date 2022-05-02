@@ -28,26 +28,21 @@ variable "zone" {
   default     = "us-central1-a"
   description = "The zone to host the cluster in (required if is a zonal cluster)"
 }
-
-variable "network" {
+variable "vpc" {
   type        = string
   description = "The VPC network where the cluster will be created"
   default     = "asm-tutorial"
 }
 
-variable "subnetwork" {
-  type        = string
-  description = "The subnet where the cluster will be created"
-  default     = "subnet-01"
-}
-variable "enable_cni" {
-  type    = bool
-  default = "true"
-}
 variable "subnet_name" {
   type        = string
   description = "The subnet where the cluster will be created"
   default     = "subnet-01"
+}
+
+variable "enable_cni" {
+  type    = bool
+  default = "true"
 }
 
 variable "subnet_ip" {
@@ -72,8 +67,7 @@ variable "svc2_cidr" {
   description = "CIDR range for services"
   default     = "10.100.1.0/24"
 }
-variable "vpc" {
-  type        = string
-  description = "The VPC network where the cluster will be created"
-  default     = "asm-tutorial"
+variable "gke_channel" {
+  type    = string
+  default = "REGULAR"
 }

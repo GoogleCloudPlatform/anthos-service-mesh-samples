@@ -38,28 +38,82 @@ data "google_project" "project" {
 }
 
 module "gke" {
+  depends_on              = [time_sleep.wait_120_seconds, module.asm-vpc]
   source                  = "terraform-google-modules/kubernetes-engine/google//modules/beta-private-cluster"
   version                 = "~> 16.0"
   project_id              = var.project_id
   name                    = local.cluster_type
-  regional                = false
+  release_channel         = var.gke_channel
   region                  = var.region
   zones                   = [var.zone]
-  release_channel         = "REGULAR"
+  network                 = var.vpc
+  subnetwork              = var.subnet_name
   ip_range_pods           = "${var.subnet_name}-pod-cidr"
   ip_range_services       = "${var.subnet_name}-svc1-cidr"
-  network_policy          = false
+  config_connector        = true
+  enable_private_endpoint = false
+  enable_private_nodes    = true
+  master_ipv4_cidr_block  = "172.16.0.0/28"
   cluster_resource_labels = { "mesh_id" : "proj-${data.google_project.project.number}" }
-  identity_namespace      = "${var.project_id}.svc.id.goog"
-  node_pools = [
+  #   identity_namespace      = "${var.project_id}.svc.id.goog"
+}
+module "workload_identity" {
+  source              = "terraform-google-modules/kubernetes-engine/google//modules/workload-identity"
+  version             = "~> 16.0.1"
+  gcp_sa_name         = "cnrmsa"
+  cluster_name        = module.gke.name
+  name                = "cnrm-controller-manager"
+  location            = var.zone
+  use_existing_k8s_sa = true
+  annotate_k8s_sa     = false
+  namespace           = "cnrm-system"
+  project_id          = module.enable_google_apis.project_id
+  roles               = ["roles/owner"]
+}
+module "asm-vpc" {
+  source  = "terraform-google-modules/network/google"
+  version = "~> 3.0"
+
+  project_id   = var.project_id
+  network_name = var.vpc
+  routing_mode = "GLOBAL"
+
+  subnets = [
     {
-      name         = "asm-node-pool"
-      autoscaling  = false
-      auto_upgrade = true
-      node_count   = 3
-      machine_type = "e2-standard-4"
+      subnet_name   = var.subnet_name
+      subnet_ip     = var.subnet_ip
+      subnet_region = var.region
     },
   ]
+
+  secondary_ranges = {
+    "${var.subnet_name}" = [
+      {
+        range_name    = "${var.subnet_name}-pod-cidr"
+        ip_cidr_range = var.pod_cidr
+      },
+      {
+        range_name    = "${var.subnet_name}-svc1-cidr"
+        ip_cidr_range = var.svc1_cidr
+      },
+      {
+        range_name    = "${var.subnet_name}-svc2-cidr"
+        ip_cidr_range = var.svc2_cidr
+      },
+    ]
+  }
+
+  firewall_rules = [{
+    name        = "allow-all-10"
+    description = "Allow Pod to Pod connectivity"
+    direction   = "INGRESS"
+    ranges      = ["10.0.0.0/8"]
+    allow = [{
+      protocol = "tcp"
+      ports    = ["0-65535"]
+    }]
+  }]
+  #   depends_on = [time_sleep.wait_120_seconds]
 }
 module "enable_google_apis" {
   source     = "terraform-google-modules/project-factory/google//modules/project_services"
@@ -99,10 +153,9 @@ resource "null_resource" "enable_mesh" {
 }
 
 module "asm" {
-  source            = "terraform-google-modules/kubernetes-engine/google//modules/asm"
-  project_id        = module.enable_google_apis.project_id
-  cluster_name      = module.gke.name
-  cluster_location  = module.gke.location
-  multicluster_mode = "connected"
-  enable_cni        = true
+  source           = "git::https://github.com/terraform-google-modules/terraform-google-kubernetes-engine.git//modules/asm?ref=v20.0.0"
+  project_id       = module.enable_google_apis.project_id
+  cluster_name     = module.gke.name
+  cluster_location = var.region
+  enable_cni       = true
 }
