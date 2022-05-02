@@ -21,7 +21,7 @@ In your Cloud Shell, follow the steps outlined:
 ### 1.  Clone this repo and cd to this directory
 ```
 git clone https://github.com/GoogleCloudPlatform/anthos-service-mesh-samples
-cd docs/setup
+cd docs/terraform-quickstart
 ```
 ### 2. Set your Google Cloud Platform `PROJECT_ID`
 

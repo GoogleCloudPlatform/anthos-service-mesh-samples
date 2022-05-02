@@ -53,19 +53,6 @@ module "gke" {
   master_ipv4_cidr_block  = "172.16.0.0/28"
   cluster_resource_labels = { "mesh_id" : "proj-${data.google_project.project.number}" }
 }
-module "workload_identity" {
-  source              = "terraform-google-modules/kubernetes-engine/google//modules/workload-identity"
-  version             = "~> 16.0.1"
-  gcp_sa_name         = "cnrmsa"
-  cluster_name        = module.gke.name
-  name                = "cnrm-controller-manager"
-  location            = var.zone
-  use_existing_k8s_sa = true
-  annotate_k8s_sa     = false
-  namespace           = "cnrm-system"
-  project_id          = module.enable_google_apis.project_id
-  roles               = ["roles/owner"]
-}
 module "asm-vpc" {
   source  = "terraform-google-modules/network/google"
   version = "~> 3.0"
