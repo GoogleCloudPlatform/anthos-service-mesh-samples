@@ -55,7 +55,6 @@ module "gke" {
   enable_private_nodes    = true
   master_ipv4_cidr_block  = "172.16.0.0/28"
   cluster_resource_labels = { "mesh_id" : "proj-${data.google_project.project.number}" }
-  #   identity_namespace      = "${var.project_id}.svc.id.goog"
 }
 module "workload_identity" {
   source              = "terraform-google-modules/kubernetes-engine/google//modules/workload-identity"
@@ -113,7 +112,6 @@ module "asm-vpc" {
       ports    = ["0-65535"]
     }]
   }]
-  #   depends_on = [time_sleep.wait_120_seconds]
 }
 module "enable_google_apis" {
   source     = "terraform-google-modules/project-factory/google//modules/project_services"
@@ -143,7 +141,6 @@ resource "google_gke_hub_membership" "membership" {
   depends_on = [module.gke.name, module.enable_google_apis]
 }
 resource "null_resource" "enable_mesh" {
-
   provisioner "local-exec" {
     when    = create
     command = "echo y | gcloud container hub mesh enable --project ${var.project_id}"
