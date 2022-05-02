@@ -30,16 +30,13 @@ Set the `PROJECT_ID` environment variable:
 To enable the above services, run the following in your terminal
 ```
 export PROJECT_ID="<YOUR_PROJECT_ID>"
-
 gcloud config set project $PROJECT_ID
 
 ```
-### 3.  Replace the variables in variables.tfvars with your values
+### 3.  Create a `variables.tfvars` to set your project ID for Terraform
+Run the following command to create a `variables.tfvars` file
 ```
-# In variables.tfvars
-project_id = "<YOUR_PROJECT_ID>"
-region = "<REGION>"
-zones  = ["<ZONE>"]
+echo "project_id = \"$PROJECT_ID\"" > terraform.tfvars
 ```
 
 ### 6.  Deploy the Terrform module to set up your ASM on the GKE Cluster
@@ -55,7 +52,7 @@ You will see the following outputs:
  >  asm_revision: The name of the installed managed ASM revision.          
     wait: An output to use when depending on the ASM installation finishing.
 
-`terraform apply` will take 5 minutes to provision on GCP
+`terraform apply` will take a few minutes to provision on GCP
 
 ## Verify Anthos Service Mesh Installation
 ### 1.  Verify that your GKE Cluster membership to a `Fleet` was successful 
@@ -65,15 +62,29 @@ gcloud container hub memberships list --project $PROJECT_ID
 ```
 ### 2. Retrieve your GKE Cluster credentials: 
 ```
-gcloud container clusters get-credentials "asm-cluster-1" --region "us-central1" --project $PROJECT_ID
+gcloud container clusters get-credentials "asm-cluster" --region "us-central1" --project $PROJECT_ID
 ```
 ### 3. Inspect your `controlplanerevision` Custom Resource 
+Run the command to check that the Anthos Service Mesh Control Plane has been succesfully enabled in your cluster
 ```
-kubectl describe controlplanerevision asm-managed -n istio-system
+kubectl  -n istio-system wait --for=condition=ProvisioningFinished controlplanerevision asm-managed
 ```
-Ensure the following field: 
-* `Conditions` :  `Reason` should be `Provisioned`
-#### Congrats! You can now have a GKE + ASM cluster provisioned. You can now check out the sample 
+
+The output should be the following:
+```
+controlplanerevision.mesh.cloud.google.com/asm-managed condition met
+```
+Look at the status of your `controlplanerevision` CRD with the following command: 
+```
+kubeclt get controlplanerevisions -n istio-system
+```
+The output should be similar to: 
+```
+NAME          RECONCILED   STALLED   AGE
+asm-managed   True         False     29m
+```
+### Congrats! You can now have a GKE + ASM cluster provisioned. 
+Look at the other tutorials in this repo to further try out Anthos Service Mesh's capabilities!
 
 ## Cleanup
 To cleanup the resources from your GCP project, the easiest is to delete the project that you created for this Setup.

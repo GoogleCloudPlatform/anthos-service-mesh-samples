@@ -15,7 +15,7 @@
  */
 
 locals {
-  cluster_type = "simple-zonal-asm"
+  cluster_type = "asm-cluster"
 }
 resource "null_resource" "previous" {}
 
