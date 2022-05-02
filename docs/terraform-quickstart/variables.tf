@@ -28,6 +28,7 @@ variable "zone" {
   default     = "us-central1-a"
   description = "The zone to host the cluster in (required if is a zonal cluster)"
 }
+
 variable "vpc" {
   type        = string
   description = "The VPC network where the cluster will be created"
@@ -67,6 +68,7 @@ variable "svc2_cidr" {
   description = "CIDR range for services"
   default     = "10.100.1.0/24"
 }
+
 variable "gke_channel" {
   type    = string
   default = "REGULAR"
