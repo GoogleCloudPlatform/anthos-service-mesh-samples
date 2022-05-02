@@ -125,12 +125,3 @@ module "enable_google_apis" {
   depends_on                  = [null_resource.previous]
 
 }
-
-resource "null_resource" "enable_mesh" {
-  provisioner "local-exec" {
-    when    = create
-    command = "echo y | gcloud container hub mesh enable --project ${var.project_id}"
-  }
-
-  depends_on = [module.enable_google_apis]
-}

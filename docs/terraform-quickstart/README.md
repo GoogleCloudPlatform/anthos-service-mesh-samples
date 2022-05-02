@@ -5,10 +5,10 @@ This is a general setup using Terraform for the examples in the `docs` folder.
 The following will set up a GKE cluster with Anthos Service Mesh (ASM) with a _Managed Control Plane_ installed. 
 
 The following services will be required for this: 
-* container.googleapis.com
-* compute.googleapis.com
-* cloudresourcemanager.googlesapis.com
-* mesh.cloud.googleapis.com
+* `container.googleapis.com`
+* `compute.googleapis.com`
+* `cloudresourcemanager.googlesapis.com`
+* `mesh.cloud.googleapis.com`
 
 This Terraform setup will enable these APIs for you.
 

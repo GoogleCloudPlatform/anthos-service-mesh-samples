@@ -28,9 +28,12 @@ resource "google_gke_hub_membership" "membership" {
 }
 
 module "asm" {
-  source           = "git::https://github.com/terraform-google-modules/terraform-google-kubernetes-engine.git//modules/asm?ref=v20.0.0"
-  project_id       = module.enable_google_apis.project_id
-  cluster_name     = module.gke.name
-  cluster_location = var.region
-  enable_cni       = true
+  source              = "terraform-google-modules/kubernetes-engine/google//modules/asm"
+  version             = "~> 20.0"
+  project_id          = module.enable_google_apis.project_id
+  cluster_name        = module.gke.name
+  cluster_location    = var.region
+  channel             = var.asm_channel
+  enable_cni          = true
+  enable_mesh_feature = true
 }

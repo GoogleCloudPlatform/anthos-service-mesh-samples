@@ -73,3 +73,8 @@ variable "gke_channel" {
   type    = string
   default = "REGULAR"
 }
+
+variable "asm_channel" {
+  type    = string
+  default = "REGULAR"
+}
