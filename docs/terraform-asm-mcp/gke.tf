@@ -37,8 +37,8 @@ module "gke" {
   zones                   = [var.zone]
   network                 = var.vpc
   subnetwork              = var.subnet_name
-  ip_range_pods           = "${var.subnet_name}-pod-cidr"
-  ip_range_services       = "${var.subnet_name}-svc1-cidr"
+  ip_range_pods           = ""
+  ip_range_services       = ""
   config_connector        = false
   enable_private_endpoint = false
   enable_private_nodes    = false
