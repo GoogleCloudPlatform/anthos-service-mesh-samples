@@ -32,13 +32,13 @@ variable "zone" {
 variable "vpc" {
   type        = string
   description = "The VPC network where the cluster will be created"
-  default     = "asm-tutorial"
+  default     = "default"
 }
 
 variable "subnet_name" {
   type        = string
   description = "The subnet where the cluster will be created"
-  default     = "subnet-01"
+  default     = "default"
 }
 
 variable "enable_cni" {
