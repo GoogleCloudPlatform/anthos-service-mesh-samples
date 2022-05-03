@@ -28,7 +28,6 @@ data "google_project" "project" {
 }
 
 module "gke" {
-  depends_on              = [time_sleep.wait_120_seconds, module.asm-vpc]
   source                  = "terraform-google-modules/kubernetes-engine/google//modules/beta-private-cluster"
   version                 = "~> 16.0"
   project_id              = var.project_id
