@@ -57,6 +57,4 @@ module "enable_google_apis" {
     "cloudresourcemanager.googleapis.com"
   ]
   disable_services_on_destroy = false
-  depends_on                  = [null_resource.previous]
-
 }
