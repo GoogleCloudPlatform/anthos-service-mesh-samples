@@ -14,13 +14,6 @@
  * limitations under the License.
  */
 
-resource "null_resource" "previous" {}
-
-resource "time_sleep" "wait_120_seconds" {
-  depends_on = [null_resource.previous]
-
-  create_duration = "120s"
-}
 
 data "google_client_config" "default" {}
 
@@ -52,50 +45,6 @@ module "gke" {
   enable_private_nodes    = false
   master_ipv4_cidr_block  = "172.16.0.0/28"
   cluster_resource_labels = { "mesh_id" : "proj-${data.google_project.project.number}" }
-}
-module "asm-vpc" {
-  source  = "terraform-google-modules/network/google"
-  version = "~> 3.0"
-
-  project_id   = var.project_id
-  network_name = var.vpc
-  routing_mode = "GLOBAL"
-
-  subnets = [
-    {
-      subnet_name   = var.subnet_name
-      subnet_ip     = var.subnet_ip
-      subnet_region = var.region
-    },
-  ]
-
-  secondary_ranges = {
-    "${var.subnet_name}" = [
-      {
-        range_name    = "${var.subnet_name}-pod-cidr"
-        ip_cidr_range = var.pod_cidr
-      },
-      {
-        range_name    = "${var.subnet_name}-svc1-cidr"
-        ip_cidr_range = var.svc1_cidr
-      },
-      {
-        range_name    = "${var.subnet_name}-svc2-cidr"
-        ip_cidr_range = var.svc2_cidr
-      },
-    ]
-  }
-
-  firewall_rules = [{
-    name        = "allow-all-10"
-    description = "Allow Pod to Pod connectivity"
-    direction   = "INGRESS"
-    ranges      = ["10.0.0.0/8"]
-    allow = [{
-      protocol = "tcp"
-      ports    = ["0-65535"]
-    }]
-  }]
 }
 module "enable_google_apis" {
   source     = "terraform-google-modules/project-factory/google//modules/project_services"
