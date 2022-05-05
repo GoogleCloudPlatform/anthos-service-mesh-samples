@@ -5,6 +5,8 @@ Canary Testing is integral with testing when completing upgrades on your cluster
 
 * In the `canary-service/` folder, we will learn how to Traffic Split to perform a Canary service deployment on [Google Kubernetes Engine](https://cloud.google.com/kubernetes-engine/) with [Anthos Service Mesh](https://cloud.google.com/service-mesh/docs/overview).
 <!-- * In `canary-cp`, we will learn how to safely complete a Control Plane Canary upgrade with ASM  -->
+Anthos Service Mesh is Google's fully managed Istio-compliant service mesh. This means that Istio's APIs work with ASM.
+
 
 In this sample, `productcatalogservice-v2` introduces a 3-second
 [latency](https://github.com/GoogleCloudPlatform/microservices-demo/tree/main/src/productcatalogservice#latency-injection) into all server requests. We’ll show how to use Cloud Operations and ASM together to
@@ -51,3 +53,18 @@ Create a DestinationRule for `productcatalogservice`.
 ```
 kubectl apply -f destination.yaml
 ```
+Deploy a v2 of your `productcatalog`. This `productcatalog` introduces a [latency](canary-service/productcatalog-v2.yaml) in the response time of 3 seconds
+```
+kubeclt apply -f productcatalog-v2.yaml
+```
+Check your pods 
+```
+kubectl get pods
+```
+Your output should be similar to the following 
+```
+TO DO FILL IN
+```
+Check the frontend with your `EXTERNAL_IP`, and you should note that the frontend loads slower periodically.
+
+## Explore in the Anthos Service Mesh UI
