@@ -19,6 +19,5 @@ namespace: asm-ingress
 resources:
 - base
 components:
-- for-asm-channel
 - with-authorization-policies
 # [END servicemesh_docs_ingress_gateway_asm_manifests_kustomization_kustomization]
