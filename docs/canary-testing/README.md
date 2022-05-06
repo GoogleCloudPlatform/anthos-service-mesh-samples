@@ -21,6 +21,14 @@ There are various methods for setting up your environment with Anthos Service Me
 * Anthos Service Mesh with the Managed Control Plane
 
 Make sure you run the [Verify Anthos Service Mesh Installation](https://github.com/GoogleCloudPlatform/anthos-service-mesh-samples/tree/main/docs/terraform-asm-mcp#verify-anthos-service-mesh-installation) before proceeding to the next portion of this tutorial.
+
+## Label the namespace
+You must configure all namespaces participating in the service mesh with a `istio.io/rev` label with the version of ASM you are using. In this case, we care using `asm-managed`. 
+
+The istio.io/rev label allows automatic injection of the sidecar Envoy proxies in every Pod within the labeled namespace.
+```
+kubectl label namespace default istio.io/rev=asm-managed
+```
 ## Deploy the sample app 
 For this tutorial we will deploy the microservice-demo app. Run the following
 ```
@@ -34,14 +42,44 @@ Add a label `version=v1` to the `productcatalog` deployment by running the follo
 kubectl patch deployments/productcatalogservice -p '{"spec":{"template":{"metadata":{"labels":{"version":"v1"}}}}}'
 ```
 ### View your services
-Run the following and make sure that your pods are running, with `2/2` in the colunn. This ensures that the pods have been successfully injected with the Envoy proxy
+Run the following and make sure that your pods are running, with `2/2` in the colunn `READY`. This ensures that the pods have been successfully injected with the Envoy proxy!
 ```
 kubectl get pods
 ```
+The output should be similar to the following: 
+```
+NAME                                     READY   STATUS    RESTARTS   AGE
+adservice-85598d856b-m84m6               2/2     Running   0          2m7s
+cartservice-c77f6b866-m67vd              2/2     Running   0          2m8s
+checkoutservice-654c47f4b6-hqtqr         2/2     Running   0          2m10s
+currencyservice-59bc889674-jhk8z         2/2     Running   0          2m8s
+emailservice-5b9fff7cb8-8nqwz            2/2     Running   0          2m10s
+frontend-77b88cc7cb-mr4rp                2/2     Running   0          2m9s
+loadgenerator-6958f5bc8b-55q7w           2/2     Running   0          2m8s
+paymentservice-68dd9755bb-2jmb7          2/2     Running   0          2m9s
+productcatalogservice-84f95c95ff-c5kl6   2/2     Running   0          114s
+recommendationservice-64dc9dfbc8-xfs2t   2/2     Running   0          2m9s
+redis-cart-5b569cd47-cc2qd               2/2     Running   0          2m7s
+shippingservice-5488d5b6cb-lfhtt         2/2     Running   0          2m7s
+```
 You can also view the sample app by going to the output of the following command to get the `EXTERNAL_IP`
 ```
-kubectl get svc -n istio-system istio-ingressgateway
+kubectl get svc -n asm-ingress-ns istio-ingressgateway
 ```
+---
+## Setup your Ingress Gateway
+
+Create a namespace for your ingress `export GATEWAY_NAMESPACE=asm-ingress`. You can see best practices for deploying gateways [here](https://cloud.google.com/service-mesh/docs/gateways)
+```
+kubeclt create namespace $GATEWAY_NAMESPACE
+kubectl label namespace ${GATEWAY_NAMESPACE} istio.io/rev=asm-managed
+# Note replace `asm-managed` with your release channel if you changed it in the Terraform setup
+```
+Deploy the IngressGateway by running the following: 
+```
+kubeclt apply -f  asm-gateway -n $GATEWAY_NAMESPACE
+```
+
 
 ## Deploy v2 of `productcatalog`
 
