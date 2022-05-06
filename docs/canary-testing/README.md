@@ -62,10 +62,6 @@ recommendationservice-64dc9dfbc8-xfs2t   2/2     Running   0          2m9s
 redis-cart-5b569cd47-cc2qd               2/2     Running   0          2m7s
 shippingservice-5488d5b6cb-lfhtt         2/2     Running   0          2m7s
 ```
-You can also view the sample app by going to the output of the following command to get the `EXTERNAL_IP`
-```
-kubectl get svc -n asm-ingress-ns istio-ingressgateway
-```
 ---
 ## Setup your Ingress Gateway
 
@@ -77,10 +73,17 @@ kubectl label namespace ${GATEWAY_NAMESPACE} istio.io/rev=asm-managed
 ```
 Deploy the IngressGateway by running the following: 
 ```
-kubeclt apply -f  asm-gateway -n $GATEWAY_NAMESPACE
+kubeclt apply -f asm-gateway.yaml -n $GATEWAY_NAMESPACE
+kubeclt apply -f gateway.yaml -n $GATEWAY_NAMESPACE
+kubectl apply -f frontend-vs.yaml # this will direct the traffic to the frontend after hitting the Gatway
 ```
-
-
+## Access through the Gateway
+Run the following to get your IP address of your Ingress Gateway
+```
+echo -n "http://" && \
+kubectl -n ${GATEWAY_NAMESPACE} \
+  get svc asm-ingressgateway -o json | jq -r '.status.loadBalancer.ingress[0].ip'
+```
 ## Deploy v2 of `productcatalog`
 
 Change into the `canary-service` directory
