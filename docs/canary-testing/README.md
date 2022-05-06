@@ -104,8 +104,28 @@ kubectl get pods
 ```
 Your output should be similar to the following 
 ```
-TO DO FILL IN
+NAME                                        READY   STATUS    RESTARTS   AGE
+adservice-85598d856b-8wqfd                  2/2     Running   0          25h
+cartservice-c77f6b866-7jwcr                 2/2     Running   0          25h
+checkoutservice-654c47f4b6-n8c6x            2/2     Running   0          25h
+currencyservice-59bc889674-l5xw2            2/2     Running   0          25h
+emailservice-5b9fff7cb8-jjr89               2/2     Running   0          25h
+frontend-77b88cc7cb-bwtk4                   2/2     Running   0          25h
+loadgenerator-6958f5bc8b-lqmnw              2/2     Running   0          25h
+paymentservice-68dd9755bb-dckrj             2/2     Running   0          25h
+productcatalogservice-84f95c95ff-ddhjv      2/2     Running   0          25h
+productcatalogservice-v2-6df4cf5475-9lwjb   2/2     Running   0          8s
+recommendationservice-64dc9dfbc8-7s7cx      2/2     Running   0          25h
+redis-cart-5b569cd47-vw7lw                  2/2     Running   0          25h
+shippingservice-5488d5b6cb-dj5gd            2/2     Running   0          25h
 ```
-Check the frontend with your `EXTERNAL_IP`, and you should note that the frontend loads slower periodically.
+Check the frontend with your `EXTERNAL_IP`, and you should note that the frontend loads slower periodically!
 
 ## Explore in the Anthos Service Mesh UI
+Navigate to the Anthos Service Mesh Dashboard in your GCP Console 
+(See service mesh in the 2nd option from the menu, highlighted in green)
+![navigate to asm img](./canary-service/imgs/navigate-to-asm.png)
+
+Click on `Topology View` in the top right of the console.
+
+![navigate to asm img](./canary-service/imgs/topology.png)
