@@ -12,10 +12,10 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-# [START servicemesh_asm_installation_manifests_base_kustomization_kustomization]
+# [START servicemesh_docs_istio_system_manifests_kustomization_kustomization]
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
+namespace: istio-system
 resources:
-- namespace.yaml
-- controlplane-configs.yaml
-# [END servicemesh_asm_installation_manifests_base_kustomization_kustomization]
+- base
+# [END servicemesh_docs_istio_system_manifests_kustomization_kustomization]
