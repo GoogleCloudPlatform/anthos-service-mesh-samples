@@ -18,5 +18,5 @@ kind: Namespace
 metadata:
   name: asm-ingress
   labels:
-    istio.io/rev: asm-managed
+    istio-injection: enabled
 # [END servicemesh_base_namespace_namespace_asm_ingress]

@@ -18,6 +18,5 @@ kind: Kustomization
 resources:
 - all
 components:
-- for-asm-channel
 - for-namespace
 # [END servicemesh_online_boutique_asm_manifests_base_kustomization_kustomization]

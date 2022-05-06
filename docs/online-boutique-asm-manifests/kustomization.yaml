@@ -18,7 +18,6 @@ kind: Kustomization
 resources:
 - base/all
 components:
-- base/for-asm-channel
 - base/for-namespace
 - service-accounts/all
 - authorization-policies/all
