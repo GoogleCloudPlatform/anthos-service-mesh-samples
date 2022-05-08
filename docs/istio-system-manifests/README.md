@@ -1,9 +1,7 @@
-# Install ASM with a specific ASM channel with Kustomize
+# Deploy Mesh-wide resources in `istio-system` namespace with Kustomize
 
+Create the `istio-system` namespace:
 ```
-ASM_VERSION=asm-managed-rapid
-ASM_CHANNEL=rapid
-sed -i "s/ASM_VERSION/${ASM_VERSION}/g;s/ASM_CHANNEL/${ASM_CHANNEL}/g" for-asm-channel/kustomization.yaml
 kubectl apply -k .
 ```
 
