@@ -12,14 +12,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-# [START servicemesh_base_controlplane_configs_controlplanerevision_asm_managed]
-apiVersion: mesh.cloud.google.com/v1beta1
-kind: ControlPlaneRevision
-metadata:
-  name: asm-managed
-  labels:
-    mesh.cloud.google.com/managed-cni-enabled: "true"
-spec:
-  type: managed_service
-  channel: regular
-# [END servicemesh_base_controlplane_configs_controlplanerevision_asm_managed]
+# [START servicemesh_istio_system_manifests_base_kustomization_kustomization]
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+# [END servicemesh_istio_system_manifests_base_kustomization_kustomization]
