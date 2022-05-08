@@ -89,7 +89,7 @@ gcloud container clusters get-credentials "asm-cluster" --region "us-central1" -
 ```
 Look at the status of your `controlplanerevision` CRD with the following command: 
 ```
-kubeclt get controlplanerevisions -n istio-system
+kubectl get controlplanerevisions -n istio-system
 ```
 The output should be similar to: 
 ```
