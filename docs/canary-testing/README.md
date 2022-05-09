@@ -129,3 +129,15 @@ Navigate to the Anthos Service Mesh Dashboard in your GCP Console
 Click on `Topology View` in the top right of the console.
 
 ![navigate to asm img](./canary-service/imgs/topology.png)
+
+Here you can observe the topology layout of your apps, as well as metrics when you focus on specific services.
+Return to the `Table View`
+
+Explore around the UI. You can view your services interacting with each other, and is helpful for visualizing traffic behavior. This is just a simple example of the observability and traffic management you can benefit from by using Anthos Service Mesh.
+
+## Clean up
+To avoid incurring charges to your Google Cloud account for the resources used in this tutorial, either **delete the project** that contains the resources, or keep the project and delete the individual resources
+To delete the cluster: 
+* gcloud container clusters delete CLUSTER_NAME  \
+    --project=PROJECT_ID \
+    --zone=CLUSTER_LOCATION 
