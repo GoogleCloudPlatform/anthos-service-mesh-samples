@@ -12,7 +12,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-# [START servicemesh_canary_service_gke_canary_deployment_productcatalogservice_v2]
+# [START servicemesh_canary_service_productcatalog_v2_deployment_productcatalogservice_v2]
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -51,4 +51,4 @@ spec:
             cpu: 100m
             memory: 64Mi
       terminationGracePeriodSeconds: 5
-# [END servicemesh_canary_service_gke_canary_deployment_productcatalogservice_v2]
+# [END servicemesh_canary_service_productcatalog_v2_deployment_productcatalogservice_v2]

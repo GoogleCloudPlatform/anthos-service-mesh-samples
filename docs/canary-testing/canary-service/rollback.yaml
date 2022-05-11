@@ -12,7 +12,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-# [START istio_istio_canary_gke_canary_virtualservice_productcatalogservice]
+# [START servicemesh_canary_service_rollback_virtualservice_productcatalogservice]
 apiVersion: networking.istio.io/v1alpha3
 kind: VirtualService
 metadata:
@@ -25,4 +25,4 @@ spec:
     - destination:
         host: productcatalogservice
         subset: v1
-# [END istio_istio_canary_gke_canary_virtualservice_productcatalogservice]
+# [END servicemesh_canary_service_rollback_virtualservice_productcatalogservice]
