@@ -3,7 +3,7 @@
 ## Introduction 
 Canary Testing is integral with testing when completing upgrades on your cluster.
 
-* In the `canary-service/` folder, we will learn how to Traffic Split to perform a Canary service deployment on [Google Kubernetes Engine](https://cloud.google.com/kubernetes-engine/) with [Anthos Service Mesh](https://cloud.google.com/service-mesh/docs/overview).
+* In this folder, we will learn how to Traffic Split to perform a Canary service deployment on [Google Kubernetes Engine](https://cloud.google.com/kubernetes-engine/) with [Anthos Service Mesh](https://cloud.google.com/service-mesh/docs/overview).
 <!-- * In `canary-cp`, we will learn how to safely complete a Control Plane Canary upgrade with ASM  -->
 Anthos Service Mesh is Google's fully managed Istio-compliant service mesh. This means that Istio's APIs work with ASM.
 
@@ -124,11 +124,11 @@ Check the frontend with your `EXTERNAL_IP`, and you should note that the fronten
 ## Explore in the Anthos Service Mesh UI
 Navigate to the Anthos Service Mesh Dashboard in your GCP Console 
 (See service mesh in the 2nd option from the menu, highlighted in green)
-![navigate to asm img](./canary-service/imgs/navigate-to-asm.png)
+![navigate to asm img](./imgs/navigate-to-asm.png)
 
 Click on `Topology View` in the top right of the console.
 
-![navigate to asm img](./canary-service/imgs/topology.png)
+![navigate to asm img](./imgs/topology.png)
 
 Here you can observe the topology layout of your apps, as well as metrics when you focus on specific services.
 Return to the `Table View`
