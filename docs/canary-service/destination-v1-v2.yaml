@@ -13,7 +13,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-# [START servicemesh_canary_service_destination_destinationrule_productcatalogservice]
+# [START servicemesh_canary_service_destination_v1_v2_destinationrule_productcatalogservice]
 apiVersion: networking.istio.io/v1alpha3
 kind: DestinationRule
 metadata:
@@ -27,4 +27,4 @@ spec:
   - labels:
       version: v2
     name: v2
-# [END servicemesh_canary_service_destination_destinationrule_productcatalogservice]
+# [END servicemesh_canary_service_destination_v1_v2_destinationrule_productcatalogservice]
