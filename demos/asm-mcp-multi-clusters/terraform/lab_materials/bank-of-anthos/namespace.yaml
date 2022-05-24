@@ -1,0 +1,8 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  annotations:
+    mesh.cloud.google.com/proxy: '{"managed": true}'
+  labels:
+    istio-injection: enabled
+  name: bank-of-anthos
