@@ -2,11 +2,13 @@ apiVersion: v1
 kind: ServiceAccount
 metadata:
   name: accounts-db
+  namespace: bank-of-anthos
 ---
 kind: StatefulSet
 apiVersion: apps/v1
 metadata:
   name: accounts-db
+  namespace: bank-of-anthos
   labels:
     app: accounts-db
     tier: db
@@ -56,6 +58,7 @@ apiVersion: v1
 kind: Service
 metadata:
   name: accounts-db
+  namespace: bank-of-anthos
   labels:
     app: accounts-db
     tier: db
@@ -73,6 +76,7 @@ apiVersion: v1
 kind: ConfigMap
 metadata:
   name: accounts-db-config
+  namespace: bank-of-anthos
   labels:
     app: accounts-db
 data:

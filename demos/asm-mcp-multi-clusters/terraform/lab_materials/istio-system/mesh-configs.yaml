@@ -6,4 +6,5 @@ data:
         stackdriver: {}
 kind: ConfigMap
 metadata:
-  name: istio-asm-managed
+  name: istio-asm-managed-rapid
+  namespace: istio-system

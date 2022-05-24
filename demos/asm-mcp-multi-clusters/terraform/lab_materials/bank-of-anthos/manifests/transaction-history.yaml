@@ -2,11 +2,13 @@ apiVersion: v1
 kind: ServiceAccount
 metadata:
   name: transactionhistory
+  namespace: bank-of-anthos
 ---
 apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: transactionhistory
+  namespace: bank-of-anthos
 spec:
   selector:
     matchLabels:
@@ -16,7 +18,7 @@ spec:
       labels:
         app: transactionhistory
     spec:
-      serviceAccountName: default
+      serviceAccountName: transactionhistory
       terminationGracePeriodSeconds: 5
       containers:
       - name: transactionhistory
@@ -94,6 +96,7 @@ apiVersion: v1
 kind: Service
 metadata:
   name: transactionhistory
+  namespace: bank-of-anthos
 spec:
   type: ClusterIP
   selector:
