@@ -479,7 +479,7 @@ The output is similar to:
 
 You need to deploy the `MultiClusterIngress` and `MultiClusterService` resources into the namespace that contains the Ingress Gateway Deployment of clusters 1 and 2. Create the namespace in cluster 3.
 ```
-kubectl --context=${CLUSTER_3} create namespace ${INGRESS_GATEWAY_NAMESPACE}
+kubectl --context=${CLUSTER_INGRESS} create namespace ${INGRESS_GATEWAY_NAMESPACE}
 ```
 
 Deploy the `MultiClusterIngress` and the `MultiClusterService`.
