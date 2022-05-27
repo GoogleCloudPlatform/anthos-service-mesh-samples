@@ -2,7 +2,7 @@ apiVersion: networking.gke.io/v1beta1
 kind: MultiClusterService
 metadata:
   name: frontend-multi-cluster-service
-  namespace: bank-of-anthos
+  namespace: asm-ingress
 spec:
   template:
     spec:
