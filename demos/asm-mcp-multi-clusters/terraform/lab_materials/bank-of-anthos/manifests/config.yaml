@@ -2,6 +2,7 @@ apiVersion: v1
 kind: ConfigMap
 metadata:
   name: environment-config
+  namespace: bank-of-anthos
 data:
   LOCAL_ROUTING_NUM: "883745000"
   PUB_KEY_PATH: "/root/.ssh/publickey"
@@ -10,6 +11,7 @@ apiVersion: v1
 kind: ConfigMap
 metadata:
   name: service-api-config
+  namespace: bank-of-anthos
 data:
   TRANSACTIONS_API_ADDR: "ledgerwriter:8080"
   BALANCES_API_ADDR: "balancereader:8080"
@@ -21,6 +23,7 @@ apiVersion: v1
 kind: ConfigMap
 metadata:
   name: demo-data-config
+  namespace: bank-of-anthos
 data:
   USE_DEMO_DATA: "True"
   DEMO_LOGIN_USERNAME: "testuser"

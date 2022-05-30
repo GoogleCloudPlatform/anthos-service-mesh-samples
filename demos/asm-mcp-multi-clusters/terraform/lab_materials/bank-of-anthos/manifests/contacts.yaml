@@ -2,11 +2,13 @@ apiVersion: v1
 kind: ServiceAccount
 metadata:
   name: contacts
+  namespace: bank-of-anthos
 ---
 apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: contacts
+  namespace: bank-of-anthos
 spec:
   selector:
     matchLabels:
@@ -67,6 +69,7 @@ apiVersion: v1
 kind: Service
 metadata:
   name: contacts
+  namespace: bank-of-anthos
 spec:
   type: ClusterIP
   selector:

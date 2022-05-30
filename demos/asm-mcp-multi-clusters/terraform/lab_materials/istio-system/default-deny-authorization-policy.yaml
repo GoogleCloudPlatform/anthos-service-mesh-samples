@@ -1,8 +1,7 @@
 apiVersion: security.istio.io/v1beta1
-kind: PeerAuthentication
+kind: AuthorizationPolicy
 metadata:
-  name: default
+  name: deny-all
   namespace: istio-system
 spec:
-  mtls:
-    mode: STRICT
+  {}

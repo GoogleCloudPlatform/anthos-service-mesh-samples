@@ -2,11 +2,13 @@ apiVersion: v1
 kind: ServiceAccount
 metadata:
   name: userservice
+  namespace: bank-of-anthos
 ---
 apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: userservice
+  namespace: bank-of-anthos
 spec:
   selector:
     matchLabels:
@@ -16,7 +18,7 @@ spec:
       labels:
         app: userservice
     spec:
-      serviceAccountName: default
+      serviceAccountName: userservice
       terminationGracePeriodSeconds: 5
       containers:
       - name: userservice
@@ -75,6 +77,7 @@ apiVersion: v1
 kind: Service
 metadata:
   name: userservice
+  namespace: bank-of-anthos
 spec:
   type: ClusterIP
   selector:

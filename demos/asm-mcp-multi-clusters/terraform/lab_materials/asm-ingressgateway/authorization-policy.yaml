@@ -1,0 +1,14 @@
+apiVersion: security.istio.io/v1beta1
+kind: AuthorizationPolicy
+metadata:
+  name: asm-ingressgateway
+  namespace: asm-ingress
+spec:
+  selector:
+    matchLabels:
+      asm: ingressgateway
+  rules:
+  - to:
+    - operation:
+        ports:
+        - "8080"

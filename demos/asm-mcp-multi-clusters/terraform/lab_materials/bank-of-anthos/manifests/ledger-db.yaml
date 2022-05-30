@@ -2,11 +2,13 @@ apiVersion: v1
 kind: ServiceAccount
 metadata:
   name: ledger-db
+  namespace: bank-of-anthos
 ---
 kind: StatefulSet
 apiVersion: apps/v1
 metadata:
   name: ledger-db
+  namespace: bank-of-anthos
 spec:
   serviceName: "ledger-db"
   replicas: 1
@@ -50,6 +52,7 @@ apiVersion: v1
 kind: ConfigMap
 metadata:
   name: ledger-db-config
+  namespace: bank-of-anthos
   labels:
     app: postgres
 data:
@@ -64,6 +67,7 @@ apiVersion: v1
 kind: Service
 metadata:
   name: ledger-db
+  namespace: bank-of-anthos
 spec:
   type: ClusterIP
   selector:
