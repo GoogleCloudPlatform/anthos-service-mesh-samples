@@ -44,10 +44,13 @@ module "gke" {
   enable_private_nodes    = false
   master_ipv4_cidr_block  = "172.16.0.0/28"
   cluster_resource_labels = { "mesh_id" : "proj-${data.google_project.project.number}" }
+  depends_on = [
+    module.enable_google_apis
+  ]
 }
 module "enable_google_apis" {
   source     = "terraform-google-modules/project-factory/google//modules/project_services"
-  version    = "11.2.3"
+  version    = "11.3.1"
   project_id = var.project_id
   activate_apis = [
     "cloudapis.googleapis.com",

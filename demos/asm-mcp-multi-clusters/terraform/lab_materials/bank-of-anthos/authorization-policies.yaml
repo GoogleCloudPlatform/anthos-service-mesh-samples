@@ -1,0 +1,182 @@
+apiVersion: security.istio.io/v1beta1
+kind: AuthorizationPolicy
+metadata:
+  name: accounts-db
+  namespace: bank-of-anthos
+spec:
+  selector:
+    matchLabels:
+      app: accounts-db
+  rules:
+  - from:
+    - source:
+        principals:
+        - cluster.local/ns/bank-of-anthos/sa/contacts
+        - cluster.local/ns/bank-of-anthos/sa/userservice
+    to:
+    - operation:
+        ports:
+        - "5432"
+---
+apiVersion: security.istio.io/v1beta1
+kind: AuthorizationPolicy
+metadata:
+  name: balancereader
+  namespace: bank-of-anthos
+spec:
+  selector:
+    matchLabels:
+      app: balancereader
+  rules:
+  - from:
+    - source:
+        principals:
+        - cluster.local/ns/bank-of-anthos/sa/frontend
+        - cluster.local/ns/bank-of-anthos/sa/ledgerwriter
+    to:
+    - operation:
+        paths:
+        - /balances/*
+        methods:
+        - GET
+        ports:
+        - "8080"
+---
+apiVersion: security.istio.io/v1beta1
+kind: AuthorizationPolicy
+metadata:
+  name: contacts
+  namespace: bank-of-anthos
+spec:
+  selector:
+    matchLabels:
+      app: contacts
+  rules:
+  - from:
+    - source:
+        principals:
+        - cluster.local/ns/bank-of-anthos/sa/frontend
+    to:
+    - operation:
+        paths:
+        - /contacts/*
+        methods:
+        - GET
+        ports:
+        - "8080"
+---
+apiVersion: security.istio.io/v1beta1
+kind: AuthorizationPolicy
+metadata:
+  name: frontend
+  namespace: bank-of-anthos
+spec:
+  selector:
+    matchLabels:
+      app: frontend
+  rules:
+  - from:
+    - source:
+        principals:
+        - cluster.local/ns/bank-of-anthos/sa/loadgenerator
+        - cluster.local/ns/asm-ingress/sa/asm-ingressgateway
+    to:
+    - operation:
+        methods:
+        - GET
+        - POST
+        ports:
+        - "8080"
+---
+apiVersion: security.istio.io/v1beta1
+kind: AuthorizationPolicy
+metadata:
+  name: ledger-db
+  namespace: bank-of-anthos
+spec:
+  selector:
+    matchLabels:
+      app: ledger-db
+  rules:
+  - from:
+    - source:
+        principals:
+        - cluster.local/ns/bank-of-anthos/sa/balancereader
+        - cluster.local/ns/bank-of-anthos/sa/transactionhistory
+        - cluster.local/ns/bank-of-anthos/sa/ledgerwriter
+    to:
+    - operation:
+        ports:
+        - "5432"
+---
+apiVersion: security.istio.io/v1beta1
+kind: AuthorizationPolicy
+metadata:
+  name: ledgerwriter
+  namespace: bank-of-anthos
+spec:
+  selector:
+    matchLabels:
+      app: ledgerwriter
+  rules:
+  - from:
+    - source:
+        principals:
+        - cluster.local/ns/bank-of-anthos/sa/frontend
+    to:
+    - operation:
+        paths:
+        - /transactions
+        - /transactions/*
+        methods:
+        - POST
+        ports:
+        - "8080"
+---
+apiVersion: security.istio.io/v1beta1
+kind: AuthorizationPolicy
+metadata:
+  name: transactionhistory
+  namespace: bank-of-anthos
+spec:
+  selector:
+    matchLabels:
+      app: transactionhistory
+  rules:
+  - from:
+    - source:
+        principals:
+        - cluster.local/ns/bank-of-anthos/sa/frontend
+    to:
+    - operation:
+        paths:
+        - /transactions/*
+        methods:
+        - GET
+        ports:
+        - "8080"
+---
+apiVersion: security.istio.io/v1beta1
+kind: AuthorizationPolicy
+metadata:
+  name: userservice
+  namespace: bank-of-anthos
+spec:
+  selector:
+    matchLabels:
+      app: userservice
+  rules:
+  - from:
+    - source:
+        principals:
+        - cluster.local/ns/bank-of-anthos/sa/frontend
+    to:
+    - operation:
+        paths:
+        - /users
+        - /login
+        methods:
+        - GET
+        - POST
+        ports:
+        - "8080"

@@ -6,7 +6,7 @@ data "google_project" "project_id" {
 # Enable APIS
 module "enable_google_apis" {
   source                      = "terraform-google-modules/project-factory/google//modules/project_services"
-  version                     = "11.2.3"
+  version                     = "11.3.1"
   project_id                  = var.gcp_project_id
   activate_apis               = var.apis
   disable_services_on_destroy = false
@@ -38,6 +38,7 @@ resource "google_container_cluster" "cluster1" {
       mesh_id = "proj-${data.google_project.project_id.number}"
     }
   }
+
   logging_config {
     enable_components = ["SYSTEM_COMPONENTS", "WORKLOADS"]
   }
@@ -46,6 +47,11 @@ resource "google_container_cluster" "cluster1" {
     enable_components = ["SYSTEM_COMPONENTS"]
 
   }
+
+  release_channel {
+    channel = var.cluster_channel
+  }
+
   workload_identity_config {
     workload_pool = "${var.gcp_project_id}.svc.id.goog"
   }
@@ -77,6 +83,7 @@ resource "google_container_cluster" "cluster2" {
       mesh_id = "proj-${data.google_project.project_id.number}"
     }
   }
+
   logging_config {
     enable_components = ["SYSTEM_COMPONENTS", "WORKLOADS"]
   }
@@ -85,6 +92,11 @@ resource "google_container_cluster" "cluster2" {
     enable_components = ["SYSTEM_COMPONENTS"]
 
   }
+
+  release_channel {
+    channel = var.cluster_channel
+  }
+
   workload_identity_config {
     workload_pool = "${var.gcp_project_id}.svc.id.goog"
   }
@@ -116,6 +128,7 @@ resource "google_container_cluster" "cluster_ingress" {
       mesh_id = "proj-${data.google_project.project_id.number}"
     }
   }
+
   logging_config {
     enable_components = ["SYSTEM_COMPONENTS", "WORKLOADS"]
   }
@@ -124,6 +137,11 @@ resource "google_container_cluster" "cluster_ingress" {
     enable_components = ["SYSTEM_COMPONENTS"]
 
   }
+
+  release_channel {
+    channel = var.cluster_channel
+  }
+
   workload_identity_config {
     workload_pool = "${var.gcp_project_id}.svc.id.goog"
   }

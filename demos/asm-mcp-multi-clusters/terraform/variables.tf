@@ -10,10 +10,6 @@ variable "gcp_zone" {
   type        = string
   description = "The GCP zone to apply this config to."
 }
-variable "gcp_user_id" {
-  type        = string
-  description = "User Id"
-}
 
 variable "cluster1" {
   type        = string
@@ -31,6 +27,11 @@ variable "cluster_ingress" {
   type        = string
   description = "Name of Ingress Cluster"
   default     = "gke-ingress-west1-a"
+}
+
+variable "cluster_channel" {
+  type    = string
+  default = "RAPID"
 }
 
 variable "machine_type" {
@@ -92,4 +93,9 @@ variable "apis" {
     "compute.googleapis.com",
     "cloudresourcemanager.googleapis.com"
   ]
+}
+
+variable "gcp_user_id" {
+  type        = string
+  description = "gcp_user_id for each provisioned instance"
 }

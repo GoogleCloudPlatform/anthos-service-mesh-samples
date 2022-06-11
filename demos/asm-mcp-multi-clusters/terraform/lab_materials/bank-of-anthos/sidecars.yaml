@@ -1,0 +1,128 @@
+apiVersion: networking.istio.io/v1beta1
+kind: Sidecar
+metadata:
+  name: accounts-db
+  namespace: bank-of-anthos
+spec:
+  workloadSelector:
+    labels:
+      app: accounts-db
+  egress:
+  - hosts:
+    - "istio-system/*"
+---
+apiVersion: networking.istio.io/v1beta1
+kind: Sidecar
+metadata:
+  name: balancereader
+  namespace: bank-of-anthos
+spec:
+  workloadSelector:
+    labels:
+      app: balancereader
+  egress:
+  - hosts:
+    - "istio-system/*"
+    - "./ledger-db.bank-of-anthos.svc.cluster.local"
+---
+apiVersion: networking.istio.io/v1beta1
+kind: Sidecar
+metadata:
+  name: contacts
+  namespace: bank-of-anthos
+spec:
+  workloadSelector:
+    labels:
+      app: contacts
+  egress:
+  - hosts:
+    - "istio-system/*"
+    - "./accounts-db.bank-of-anthos.svc.cluster.local"
+---
+apiVersion: networking.istio.io/v1beta1
+kind: Sidecar
+metadata:
+  name: frontend
+  namespace: bank-of-anthos
+spec:
+  workloadSelector:
+    labels:
+      app: frontend
+  egress:
+  - hosts:
+    - "istio-system/*"
+    - "./balancereader.bank-of-anthos.svc.cluster.local"
+    - "./contacts.bank-of-anthos.svc.cluster.local"
+    - "./ledgerwriter.bank-of-anthos.svc.cluster.local"
+    - "./transactionhistory.bank-of-anthos.svc.cluster.local"
+    - "./userservice.bank-of-anthos.svc.cluster.local"
+---
+apiVersion: networking.istio.io/v1beta1
+kind: Sidecar
+metadata:
+  name: ledger-db
+  namespace: bank-of-anthos
+spec:
+  workloadSelector:
+    labels:
+      app: ledger-db
+  egress:
+  - hosts:
+    - "istio-system/*"
+---
+apiVersion: networking.istio.io/v1beta1
+kind: Sidecar
+metadata:
+  name: ledgerwriter
+  namespace: bank-of-anthos
+spec:
+  workloadSelector:
+    labels:
+      app: ledgerwriter
+  egress:
+  - hosts:
+    - "istio-system/*"
+    - "./balancereader.bank-of-anthos.svc.cluster.local"
+    - "./ledger-db.bank-of-anthos.svc.cluster.local"
+---
+apiVersion: networking.istio.io/v1beta1
+kind: Sidecar
+metadata:
+  name: loadgenerator
+  namespace: bank-of-anthos
+spec:
+  workloadSelector:
+    labels:
+      app: loadgenerator
+  egress:
+  - hosts:
+    - "istio-system/*"
+    - "./frontend.bank-of-anthos.svc.cluster.local"
+---
+apiVersion: networking.istio.io/v1beta1
+kind: Sidecar
+metadata:
+  name: transactionhistory
+  namespace: bank-of-anthos
+spec:
+  workloadSelector:
+    labels:
+      app: transactionhistory
+  egress:
+  - hosts:
+    - "istio-system/*"
+    - "./ledger-db.bank-of-anthos.svc.cluster.local"
+---
+apiVersion: networking.istio.io/v1beta1
+kind: Sidecar
+metadata:
+  name: userservice
+  namespace: bank-of-anthos
+spec:
+  workloadSelector:
+    labels:
+      app: userservice
+  egress:
+  - hosts:
+    - "istio-system/*"
+    - "./accounts-db.bank-of-anthos.svc.cluster.local"
