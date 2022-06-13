@@ -1,0 +1,30 @@
+name: tf-validate-ci
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - '.github/workflows/tf-validate-ci.yml'
+      - 'demos/asm-mcp-multi-clusters/terraform/**'
+      - 'docs/terraform-asm-mcp/**'
+  pull_request:
+jobs:
+  job:
+    runs-on: ubuntu-20.04
+    strategy:
+      matrix:
+        # list of directories in the repo that hosts Terraform samples
+        # update this list as new terraform samples are added to the repo
+        tf-sample: [
+          'demos/asm-mcp-multi-clusters/terraform',
+          'docs/terraform-asm-mcp'
+        ]
+    steps:
+      - uses: actions/checkout@v3
+      - name: terraform init & validate
+        env:
+          SAMPLE_DIR: ${{ matrix.tf-sample }}
+        run: |
+          cd $SAMPLE_DIR
+          terraform init -backend=false
+          terraform validate
