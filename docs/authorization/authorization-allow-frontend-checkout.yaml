@@ -23,7 +23,7 @@ spec:
   rules:
   - from:
     - source:
-        principals: ["cluster.local/ns/frontend/sa/frontend"]
+        principals: ["cluster.local/ns/onlineboutique/sa/frontend"]
   - from:
     - source:
-        principals: ["cluster.local/ns/checkout/sa/checkout"]
+        principals: ["cluster.local/ns/onlinebotuique/sa/checkoutservice"]
