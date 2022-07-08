@@ -16,7 +16,6 @@ apiVersion: "security.istio.io/v1beta1"
 kind: "AuthorizationPolicy"
 metadata:
   name: "currency-policy"
-  namespace: currency
 spec:
   selector:
     matchLabels:
@@ -27,3 +26,4 @@ spec:
         principals: ["cluster.local/ns/frontend/sa/frontend"]
   - from:
     - source:
+        principals: ["cluster.local/ns/checkout/sa/checkout"]
