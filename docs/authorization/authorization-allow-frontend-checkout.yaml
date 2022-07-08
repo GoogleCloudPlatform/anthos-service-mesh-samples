@@ -12,7 +12,18 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-rules:
- - from:
-   - source:
-       principals: ["cluster.local/ns/frontend/sa/frontend"]
+apiVersion: "security.istio.io/v1beta1"
+kind: "AuthorizationPolicy"
+metadata:
+  name: "currency-policy"
+  namespace: currency
+spec:
+  selector:
+    matchLabels:
+      app: currencyservice
+  rules:
+  - from:
+    - source:
+        principals: ["cluster.local/ns/frontend/sa/frontend"]
+  - from:
+    - source:
