@@ -19,5 +19,5 @@ spec:
     - destination:
         port:
           number: 80
-        host: v2.example.com # The temporary domain name of the frontend from cluster with ASM.
+        host: v2.example.com # The temporary domain name of the frontend inside cluster with ASM.
       weight: 50
