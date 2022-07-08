@@ -1,6 +1,11 @@
+# Terraform
 **terraform.tfstate
 **terraform.tfstate.backup
 **.terraform.tfstate.*
 **.terraform
 **terraform.tfvars
 .terraform.lock.hcl
+
+# Misc.
+.DS_Store
+.idea/
