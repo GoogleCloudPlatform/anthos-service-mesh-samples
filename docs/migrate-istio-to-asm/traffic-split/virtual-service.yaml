@@ -1,0 +1,23 @@
+# This VirtualService routes the example.com traffic from my-gateway
+# to port 80 of the hello-world-service.
+apiVersion: networking.istio.io/v1alpha3
+kind: VirtualService
+metadata:
+  name: virtual-service-frontend-traffic-split
+spec:
+  gateways:
+  - istio-ingressgateway
+  hosts:
+  - '*' # In production, be more specific.
+  http:
+  - route:
+    - destination:
+        port:
+          number: 80
+        host: frontend # The name of the Service inside the cluster with Istio.
+      weight: 50
+    - destination:
+        port:
+          number: 80
+        host: v2.example.com # The temporary domain name of the frontend from cluster with ASM.
+      weight: 50

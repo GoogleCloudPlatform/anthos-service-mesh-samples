@@ -1,0 +1,16 @@
+# With this ServiceEntry, we're instructing the mesh to
+# direct HTTP requests (from the mesh) for v2.example.com to the specified IP address.
+apiVersion: networking.istio.io/v1alpha3
+kind: ServiceEntry
+metadata:
+  name: external-service-http
+spec:
+  hosts:
+  - v2.example.com
+  location: MESH_EXTERNAL
+  ports:
+  - number: 80
+    name: http
+  resolution: STATIC
+  endpoints:
+  - address: 1.2.3.4 # Replace this IP address with the IP address of the cluster with ASM.
