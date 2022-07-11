@@ -3,7 +3,7 @@
 apiVersion: networking.istio.io/v1alpha3
 kind: VirtualService
 metadata:
-  name: virtual-service-frontend-traffic-split
+  name: frontend-ingress
 spec:
   gateways:
   - frontend-gateway
