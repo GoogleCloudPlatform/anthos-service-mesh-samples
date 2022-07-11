@@ -6,7 +6,7 @@ metadata:
   name: virtual-service-frontend-traffic-split
 spec:
   gateways:
-  - istio-ingressgateway
+  - frontend-gateway
   hosts:
   - '*' # In production, be more specific.
   http:
