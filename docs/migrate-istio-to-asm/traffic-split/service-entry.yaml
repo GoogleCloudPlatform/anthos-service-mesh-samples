@@ -13,4 +13,4 @@ spec:
     name: http
   resolution: STATIC
   endpoints:
-  - address: 1.2.3.4 # Replace this IP address with the IP address of the cluster with ASM.
+  - address: 1.2.3.4 # Replace this IP address with the IP address of the ASM ingress gateway.
