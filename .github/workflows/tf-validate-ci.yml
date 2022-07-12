@@ -21,10 +21,12 @@ jobs:
         ]
     steps:
       - uses: actions/checkout@v3
-      - name: terraform init & validate
+      - name: terraform init & validate & plan
         env:
           SAMPLE_DIR: ${{ matrix.tf-sample }}
         run: |
           cd $SAMPLE_DIR
           terraform init -backend=false
           terraform validate
+          terraform plan
+
