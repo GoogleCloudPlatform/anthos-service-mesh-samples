@@ -19,7 +19,7 @@ sed -i "s/ONLINEBOUTIQUE_NAMESPACE/${NAMESPACE}/g" authorization-policies/for-na
 sed -i "s/ONLINEBOUTIQUE_NAMESPACE/${NAMESPACE}/g;s/INGRESS_GATEWAY_NAMESPACE/${INGRESS_GATEWAY_NAMESPACE}/g;s/INGRESS_GATEWAY_NAME/${INGRESS_GATEWAY_NAME}/g" authorization-policies/for-ingress-gateway/kustomization.yaml
 sed -i "s/ONLINEBOUTIQUE_NAMESPACE/${ONLINEBOUTIQUE_NAMESPACE}/g" sidecars/for-namespace/kustomization.yaml
 ```
-Lastly run the following to sets the value of the namespace field in the kustomization file, and to apply the resources.
+Lastly run the following to set the value of the namespace field in the kustomization file, and to apply the resources.
 ```
 kustomize edit set namespace $NAMESPACE
 kubectl apply -k .
