@@ -5,7 +5,7 @@ This folder is dedicated for having the sample applications manifests and Gatewa
 ---
 
 ## Online Boutique 
-The [online-boutique/kubernetes-manifests.yaml](base/all/kubernetes-manifests.yaml) file contains the definition for all the Kubernetes resources required to deploy the Online Boutique (https://github.com/GoogleCloudPlatform/microservices-demo) sample application.
+The [online-boutique/kubernetes-manifests.yaml](base/all/kubernetes-manifests.yaml) file contains the definition for all the Kubernetes resources required to deploy the [Online Boutique] (https://github.com/GoogleCloudPlatform/microservices-demo) sample application.
 
 ### Basic Quickstart 
 _Note: This quickstart is for Anthos Service Mesh. The steps outlined below are written for deploying the sample application with Anthos Service Mesh._
@@ -22,8 +22,21 @@ kubectl lable namespace onlineboutique istio-injection=enabled istio.io/rev-
 ```
 kubectl apply -f online-boutique/kubernetes-manifests.yaml
 ```
-1. Deploy the service accounts for your workloads 
+1. Create a namespace for your Gateway 
 ```
-kubectl apply -f 
+kubectl create namespace asm-ingress
 ```
+1. Enable auto-injection in the `asm-ingress` namespcae
+```
+```
+1. Deploy your Gateway
 
+
+
+
+
+## Contributing
+
+To contribute to the source code of Online Boutique itself, please visit the [Online Boutique](https://github.com/GoogleCloudPlatform/microservices-demo) repo
+
+For contributions in this repo, please open a pull request against the `main` branch
