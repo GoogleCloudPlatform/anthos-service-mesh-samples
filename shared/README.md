@@ -1,0 +1,29 @@
+## `Shared`
+
+This folder is dedicated for having the sample applications manifests and Gateway for the Anthos Service Mesh tutorials. The goal of this folder is localize the setup needed for trying out Anthos Service Mesh.
+
+---
+
+## Online Boutique 
+The [online-boutique/kubernetes-manifests.yaml](base/all/kubernetes-manifests.yaml) file contains the definition for all the Kubernetes resources required to deploy the Online Boutique (https://github.com/GoogleCloudPlatform/microservices-demo) sample application.
+
+### Basic Quickstart 
+_Note: This quickstart is for Anthos Service Mesh. The steps outlined below are written for deploying the sample application with Anthos Service Mesh._
+
+1. To deploy the sample application, first create the namespace `onlineboutique`. 
+```
+kubectl create namespace onlineboutique
+```
+1. Enable auto-injection in the `onlineboutique` namespace
+```
+kubectl lable namespace onlineboutique istio-injection=enabled istio.io/rev-
+```
+1. Deploy Online Boutique in the `onlineboutique` namespace
+```
+kubectl apply -f online-boutique/kubernetes-manifests.yaml
+```
+1. Deploy the service accounts for your workloads 
+```
+kubectl apply -f 
+```
+
