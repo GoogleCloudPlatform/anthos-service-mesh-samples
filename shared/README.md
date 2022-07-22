@@ -28,8 +28,11 @@ kubectl create namespace asm-ingress
 ```
 1. Enable auto-injection in the `asm-ingress` namespcae
 ```
+kubectl lable namespace asm-ingress istio-injection=enabled istio.io/rev-
 ```
 1. Deploy your Gateway
+```
+```
 
 
 
