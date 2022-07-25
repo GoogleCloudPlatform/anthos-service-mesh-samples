@@ -6,7 +6,7 @@ on:
     paths:
       - '.github/workflows/tf-validate-ci.yml'
       - 'workshops/asm-mcp-multi-clusters/terraform/**'
-      - 'docs/quickstarts/terraform-asm-mcp/**'
+      - 'quickstarts/terraform-asm-mcp/**'
   pull_request:
 jobs:
   job:
@@ -17,7 +17,7 @@ jobs:
         # update this list as new terraform samples are added to the repo
         tf-sample: [
           'workshops/asm-mcp-multi-clusters/terraform',
-          'docs/quickstarts/terraform-asm-mcp'
+          'quickstarts/terraform-asm-mcp'
         ]
     steps:
       - uses: actions/checkout@v3
