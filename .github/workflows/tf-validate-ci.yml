@@ -5,8 +5,8 @@ on:
       - main
     paths:
       - '.github/workflows/tf-validate-ci.yml'
-      - 'demos/asm-mcp-multi-clusters/terraform/**'
-      - 'docs/terraform-asm-mcp/**'
+      - 'workshops/asm-mcp-multi-clusters/terraform/**'
+      - 'docs/quickstarts/terraform-asm-mcp/**'
   pull_request:
 jobs:
   job:
