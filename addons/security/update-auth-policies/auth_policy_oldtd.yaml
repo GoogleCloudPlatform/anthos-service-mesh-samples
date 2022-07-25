@@ -13,7 +13,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-# [START servicemesh_update_auth_policies_auth_policy_oldtd_authorizationpolicy_service_httpbin.default.svc.cluster.local]
+# [START servicemesh_update_auth_policies_auth_policy_oldtd_authorizationpolicy_service_httpbin_default_svc_cluster_local]
 apiVersion: security.istio.io/v1beta1
 kind: AuthorizationPolicy
 metadata:
@@ -32,5 +32,5 @@ spec:
   selector:
     matchLabels:
       app: httpbin
-# [END servicemesh_update_auth_policies_auth_policy_oldtd_authorizationpolicy_service_httpbin.default.svc.cluster.local]
+# [END servicemesh_update_auth_policies_auth_policy_oldtd_authorizationpolicy_service_httpbin_default_svc_cluster_local]
 ---
