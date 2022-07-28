@@ -24,7 +24,7 @@ spec:
   replicas: 3
   selector:
     matchLabels:
-      app: ingressgateway
+      asm: ingressgateway
   template:
     metadata:
       annotations:
