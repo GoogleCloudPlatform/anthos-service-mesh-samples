@@ -13,7 +13,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-# [START servicemesh_authorization_authorization_deny_authorizationpolicy_currency_policy]
+# [START servicemesh_authorization_currency_deny_all_authorizationpolicy_currency_policy]
 apiVersion: "security.istio.io/v1beta1"
 kind: "AuthorizationPolicy"
 metadata:
@@ -22,4 +22,4 @@ spec:
   selector:
     matchLabels:
       app: currencyservice
-# [END servicemesh_authorization_authorization_deny_authorizationpolicy_currency_policy]
+# [END servicemesh_authorization_currency_deny_all_authorizationpolicy_currency_policy]
