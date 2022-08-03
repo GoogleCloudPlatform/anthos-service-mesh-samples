@@ -12,7 +12,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-# [START service_mesh_traffic_split_virtual_service_virtualservice_frontend_ingress]
+# [START servicemesh_traffic_split_virtual_service_virtualservice_frontend_ingress]
 # This VirtualService routes the example.com traffic from my-gateway
 # to port 80 of the hello-world-service.
 apiVersion: networking.istio.io/v1alpha3
@@ -36,4 +36,4 @@ spec:
           number: 80
         host: v2.example.com # The temporary domain name of the frontend inside cluster with ASM.
       weight: 50
-# [END service_mesh_traffic_split_virtual_service_virtualservice_frontend_ingress]
+# [END servicemesh_traffic_split_virtual_service_virtualservice_frontend_ingress]
