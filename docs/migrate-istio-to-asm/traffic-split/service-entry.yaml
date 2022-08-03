@@ -12,6 +12,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+# [START servicemesh_traffic_split_service_entry_serviceentry_external_service_http]
 # With this ServiceEntry, we're instructing the mesh to
 # direct HTTP requests (from the mesh) for v2.example.com to the specified IP address.
 apiVersion: networking.istio.io/v1alpha3
@@ -28,3 +29,4 @@ spec:
   resolution: STATIC
   endpoints:
   - address: 1.2.3.4 # Replace this IP address with the IP address of the ASM ingress gateway.
+# [END servicemesh_traffic_split_service_entry_serviceentry_external_service_http]
