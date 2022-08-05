@@ -13,10 +13,10 @@
 # limitations under the License.
 
 # [START servicemesh_authorization_currency_allow_frontend_checkout_authorizationpolicy_currency_policy]
-apiVersion: "security.istio.io/v1beta1"
-kind: "AuthorizationPolicy"
+apiVersion: security.istio.io/v1beta1
+kind: AuthorizationPolicy
 metadata:
-  name: "currency-policy"
+  name: currency-policy
 spec:
   selector:
     matchLabels:
