@@ -293,7 +293,7 @@ kind: Service
 metadata:
   name: frontend-external
 spec:
-  type: LoadBalancer
+  type: ClusterIP
   selector:
     app: frontend
   ports:
