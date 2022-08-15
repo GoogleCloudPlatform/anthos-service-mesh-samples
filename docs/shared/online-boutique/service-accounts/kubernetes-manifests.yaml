@@ -29,7 +29,7 @@ spec:
       labels:
         app: emailservice
     spec:
-      serviceAccountName: default
+      serviceAccountName: emailservice
       terminationGracePeriodSeconds: 5
       containers:
       - name: server
@@ -85,7 +85,7 @@ spec:
       labels:
         app: checkoutservice
     spec:
-      serviceAccountName: default
+      serviceAccountName: checkoutservice
       containers:
         - name: server
           image: gcr.io/google-samples/microservices-demo/checkoutservice:v0.3.8
@@ -154,7 +154,7 @@ spec:
       labels:
         app: recommendationservice
     spec:
-      serviceAccountName: default
+      serviceAccountName: recommendationservice
       terminationGracePeriodSeconds: 5
       containers:
       - name: server
@@ -216,7 +216,7 @@ spec:
       annotations:
         sidecar.istio.io/rewriteAppHTTPProbers: "true"
     spec:
-      serviceAccountName: default
+      serviceAccountName: frontend
       containers:
         - name: server
           image: gcr.io/google-samples/microservices-demo/frontend:v0.3.8
@@ -293,7 +293,7 @@ kind: Service
 metadata:
   name: frontend-external
 spec:
-  type: ClusterIP
+  type: LoadBalancer
   selector:
     app: frontend
   ports:
@@ -314,7 +314,7 @@ spec:
       labels:
         app: paymentservice
     spec:
-      serviceAccountName: default
+      serviceAccountName: paymentservice
       terminationGracePeriodSeconds: 5
       containers:
       - name: server
@@ -370,7 +370,7 @@ spec:
       labels:
         app: productcatalogservice
     spec:
-      serviceAccountName: default
+      serviceAccountName: productcatalogservice
       terminationGracePeriodSeconds: 5
       containers:
       - name: server
@@ -428,7 +428,7 @@ spec:
       labels:
         app: cartservice
     spec:
-      serviceAccountName: default
+      serviceAccountName: cartservice
       terminationGracePeriodSeconds: 5
       containers:
       - name: server
@@ -484,7 +484,7 @@ spec:
       annotations:
         sidecar.istio.io/rewriteAppHTTPProbers: "true"
     spec:
-      serviceAccountName: default
+      serviceAccountName: loadgenerator
       terminationGracePeriodSeconds: 5
       restartPolicy: Always
       initContainers:
@@ -532,7 +532,7 @@ spec:
       labels:
         app: currencyservice
     spec:
-      serviceAccountName: default
+      serviceAccountName: currencyservice
       terminationGracePeriodSeconds: 5
       containers:
       - name: server
@@ -589,7 +589,7 @@ spec:
       labels:
         app: shippingservice
     spec:
-      serviceAccountName: default
+      serviceAccountName: shippingservice
       containers:
       - name: server
         image: gcr.io/google-samples/microservices-demo/shippingservice:v0.3.8
@@ -700,7 +700,7 @@ spec:
       labels:
         app: adservice
     spec:
-      serviceAccountName: default
+      serviceAccountName: adservice
       terminationGracePeriodSeconds: 5
       containers:
       - name: server
