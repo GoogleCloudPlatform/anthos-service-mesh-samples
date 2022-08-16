@@ -26,12 +26,13 @@ kubectl apply -f online-boutique/kubernetes-manifests.yaml
 ```
 kubectl create namespace asm-ingress
 ```
-1. Enable auto-injection in the `asm-ingress` namespcae
+1. Enable auto-injection in the `asm-ingress` namespace
 ```
-kubectl lable namespace asm-ingress istio-injection=enabled istio.io/rev-
+kubectl label namespace asm-ingress istio-injection=enabled istio.io/rev-
 ```
 1. Deploy your Gateway
 ```
+kubectl apply -f shared/asm-ingress-gateway/ -n asm-ingress
 ```
 
 
