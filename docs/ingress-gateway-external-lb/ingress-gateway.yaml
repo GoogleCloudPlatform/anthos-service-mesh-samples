@@ -47,7 +47,7 @@ spec:
   selector:
     matchLabels:
       app: asm-ingressgateway
-      asm: ingressgateway
+      istio: ingressgateway
   template:
     metadata:
       annotations:
@@ -56,7 +56,7 @@ spec:
         inject.istio.io/templates: gateway
       labels:
         app: asm-ingressgateway
-        asm: ingressgateway
+        istio: ingressgateway
     spec:
       containers:
       - name: istio-proxy
@@ -76,7 +76,7 @@ metadata:
   name: asm-ingressgateway
   labels:
     app: asm-ingressgateway
-    asm: ingressgateway
+    istio: ingressgateway
 spec:
   ports:
   # status-port exposes a /healthz/ready endpoint that can be used with GKE Ingress health checks
@@ -90,7 +90,7 @@ spec:
     port: 443    
   selector:
     app: asm-ingressgateway
-    asm: ingressgateway
+    istio: ingressgateway
   type: NodePort
 ---
 apiVersion: policy/v1
@@ -102,7 +102,7 @@ spec:
   selector:
     matchLabels:
       app: asm-ingressgateway
-      asm: ingressgateway
+      istio: ingressgateway
 ---
 apiVersion: autoscaling/v2
 kind: HorizontalPodAutoscaler
