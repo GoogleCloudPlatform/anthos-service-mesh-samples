@@ -79,7 +79,7 @@ metadata:
     istio: ingressgateway
 spec:
   ports:
-  # status-port exposes a /healthz/ready endpoint that can be used with GKE Ingress health checks
+  # The status-port exposes a /healthz/ready endpoint that can be used for health checks.
   - name: status-port
     port: 15021
     protocol: TCP
@@ -91,7 +91,7 @@ spec:
   selector:
     app: asm-ingressgateway
     istio: ingressgateway
-  type: NodePort
+  type: NodePort # Using NodePort to expose the service on the nodes for the external load balancer.
 ---
 apiVersion: policy/v1
 kind: PodDisruptionBudget
