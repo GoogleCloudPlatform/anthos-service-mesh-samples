@@ -27,5 +27,5 @@ spec:
         principals: ["cluster.local/ns/onlineboutique/sa/frontend"]
   - from:
     - source:
-        principals: ["cluster.local/ns/onlinebotuique/sa/checkoutservice"]
+        principals: ["cluster.local/ns/onlineboutique/sa/checkoutservice"]
 # [END servicemesh_authorization_currency_allow_frontend_checkout_authorizationpolicy_currency_policy]
