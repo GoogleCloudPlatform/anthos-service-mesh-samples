@@ -10,6 +10,8 @@ The [online-boutique/kubernetes-manifests.yaml](base/all/kubernetes-manifests.ya
 ### Basic Quickstart 
 _Note: This quickstart is for Anthos Service Mesh. The steps outlined below are written for deploying the sample application with Anthos Service Mesh._
 
+1. Follow the steps in this [README.md](../quickstarts/terraform-asm-mcp/README.md) to deploy a GKE Autopilot cluster with Anthos Service Mesh.
+
 1. To deploy the sample application, first create the namespace `onlineboutique`. 
 ```
 kubectl create namespace onlineboutique
@@ -34,10 +36,11 @@ kubectl label namespace asm-ingress istio-injection=enabled istio.io/rev-
 ```
 kubectl apply -f shared/asm-ingress-gateway/ -n asm-ingress
 ```
-
-
-
-
+1. Obtain the `EXTERNAL-IP` of your gateway
+```
+kubectl get svc -n asm-ingress
+```
+1. Access Online Boutique using the `EXTERNAL-IP` from your web browser
 
 ## Contributing
 
