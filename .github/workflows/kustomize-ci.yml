@@ -18,18 +18,15 @@ jobs:
         ]
     steps:
       - uses: actions/checkout@v3
-      - name: kustomize build
+      - name: kustomize build and push to PR
         env:
           KUSTOMIZE_DIR: ${{ matrix.shared-starts }}
+        with: 
+          repo-token: ${{ secrets.GITHUB_TOKEN }}
         run: |
           cd $KUSTOMIZE_DIR
           FOLDER_NAME=$(KUSTOMIZE_DIR | awk -F/ '{print $NF}')
           kustomize build . > kubernetes-$FOLDER_NAME.yaml
-      - uses: actions/checkout@v3
-      - name: Push to PR
-        with: 
-          repo-token: ${{ secrets.GITHUB_TOKEN }}
-        run: |
           git add .
           git commit -m "CI kustomize file"
           git push
