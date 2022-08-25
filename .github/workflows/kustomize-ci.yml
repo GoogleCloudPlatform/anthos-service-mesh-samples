@@ -20,12 +20,14 @@ jobs:
       - uses: actions/checkout@v3
         with: 
           token: ${{ secrets.GITHUB_TOKEN }}
+          ref: ${{ github.ref_name }}
       - name: kustomize build and push to PR
         env:
           KUSTOMIZE_DIR: ${{ matrix.shared-starts }}
         run: |
           cd $KUSTOMIZE_DIR
           FOLDER_NAME=$($KUSTOMIZE_DIR | awk -F/ '{print $NF}')
+          echo $FOLDER_NAME
           kustomize build . > kubernetes-$FOLDER_NAME.yaml
           git config --global user.email "githubbot-kustomize@gmail.com"
           git config --global user.name "Github Actions" 
