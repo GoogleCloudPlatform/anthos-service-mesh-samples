@@ -11,18 +11,17 @@ jobs:
     runs-on: ubuntu-20.04
     strategy:
       matrix:
-        # list of directories in the repo that hosts Terraform samples
-        # update this list as new terraform samples are added to the repo
+        # directories with which we want to generate combined yaml manifest
         shared-starts: [
           'shared/online-boutique-asm-manifests/base',
-          'shared/online-boutique-asm-manifests/service-accounts',
+          'shared/online-boutique-asm-manifests/service-accounts'
         ]
     steps:
       - uses: actions/checkout@v3
       - name: kustomize build
         env:
-          KUSTZOMIZE_DIR: ${{ matrix.shared-starts }}
+          KUSTOMIZE_DIR: ${{ matrix.shared-starts }}
         run: |
-          cd $SAMPLE_DIR
-          FOLDER_NAME=$(SAMEPLE_DIR | awk -F/ '{print $NF}')
+          cd $KUSTOMIZE_DIR
+          FOLDER_NAME=$(KUSTOMIZE_DIR | awk -F/ '{print $NF}')
           kustomize build . > kubernetes-$FOLDER_NAME.yaml
