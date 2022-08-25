@@ -25,6 +25,7 @@ jobs:
           cd $KUSTOMIZE_DIR
           FOLDER_NAME=$(KUSTOMIZE_DIR | awk -F/ '{print $NF}')
           kustomize build . > kubernetes-$FOLDER_NAME.yaml
+      - uses: actions/checkout@v3
       - name: Push to PR
         with: 
           repo-token: ${{ secrets.GITHUB_TOKEN }}
