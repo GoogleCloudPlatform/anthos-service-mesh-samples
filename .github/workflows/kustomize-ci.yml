@@ -27,10 +27,10 @@ jobs:
           KUSTOMIZE_DIR: ${{ matrix.shared-starts }}
         run: |
           echo $GITHUB_WORKSPACE,$KUSTOMIZE_DIR
-          cd $KUSTOMIZE_DIR
-          FOLDER_NAME=$($KUSTOMIZE_DIR | awk -F/ '{print $NF}')
+          # cd $KUSTOMIZE_DIR
+          FOLDER_NAME=$(echo $KUSTOMIZE_DIR | awk -F/ '{print $NF}')
           echo $FOLDER_NAME
-          kustomize build . > kubernetes-$FOLDER_NAME.yaml
+          kustomize build $KUSTOMIZE_DIR > shared/kubernetes-$FOLDER_NAME.yaml
           git config --global user.email "githubbot-kustomize@gmail.com"
           git config --global user.name "Github Actions" 
           git add .
