@@ -27,7 +27,6 @@ jobs:
       - name: kustomize build and push to PR
         env:
           KUSTOMIZE_DIR: ${{ matrix.shared-starts }}
-        if: steps.check_diff.outputs
         run: |
           echo $GITHUB_WORKSPACE,$KUSTOMIZE_DIR
           FOLDER_NAME=$(echo $KUSTOMIZE_DIR | awk -F/ '{print $NF}')
