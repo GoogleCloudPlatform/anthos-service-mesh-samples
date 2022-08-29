@@ -24,9 +24,6 @@ jobs:
           token: ${{ secrets.GITHUB_TOKEN }}
           fetch-depth: 0
           ref: ${{ github.event.pull_request.head.ref }}
-      - name: Check if git diff
-        run: |
-        git diff
       - name: kustomize build and push to PR
         env:
           KUSTOMIZE_DIR: ${{ matrix.shared-starts }}
