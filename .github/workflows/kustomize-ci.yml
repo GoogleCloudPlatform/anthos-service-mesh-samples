@@ -27,7 +27,6 @@ jobs:
           KUSTOMIZE_DIR: ${{ matrix.shared-starts }}
         run: |
           echo $GITHUB_WORKSPACE,$KUSTOMIZE_DIR
-          # cd $KUSTOMIZE_DIR
           FOLDER_NAME=$(echo $KUSTOMIZE_DIR | awk -F/ '{print $NF}')
           echo $FOLDER_NAME
           kustomize build $KUSTOMIZE_DIR > shared/kubernetes-$FOLDER_NAME.yaml
