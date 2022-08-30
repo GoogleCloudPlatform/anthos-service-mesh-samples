@@ -22,7 +22,6 @@ jobs:
         with: 
           token: ${{ secrets.GITHUB_TOKEN }}
           fetch-depth: 0
-          ref: ${{ github.event.pull_request.head.ref }}
       - name: kustomize build and create to PR
         env:
           KUSTOMIZE_DIR: ${{ matrix.shared-starts }}
