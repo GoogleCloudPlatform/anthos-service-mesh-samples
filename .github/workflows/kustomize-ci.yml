@@ -8,8 +8,11 @@ on:
       - 'shared/online-boutique-asm-manifests/base/**'
       - 'shared/online-boutique-asm-manifests/service/accounts/**'
   pull_request:
+    types: 
+      - closed
 jobs:
-  job:
+  if_merged:
+    if: github.event.pull_request.merged == true
     runs-on: ubuntu-20.04
     strategy:
       matrix:
@@ -24,7 +27,7 @@ jobs:
           token: ${{ secrets.GITHUB_TOKEN }}
           fetch-depth: 0
           ref: ${{ github.event.pull_request.head.ref }}
-      - name: kustomize build and push to PR
+      - name: kustomize build and create to PR
         env:
           KUSTOMIZE_DIR: ${{ matrix.shared-starts }}
         run: |
@@ -35,7 +38,7 @@ jobs:
           git config --global user.email "yoshi-code-bot@google.com"
           git config --global user.name "Yoshi Code Bot" 
           git add .
-          if [git diff --quiet]; then
+          if [ git diff --quiet ]; then
             git commit -m "CI kustomize file"
             git push
           fi
