@@ -38,5 +38,5 @@ jobs:
 
           if [  $(git status --porcelain | wc -l) -eq "0"  ]; then
             git commit -m "CI kustomize file"
-            git push
+            git push -u origin run-ci 
           fi
