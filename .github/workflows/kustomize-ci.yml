@@ -36,9 +36,8 @@ jobs:
           git checkout -b run-ci
           
           git add .
-          echo "Changes found, creating PR"
           git commit -m "CI kustomize file"
-          git push -u origin run-ci 
+          git push -u -f origin run-ci 
           gh pr create --title "CI kustomize run" --body "`kustomize build`" --base main 
           if [  $(git status --porcelain | wc -l) -eq "0"  ]; then
             echo "Changes found, creating PR"
