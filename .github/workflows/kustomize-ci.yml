@@ -32,9 +32,9 @@ jobs:
           kustomize build $KUSTOMIZE_DIR > shared/kubernetes-$FOLDER_NAME.yaml
           git config --global user.email "yoshi-code-bot@google.com"
           git config --global user.name "Yoshi Code Bot" 
+          git checkout -b run-ci
+          
           git add .
-
-          gh pr create -B base_branch -H branch_to_merge --title 'Merge branch_to_merge into base_branch' --body 'Created by Github action for kustomize CI'
 
           if [  $(git status --porcelain | wc -l) -eq "0"  ]; then
             git commit -m "CI kustomize file"
