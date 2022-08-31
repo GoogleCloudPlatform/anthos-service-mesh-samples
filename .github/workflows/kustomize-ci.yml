@@ -25,6 +25,7 @@ jobs:
       - name: kustomize build and create to PR
         env:
           KUSTOMIZE_DIR: ${{ matrix.shared-starts }}
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           echo $GITHUB_WORKSPACE,$KUSTOMIZE_DIR
           FOLDER_NAME=$(echo $KUSTOMIZE_DIR | awk -F/ '{print $NF}')
