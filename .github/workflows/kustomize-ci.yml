@@ -22,6 +22,8 @@ jobs:
         with: 
           token: ${{ secrets.GITHUB_TOKEN }}
           fetch-depth: 0
+      
+      - uses: repo-sync/pull-request@v2
       - name: kustomize build and create to PR
         env:
           KUSTOMIZE_DIR: ${{ matrix.shared-starts }}
@@ -33,6 +35,9 @@ jobs:
           git config --global user.email "yoshi-code-bot@google.com"
           git config --global user.name "Yoshi Code Bot" 
           git add .
+
+          gh pr create -B base_branch -H branch_to_merge --title 'Merge branch_to_merge into base_branch' --body 'Created by Github action for kustomize CI'
+
           if [  $(git status --porcelain | wc -l) -eq "0"  ]; then
             git commit -m "CI kustomize file"
             git push
