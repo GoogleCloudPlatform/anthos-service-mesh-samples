@@ -38,11 +38,26 @@ jobs:
           git add .
           git commit -m "CI kustomize file"
           git push -u -f origin run-ci 
-          gh pr create --title "CI kustomize run" --body "`kustomize build`" --base main 
+
+          # gh pr create --title "CI kustomize run" --body "`kustomize build`" --base main 
           if [  $(git status --porcelain | wc -l) -eq "0"  ]; then
             echo "Changes found, creating PR"
             git commit -m "CI kustomize file"
             git push -u origin run-ci 
             gh pr create --title "CI kustomize run" --body "`kustomize build`" --base main 
           fi
-          echo "Complete ci"
+  push:
+    needs: if_merged
+    runs-on: ubuntu-20.04
+    steps:
+    - uses: actions/checkout@v3
+      with: 
+        token: ${{ secrets.GITHUB_TOKEN }}
+        fetch-depth: 0
+    - name: open PR
+      env:
+        KUSTOMIZE_DIR: ${{ matrix.shared-starts }}
+        GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      run: |
+        gh pr create --title "CI kustomize run" --body "`kustomize build`" --base main
+        echo "Complete ci"
