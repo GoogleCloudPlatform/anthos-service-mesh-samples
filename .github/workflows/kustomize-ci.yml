@@ -33,6 +33,7 @@ jobs:
           kustomize build $KUSTOMIZE_DIR > shared/kubernetes-$FOLDER_NAME.yaml
           git config --global user.email "yoshi-code-bot@google.com"
           git config --global user.name "Yoshi Code Bot" 
+          git branch -d run-ci
           git checkout -b run-ci
           
           git add .
