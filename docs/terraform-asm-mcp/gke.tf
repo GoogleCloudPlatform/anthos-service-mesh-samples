@@ -50,7 +50,7 @@ module "gke" {
 }
 module "enable_google_apis" {
   source     = "terraform-google-modules/project-factory/google//modules/project_services"
-  version    = "13.0.0"
+  version    = "13.1.0"
   project_id = var.project_id
   activate_apis = [
     "cloudapis.googleapis.com",
