@@ -20,12 +20,12 @@ on:
     paths:
       - 'docs/online-boutique-asm-manifests/**'
       - 'docs/ingress-gateway-asm-manifests/**'
-      - '.github/workflows/asm-acm-tutorial-ci.yml'
+      - '.github/workflows/asm-acm-tutorial-ci.yaml'
   pull_request:
     paths:
       - 'docs/online-boutique-asm-manifests/**'
       - 'docs/ingress-gateway-asm-manifests/**'
-      - '.github/workflows/asm-acm-tutorial-ci.yml'
+      - '.github/workflows/asm-acm-tutorial-ci.yaml'
 jobs:
   job:
     runs-on: ubuntu-22.04
