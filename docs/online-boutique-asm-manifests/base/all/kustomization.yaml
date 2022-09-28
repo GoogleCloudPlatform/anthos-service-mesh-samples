@@ -16,7 +16,7 @@
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 resources:
-- github.com/GoogleCloudPlatform/microservices-demo/kustomize/base
+- github.com/GoogleCloudPlatform/microservices-demo/kustomize/base?ref=main
 - virtualservice.yaml
 - namespace.yaml
 patchesStrategicMerge:
