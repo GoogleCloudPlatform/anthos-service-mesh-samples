@@ -1,10 +1,9 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: istio-egressgateway
+  name: asm-egressgateway
   labels:
-    app: istio-egressgateway
-    istio: egressgateway
+    asm: egressgateway
 spec:
   ports:
   # Any ports exposed in Gateway resources should be exposed here.
@@ -13,5 +12,4 @@ spec:
   - name: https
     port: 443
   selector:
-    istio: egressgateway
-    app: istio-egressgateway
+    asm: egressgateway

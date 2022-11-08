@@ -1,12 +1,11 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: istio-egressgateway
+  name: asm-egressgateway
 spec:
   selector:
     matchLabels:
-      app: istio-egressgateway
-      istio: egressgateway
+      app: egressgateway
   template:
     metadata:
       annotations:
@@ -14,8 +13,7 @@ spec:
         # required configuration.
         inject.istio.io/templates: gateway
       labels:
-        app: istio-egressgateway
-        istio: egressgateway
+        app: egressgateway
     spec:
       containers:
       - name: istio-proxy

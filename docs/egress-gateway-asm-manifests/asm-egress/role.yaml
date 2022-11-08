@@ -1,7 +1,7 @@
 apiVersion: rbac.authorization.k8s.io/v1
 kind: Role
 metadata:
-  name: istio-egressgateway
+  name: asm-egressgateway
 rules:
 - apiGroups: [""]
   resources: ["secrets"]
@@ -10,11 +10,11 @@ rules:
 apiVersion: rbac.authorization.k8s.io/v1
 kind: RoleBinding
 metadata:
-  name: istio-egressgateway
+  name: asm-egressgateway
 roleRef:
   apiGroup: rbac.authorization.k8s.io
   kind: Role
-  name: istio-egressgateway
+  name: asm-egressgateway
 subjects:
 - kind: ServiceAccount
-  name: istio-egressgateway
+  name: asm-egressgateway
