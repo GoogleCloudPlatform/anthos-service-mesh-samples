@@ -16,7 +16,7 @@ In your Cloud Shell, follow the steps outlined:
 
 ### 1. Enable the APIs listed above
 ```
-gcloud enable services mesh.googleapis.com
+gcloud services enable mesh.googleapis.com
 ```
 ### 2.  Clone this repo and cd to this directory
 ```
