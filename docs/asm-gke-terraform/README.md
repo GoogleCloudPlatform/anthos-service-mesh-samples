@@ -5,9 +5,7 @@ This is a general setup of a single cluster with Anthos Service Mesh using the n
 The following will set up a GKE cluster with Anthos Service Mesh (ASM) with a _Managed Control Plane_ installed. 
 
 The following services will be required for this: 
-* `container.googleapis.com`
-* `gkehub.googleapis.com`
-* `meshconfig.googlesapis.com`
+* `mesh.googleapis.com`
 
 ### Prerequisites
 * This tutorial is best suited for [Cloud Shell](https://shell.cloud.google.com), which comes ready with the Google Cloud SDK and Terraform.
@@ -18,7 +16,7 @@ In your Cloud Shell, follow the steps outlined:
 
 ### 1. Enable the APIs listed above
 ```
-gcloud enable services container.googleapis.com gkehub.googleapis.com meshconfig.googleapis.com
+gcloud enable services mesh.googleapis.com
 ```
 ### 2.  Clone this repo and cd to this directory
 ```
