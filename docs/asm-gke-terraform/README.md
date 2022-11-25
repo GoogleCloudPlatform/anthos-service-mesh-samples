@@ -52,13 +52,13 @@ Enter `yes` to confirm the Terraform apply step.
 ### 1.  Verify that your GKE Cluster membership to a `Fleet` was successful 
 A **[Fleet](https://cloud.google.com/anthos/multicluster-management/fleets)** is the term used to logically organized clusters and other resources, for easier management of multi-clusters projects. 
 ```
-gcloud container hub memberships list --project $PROJECT_ID
+gcloud container fleet memberships list --project $PROJECT_ID
 ```
 
 ### 2. Inspect your `controlplanerevision` Custom Resource 
 Run the command to check that the Anthos Service Mesh Control Plane has been succesfully enabled in your cluster
 ```
-gcloud container hub mesh describe
+gcloud container fleet mesh describe
 ```
 The output should be similar to the following. Note that the `description` is set to `Revision(s) ready for use: asm-managed`
 ```
