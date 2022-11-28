@@ -62,21 +62,35 @@ gcloud container fleet mesh describe
 ```
 The output should be similar to the following. Note that the `description` is set to `Revision(s) ready for use: asm-managed`
 ```
-createTime: '2022-05-03T14:50:35.332895806Z'
+createTime: '2022-11-28T14:40:57.866893805Z'
+membershipSpecs:
+  projects/932729642594/locations/global/memberships/my-membership:
+    mesh:
+      management: MANAGEMENT_AUTOMATIC
 membershipStates:
-  projects/33137280258/locations/global/memberships/membership-asm-cluster:
+  projects/932729642594/locations/global/memberships/my-membership:
     servicemesh:
       controlPlaneManagement:
-        state: DISABLED
+        details:
+        - code: REVISION_READY
+          details: 'Ready: asm-managed'
+        state: ACTIVE
+      dataPlaneManagement:
+        details:
+        - code: OK
+          details: Service is running.
+        state: ACTIVE
     state:
       code: OK
       description: 'Revision(s) ready for use: asm-managed.'
-      updateTime: '2022-05-03T15:21:29.315122643Z'
-name: projects/christineskim-tf-2/locations/global/features/servicemesh
+      updateTime: '2022-11-28T15:41:18.013711333Z'
+name: projects/christineskim-asm-tf-04/locations/global/features/servicemesh
 resourceState:
   state: ACTIVE
 spec: {}
-updateTime: '2022-05-03T15:21:35.952390991Z'
+state:
+  state: {}
+updateTime: '2022-11-28T15:41:23.056954826Z'
 ```
 ### 3. Retrieve your GKE Cluster credentials and review the control plane state: 
 ```
