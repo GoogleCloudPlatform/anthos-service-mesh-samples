@@ -1,6 +1,6 @@
 ## Managed Anthos Service Mesh on GKE with Terraform 
 
-This is a general setup of a single cluster with Anthos Service Mesh using the native [GKE Hub Terraform resource](https://registry.terraform.io/providers/hashicorp/google-beta/latest/docs/resources/gke_hub_feature) for the examples in the `docs` folder.
+This is a general setup of a single cluster with Anthos Service Mesh using the native [GKE Fleet Terraform resource](https://registry.terraform.io/providers/hashicorp/google-beta/latest/docs/resources/gke_hub_feature) for the examples in the `docs` folder.
 
 The following will set up a GKE cluster with Anthos Service Mesh (ASM) with a _Managed Control Plane_ installed. 
 
@@ -55,7 +55,7 @@ A **[Fleet](https://cloud.google.com/anthos/multicluster-management/fleets)** is
 gcloud container fleet memberships list --project $PROJECT_ID
 ```
 
-### 2. Inspect your `controlplanerevision` Custom Resource 
+### 2. Inspect your Fleet's Mesh status
 Run the command to check that the Anthos Service Mesh Control Plane has been succesfully enabled in your cluster
 ```
 gcloud container fleet mesh describe
