@@ -7,6 +7,9 @@ resource "google_container_cluster" "cluster" {
   workload_identity_config {
     workload_pool = "${data.google_project.project.project_id}.svc.id.goog"
   }
+    depends_on = [
+    google_project_service.project
+  ]
 }
 data "google_project" "project" {
   project_id = var.project_id
@@ -28,12 +31,9 @@ resource "google_gke_hub_feature" "feature" {
   provider = google-beta
 }
 
-resource "google_gke_hub_feature_membership" "feature_member" {
-  location   = "global"
-  feature    = google_gke_hub_feature.feature.name
-  membership = google_gke_hub_membership.membership.membership_id
-  mesh {
-    management = "MANAGEMENT_AUTOMATIC"
-  }
-  provider = google-beta
+resource "google_project_service" "project" {
+  project                  = var.project_id
+  service = "mesh.googleapis.com"
+
+  disable_dependent_services = true
 }

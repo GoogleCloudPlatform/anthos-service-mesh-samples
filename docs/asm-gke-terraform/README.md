@@ -14,16 +14,12 @@ The following services will be required for this:
 ## Quickstart with Terraform
 In your Cloud Shell, follow the steps outlined:
 
-### 1. Enable the APIs listed above
-```
-gcloud services enable mesh.googleapis.com
-```
-### 2.  Clone this repo and cd to this directory
+### 1.  Clone this repo and cd to this directory
 ```
 git clone https://github.com/GoogleCloudPlatform/anthos-service-mesh-samples
 cd anthos-service-mesh-samples/docs/asm-gke-terraform
 ```
-### 3. Set your Google Cloud Platform `PROJECT_ID`
+### 2. Set your Google Cloud Platform `PROJECT_ID`
 
 Set the `PROJECT_ID` environment variable:
 
@@ -32,13 +28,13 @@ To enable the above services, run the following in your terminal
 export PROJECT_ID="<YOUR_PROJECT_ID>"
 gcloud config set project $PROJECT_ID
 ```
-### 4.  Create a `variables.tfvars` to set your project ID for Terraform
+### 3.  Create a `variables.tfvars` to set your project ID for Terraform
 Run the following command to create a `variables.tfvars` file
 ```
 echo "project_id = \"$PROJECT_ID\"" > terraform.tfvars
 ```
 
-### 5.  Deploy the Terrform module to set up your ASM on the GKE Cluster
+### 4.  Deploy the Terrform module to set up your ASM on the GKE Cluster
 ```
 terraform init
 terraform plan 
