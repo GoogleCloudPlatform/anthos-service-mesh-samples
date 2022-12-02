@@ -92,19 +92,6 @@ state:
   state: {}
 updateTime: '2022-11-28T15:41:23.056954826Z'
 ```
-### 3. Retrieve your GKE Cluster credentials and review the control plane state: 
-```
-gcloud container clusters get-credentials "asm-cluster" --region "us-central1" --project $PROJECT_ID
-```
-Look at the status of your `controlplanerevision` CRD with the following command: 
-```
-kubectl get controlplanerevisions -n istio-system
-```
-The output should be similar to: 
-```
-NAME          RECONCILED   STALLED   AGE
-asm-managed   True         False     29m
-```
 ### Congrats! You can now have a GKE + ASM cluster provisioned. 
 Look at the other tutorials in this repo to further try out Anthos Service Mesh's capabilities!
 

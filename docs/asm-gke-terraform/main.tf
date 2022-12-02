@@ -1,6 +1,6 @@
 resource "google_container_cluster" "cluster" {
   name                    = "my-cluster"
-  location                = "us-central1-a"
+  location                = var.zone
   initial_node_count      = 1
   provider                = google-beta
   resource_labels = { mesh_id : "proj-${data.google_project.project.number}" }
