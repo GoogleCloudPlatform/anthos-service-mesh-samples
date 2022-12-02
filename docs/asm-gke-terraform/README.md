@@ -51,7 +51,7 @@ A **[Fleet](https://cloud.google.com/anthos/multicluster-management/fleets)** is
 gcloud container fleet memberships list --project $PROJECT_ID
 ```
 
-### 2. Inspect your Fleet's Mesh status
+### 2. Verify the control plane has been provisioned
 Run the command to check that the Anthos Service Mesh Control Plane has been succesfully enabled in your cluster
 ```
 gcloud container fleet mesh describe
