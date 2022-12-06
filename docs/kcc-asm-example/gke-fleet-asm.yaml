@@ -1,0 +1,9 @@
+apiVersion: gkehub.cnrm.cloud.google.com/v1beta1
+kind: GKEHubFeature
+metadata:
+  name: servicemesh
+spec:
+  projectRef:
+    external: PROJECT_ID
+  location: global
+  resourceID: servicemesh

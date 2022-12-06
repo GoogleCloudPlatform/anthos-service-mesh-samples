@@ -1,0 +1,14 @@
+apiVersion: gkehub.cnrm.cloud.google.com/v1beta1
+kind: GKEHubFeatureMembership
+metadata:
+  name: servicemesh-membership
+spec:
+  projectRef:
+    external: PROJECT_ID
+  location: global
+  membershipRef:
+    name: asm-acm-tutorial
+  featureRef:
+    name: servicemesh
+  mesh:
+    management: MANAGEMENT_AUTOMATIC
