@@ -4,10 +4,10 @@ metadata:
   name: servicemesh-membership
 spec:
   projectRef:
-    external: PROJECT_ID
+    external: christineskim-asm-tf-10
   location: global
   membershipRef:
-    name: asm-acm-tutorial
+    name: christineskim-asm-tf-10
   featureRef:
     name: servicemesh
   mesh:

@@ -1,12 +1,12 @@
 apiVersion: gkehub.cnrm.cloud.google.com/v1beta1
 kind: GKEHubMembership
 metadata:
-  name: my-cool-cluster
+  name: christineskim-asm-tf-10
 spec:
   location: global
   authority:
-    issuer: https://container.googleapis.com/v1/projects/PROJECT_ID/locations/us-east4-a/clusters/asm-acm-tutorial
+    issuer: https://container.googleapis.com/v1/projects/christineskim-asm-tf-10/locations/us-east4-a/clusters/asm-acm-tutorial
   endpoint:
     gkeCluster:
       resourceRef:
-        name: my-cool-cluster
+        name: asm-acm-tutorial

@@ -1,10 +1,10 @@
 apiVersion: container.cnrm.cloud.google.com/v1beta1
 kind: ContainerNodePool
 metadata:
-  name: my-cool-cluster
+  name: asm-acm-tutorial
 spec:
   clusterRef:
-    name: my-cool-cluster
+    name: asm-acm-tutorial
   location: us-east4-a
   nodeConfig:
     machineType: e2-standard-4
@@ -14,12 +14,13 @@ apiVersion: container.cnrm.cloud.google.com/v1beta1
 kind: ContainerCluster
 metadata:
   annotations:
+    cnrm.cloud.google.com/project-id: christineskim-asm-tf-10
     cnrm.cloud.google.com/remove-default-node-pool: "true"
   labels:
-    mesh_id: proj-[PROJECT_NUMBER]
-  name: my-cool-cluster
+    mesh_id: proj-41827501
+  name: asm-acm-tutorial
 spec:
   location: us-east4-a
   initialNodeCount: 1
   workloadIdentityConfig:
-    workloadPool: my-awesome-project.svc.id.goog
+    workloadPool: christineskim-asm-tf-10.svc.id.goog

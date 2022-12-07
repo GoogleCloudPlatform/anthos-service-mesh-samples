@@ -4,6 +4,6 @@ metadata:
   name: servicemesh
 spec:
   projectRef:
-    external: PROJECT_ID
+    external: christineskim-asm-tf-10
   location: global
   resourceID: servicemesh
