@@ -34,6 +34,16 @@ resource "google_gke_hub_feature" "feature" {
   ]
 }
 
+resource "google_gke_hub_feature_membership" "feature_member" {
+  location = "global"
+  feature = google_gke_hub_feature.feature.name
+  membership = google_gke_hub_membership.membership.membership_id
+  mesh {
+    management = "MANAGEMENT_AUTOMATIC"
+  }
+  provider = google-beta
+}
+
 resource "google_project_service" "project" {
   project = var.project_id
   service = "mesh.googleapis.com"
