@@ -1,0 +1,23 @@
+apiVersion: serviceusage.cnrm.cloud.google.com/v1beta1
+kind: Service
+metadata:
+  annotations:
+    cnrm.cloud.google.com/deletion-policy: "abandon"
+    cnrm.cloud.google.com/disable-dependent-services: "false"
+  name: mesh.googleapis.com
+spec:
+  resourceID: mesh.googleapis.com
+  projectRef:
+    external: christineskim-asm-tf-10
+---
+apiVersion: serviceusage.cnrm.cloud.google.com/v1beta1
+kind: Service
+metadata:
+  annotations:
+    cnrm.cloud.google.com/deletion-policy: "abandon"
+    cnrm.cloud.google.com/disable-dependent-services: "false"
+  name: anthos.googleapis.com
+spec:
+  resourceID: anthos.googleapis.com
+  projectRef:
+    external: christineskim-asm-tf-10
