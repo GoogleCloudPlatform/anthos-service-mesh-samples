@@ -7,9 +7,22 @@ resource "google_container_cluster" "cluster" {
   workload_identity_config {
     workload_pool = "${data.google_project.project.project_id}.svc.id.goog"
   }
+
   depends_on = [
     google_project_service.project
   ]
+}
+
+resource "google_container_node_pool" "my_cluster_nodes" {
+  project    = var.project_id
+  name       = "my-node-pool"
+  location   = var.zone
+  cluster    = google_container_cluster.cluster.name
+  node_count = 1
+
+  node_config {
+    machine_type = "e2-standard-4"
+  }
 }
 data "google_project" "project" {
   project_id = var.project_id
@@ -35,8 +48,8 @@ resource "google_gke_hub_feature" "feature" {
 }
 
 resource "google_gke_hub_feature_membership" "feature_member" {
-  location = "global"
-  feature = google_gke_hub_feature.feature.name
+  location   = "global"
+  feature    = google_gke_hub_feature.feature.name
   membership = google_gke_hub_membership.membership.membership_id
   mesh {
     management = "MANAGEMENT_AUTOMATIC"
