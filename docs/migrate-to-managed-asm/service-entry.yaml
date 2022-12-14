@@ -13,8 +13,8 @@
 # limitations under the License.
 
 # [START servicemesh_migrate_to_managed_asm_service_entry_serviceentry_external_service_http]
-# With this ServiceEntry, we're instructing the mesh to
-# direct HTTP requests (from the mesh) for v2.example.com to the specified IP address.
+# This ServiceEntry instructs the mesh to
+# direct HTTP requests from the mesh that target v2.example.com to the specified IP address.
 apiVersion: networking.istio.io/v1alpha3
 kind: ServiceEntry
 metadata:
