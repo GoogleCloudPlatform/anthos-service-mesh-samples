@@ -12,7 +12,14 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-# [START servicemesh_base_deployment_deployment_asm_ingressgateway]
+# [START servicemesh_base_deployment_service_serviceaccount_asm_ingressgateway]
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: asm-ingressgateway
+# [END servicemesh_base_deployment_service_serviceaccount_asm_ingressgateway]
+---
+# [START servicemesh_base_deployment_service_deployment_asm_ingressgateway]
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -57,4 +64,42 @@ spec:
         runAsNonRoot: true
         runAsUser: 1337
       serviceAccountName: asm-ingressgateway
-# [END servicemesh_base_deployment_deployment_asm_ingressgateway]
+# [END servicemesh_base_deployment_service_deployment_asm_ingressgateway]
+---
+# [START servicemesh_base_deployment_service_service_asm_ingressgateway]
+apiVersion: v1
+kind: Service
+metadata:
+  name: asm-ingressgateway
+  labels:
+    asm: ingressgateway
+spec:
+  ports:
+  - name: http
+    port: 80
+    targetPort: 8080
+  selector:
+    asm: ingressgateway
+  type: LoadBalancer
+# [END servicemesh_base_deployment_service_service_asm_ingressgateway]
+---
+# [START servicemesh_base_deployment_service_hpa_asm_ingressgateway]
+apiVersion: autoscaling/v2
+kind: HorizontalPodAutoscaler
+metadata:
+  name: asm-ingressgateway
+spec:
+  maxReplicas: 5
+  minReplicas: 3
+  metrics:
+  - type: Resource
+    resource:
+      name: cpu
+      target:
+        type: Utilization
+        averageUtilization: 50
+  scaleTargetRef:
+    apiVersion: apps/v1
+    kind: Deployment
+    name: asm-ingressgateway
+# [END servicemesh_base_deployment_service_hpa_asm_ingressgateway]
