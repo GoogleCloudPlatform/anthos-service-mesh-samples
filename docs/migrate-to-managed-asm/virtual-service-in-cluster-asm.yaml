@@ -12,7 +12,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-# [START servicemesh_migrate_to_managed_asm_virtual_service_virtualservice_frontend_ingress]
+# [START servicemesh_migrate_to_managed_asm_virtual_service_in_cluster_asm_virtualservice_frontend_ingress]
 # This VirtualService splits HTTP traffic coming into the cluster you're migrating away from.
 # This VirtualService ensures that the traffic will be shared between both clusters.
 apiVersion: networking.istio.io/v1alpha3
@@ -36,4 +36,4 @@ spec:
           number: 80
         host: v2.example.com # The temporary domain name of the frontend inside the cluster with managed ASM.
       weight: 50
-# [END servicemesh_migrate_to_managed_asm_virtual_service_virtualservice_frontend_ingress]
+# [END servicemesh_migrate_to_managed_asm_virtual_service_in_cluster_asm_virtualservice_frontend_ingress]
