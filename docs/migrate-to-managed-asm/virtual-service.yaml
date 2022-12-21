@@ -34,6 +34,6 @@ spec:
     - destination:
         port:
           number: 80
-        host: v2.example.com # The temporary domain name of the frontend inside the cluster.
+        host: v2.example.com # The temporary domain name of the frontend inside the cluster with managed ASM.
       weight: 50
 # [END servicemesh_migrate_to_managed_asm_virtual_service_virtualservice_frontend_ingress]
