@@ -1,0 +1,39 @@
+# Copyright 2022 Google LLC
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#      http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+# [START servicemesh_migrate_to_managed_asm_virtual_service_in_cluster_asm_virtualservice_frontend_ingress]
+# This VirtualService splits HTTP traffic coming into the cluster you're migrating away from.
+# This VirtualService ensures that the traffic will be shared between both clusters.
+apiVersion: networking.istio.io/v1alpha3
+kind: VirtualService
+metadata:
+  name: frontend
+spec:
+  gateways:
+  - asm-ingress/asm-ingressgateway
+  hosts:
+  - '*' # In production, be more specific.
+  http:
+  - route:
+    - destination:
+        port:
+          number: 80
+        host: frontend # The name of the Service inside the cluster you're migrating away from.
+      weight: 50
+    - destination:
+        port:
+          number: 80
+        host: v2.example.com # The temporary domain name of the frontend inside the cluster with managed ASM.
+      weight: 50
+# [END servicemesh_migrate_to_managed_asm_virtual_service_in_cluster_asm_virtualservice_frontend_ingress]

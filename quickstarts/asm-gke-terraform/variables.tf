@@ -13,18 +13,18 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-#Terraform providers to use
-terraform {
-  required_providers {
-    google-beta = {
-      source  = "hashicorp/google-beta"
-      version = "4.46.0"
-    }
-  }
+
+variable "project_id" {
+  description = "The project ID to host the cluster in"
 }
 
-provider "google-beta" {
-  project = var.project_id
-  region  = var.region
-  zone    = var.zone
+variable "region" {
+  description = "The region to host the cluster in"
+  default     = "us-central1"
+}
+
+variable "zone" {
+  type        = string
+  default     = "us-central1-a"
+  description = "The zone to host the cluster in (required if is a zonal cluster)"
 }
