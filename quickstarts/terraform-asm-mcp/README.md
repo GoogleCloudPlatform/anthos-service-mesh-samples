@@ -3,7 +3,6 @@
 
 ---
 **NOTE**
-
 It is recommended to use the [`asm-gke-terraform`](../asm-gke-terraform/) set up instead.
 ---
 

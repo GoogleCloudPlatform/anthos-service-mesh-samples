@@ -33,9 +33,9 @@ jobs:
       - uses: actions/checkout@v3
       - name: kustomize build onlineboutique
         run: |
-          cd docs/online-boutique-asm-manifests/
+          cd shared/online-boutique-asm-manifests/
           kubectl kustomize .
       - name: kustomize build ingressgateway
         run: |
-          cd docs/ingress-gateway-asm-manifests/
+          cd shared/ingress-gateway-asm-manifests/
           kubectl kustomize .
