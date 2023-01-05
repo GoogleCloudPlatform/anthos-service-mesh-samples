@@ -1,5 +1,12 @@
 ## Managed Anthos Service Mesh on GKE with Terraform 
 
+
+---
+**NOTE**
+
+It is recommended to use the [`asm-gke-terraform`](../asm-gke-terraform/) set up instead.
+---
+
 This is a general setup using Terraform for the examples in the `docs` folder. 
 
 The following will set up a GKE cluster with Anthos Service Mesh (ASM) with a _Managed Control Plane_ installed. 
