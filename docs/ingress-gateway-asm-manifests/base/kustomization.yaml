@@ -19,4 +19,5 @@ resources:
 - deployment-service.yaml
 - gateway.yaml
 - namespace.yaml
+- pdb-v1.yaml
 # [END servicemesh_ingress_gateway_asm_manifests_base_kustomization_kustomization]
