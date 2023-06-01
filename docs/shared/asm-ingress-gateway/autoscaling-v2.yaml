@@ -1,7 +1,6 @@
 # Optional: HorizontalPodAutoscaler will automatically scale the gateway replica count based on
 # CPU utilization
-# Used on <1.23 K8S versions
-apiVersion: autoscaling/v2beta1
+apiVersion: autoscaling/v2
 kind: HorizontalPodAutoscaler
 metadata:
   name: istio-ingressgateway
