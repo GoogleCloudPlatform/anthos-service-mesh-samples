@@ -29,7 +29,7 @@ resource "google_gke_hub_membership" "membership" {
 
 module "asm" {
   source              = "terraform-google-modules/kubernetes-engine/google//modules/asm"
-  version             = "~> 26.0"
+  version             = "~> 27.0"
   project_id          = module.enable_google_apis.project_id
   cluster_name        = module.gke.name
   cluster_location    = var.region
