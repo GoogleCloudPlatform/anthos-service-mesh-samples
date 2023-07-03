@@ -7,7 +7,7 @@ terraform {
     
     google-beta = {
       source  = "hashicorp/google-beta"
-      version = "4.70.0"
+      version = "4.72.0"
     }
   }
 }
