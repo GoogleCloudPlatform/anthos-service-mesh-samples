@@ -6,7 +6,7 @@ data "google_project" "project_id" {
 # Enable APIS
 module "enable_google_apis" {
   source                      = "terraform-google-modules/project-factory/google//modules/project_services"
-  version                     = "14.2.0"
+  version                     = "14.2.1"
   project_id                  = var.gcp_project_id
   activate_apis               = var.apis
   disable_services_on_destroy = false
