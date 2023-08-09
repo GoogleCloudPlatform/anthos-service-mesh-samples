@@ -10,7 +10,7 @@ on:
   pull_request:
 jobs:
   job:
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-22.04
     strategy:
       matrix:
         # list of directories in the repo that hosts Terraform samples
