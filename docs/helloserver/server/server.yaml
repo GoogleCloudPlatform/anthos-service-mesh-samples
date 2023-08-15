@@ -13,7 +13,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-# [START istio_helloserver_server_deployment_helloserver]
+# [START servicemesh_helloserver_server_deployment_helloserver]
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -34,9 +34,9 @@ spec:
         name: main
       restartPolicy: Always
       terminationGracePeriodSeconds: 5
-# [END istio_helloserver_server_deployment_helloserver]
+# [END servicemesh_helloserver_server_deployment_helloserver]
 ---
-# [START istio_helloserver_server_service_hellosvc]
+# [START servicemesh_helloserver_server_service_hellosvc]
 apiVersion: v1
 kind: Service
 metadata:
@@ -49,5 +49,5 @@ spec:
   selector:
     app: helloserver
   type: LoadBalancer
-# [END istio_helloserver_server_service_hellosvc]
+# [END servicemesh_helloserver_server_service_hellosvc]
 ---

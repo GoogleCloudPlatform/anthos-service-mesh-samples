@@ -13,7 +13,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-# [START istio_helloserver_loadgen_deployment_loadgenerator]
+# [START servicemesh_helloserver_loadgen_deployment_loadgenerator]
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -46,9 +46,9 @@ spec:
             memory: 256Mi
       restartPolicy: Always
       terminationGracePeriodSeconds: 5
-# [END istio_helloserver_loadgen_deployment_loadgenerator]
+# [END servicemesh_helloserver_loadgen_deployment_loadgenerator]
 ---
-# [START istio_helloserver_loadgen_service_loadgensvc]
+# [START servicemesh_helloserver_loadgen_service_loadgensvc]
 apiVersion: v1
 kind: Service
 metadata:
@@ -61,5 +61,5 @@ spec:
   selector:
     app: loadgenerator
   type: ClusterIP
-# [END istio_helloserver_loadgen_service_loadgensvc]
+# [END servicemesh_helloserver_loadgen_service_loadgensvc]
 ---
