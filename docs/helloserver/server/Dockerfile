@@ -16,7 +16,7 @@ RUN apt-get -qq update \
 WORKDIR /helloserver
 
 # Grab packages from builder
-COPY --from=builder /usr/local/lib/python3.9/ /usr/local/lib/python3.9/
+COPY --from=builder /usr/local/lib/python3.* /usr/local/lib/
 
 # Add the application
 COPY . .
