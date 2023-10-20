@@ -29,7 +29,7 @@ data "google_project" "project" {
 
 module "gke" {
   source                  = "terraform-google-modules/kubernetes-engine/google//modules/beta-private-cluster"
-  version                 = "~> 27.0"
+  version                 = "~> 28.0"
   project_id              = var.project_id
   name                    = "asm-cluster"
   release_channel         = var.gke_channel
