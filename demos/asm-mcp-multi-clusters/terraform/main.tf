@@ -35,11 +35,12 @@ resource "google_storage_bucket" "lab_materials" {
 
 # GKE Clusters
 resource "google_container_cluster" "cluster1" {
-  name               = var.cluster1
-  location           = var.cluster1_location
-  initial_node_count = var.cluster_node_count
-  resource_labels    = { "mesh_id" : "proj-${data.google_project.project_id.number}" }
-  networking_mode    = "VPC_NATIVE"
+  name                = var.cluster1
+  location            = var.cluster1_location
+  initial_node_count  = var.cluster_node_count
+  resource_labels     = { "mesh_id" : "proj-${data.google_project.project_id.number}" }
+  networking_mode     = "VPC_NATIVE"
+  deletion_protection = false # Warning: Do not set deletion_protection to false for production clusters
 
   ip_allocation_policy {
     cluster_ipv4_cidr_block  = "" // use default values

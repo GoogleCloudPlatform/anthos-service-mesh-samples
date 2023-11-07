@@ -41,6 +41,7 @@ module "gke" {
   enable_private_nodes    = false
   master_ipv4_cidr_block  = "172.16.0.0/28"
   cluster_resource_labels = { "mesh_id" : "proj-${data.google_project.project.number}" }
+  deletion_protection     = false # Warning: Do not set deletion_protection to false for production clusters
   depends_on = [
     module.enable_google_apis
   ]
