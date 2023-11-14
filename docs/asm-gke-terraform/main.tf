@@ -16,7 +16,6 @@ resource "google_container_cluster" "cluster" {
   name                = "asm-cluster"
   location            = var.zone
   initial_node_count  = 1
-  provider            = google-beta
   resource_labels     = { mesh_id : "proj-${data.google_project.project.number}" }
   deletion_protection = false # Warning: Do not set deletion_protection to false for production clusters
   workload_identity_config {
@@ -29,9 +28,9 @@ resource "google_container_cluster" "cluster" {
     google_project_service.project
   ]
 }
-data "google_project" "project" {
-  project_id = var.project_id
-}
+
+data "google_project" "project" {}
+
 resource "google_gke_hub_membership" "membership" {
   membership_id = "my-membership"
   endpoint {
@@ -39,14 +38,12 @@ resource "google_gke_hub_membership" "membership" {
       resource_link = "//container.googleapis.com/${google_container_cluster.cluster.id}"
     }
   }
-  provider = google-beta
 }
 
 resource "google_gke_hub_feature" "feature" {
   name     = "servicemesh"
   location = "global"
 
-  provider = google-beta
   depends_on = [
     google_project_service.project
   ]
@@ -59,11 +56,9 @@ resource "google_gke_hub_feature_membership" "feature_member" {
   mesh {
     management = "MANAGEMENT_AUTOMATIC"
   }
-  provider = google-beta
 }
 
 resource "google_project_service" "project" {
-  project = var.project_id
   service = "mesh.googleapis.com"
 
   disable_dependent_services = true
