@@ -1,4 +1,4 @@
-# Copyright 2022 Google LLC
+# Copyright 2023 Google LLC
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -11,6 +11,8 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
+
+# [START asm_gke_create_cluster]
 
 resource "google_container_cluster" "cluster" {
   name                = "asm-cluster"
@@ -30,6 +32,10 @@ resource "google_container_cluster" "cluster" {
 }
 
 data "google_project" "project" {}
+
+# [END asm_gke_create_cluster]
+
+# [START asm_gke_configure_asm_fleet]
 
 resource "google_gke_hub_membership" "membership" {
   membership_id = "my-membership"
@@ -63,3 +69,5 @@ resource "google_project_service" "project" {
 
   disable_dependent_services = true
 }
+
+# [END asm_gke_configure_asm_fleet]
