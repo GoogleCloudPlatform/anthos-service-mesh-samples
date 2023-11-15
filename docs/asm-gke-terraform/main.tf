@@ -12,6 +12,8 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+# [START servicemesh_tf_create_gke_cluster]
+
 resource "google_container_cluster" "cluster" {
   name                = "asm-cluster"
   location            = var.zone
@@ -30,6 +32,10 @@ resource "google_container_cluster" "cluster" {
 }
 
 data "google_project" "project" {}
+
+# [END servicemesh_tf_create_gke_cluster]
+
+# [START servicemesh_tf_configure_fleet]
 
 resource "google_gke_hub_membership" "membership" {
   membership_id = "my-membership"
@@ -63,3 +69,5 @@ resource "google_project_service" "project" {
 
   disable_dependent_services = true
 }
+
+# [END servicemesh_tf_configure_fleet]
