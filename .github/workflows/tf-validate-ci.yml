@@ -20,7 +20,6 @@ on:
     paths:
       - '.github/workflows/tf-validate-ci.yml'
       - 'demos/asm-mcp-multi-clusters/terraform/**'
-      - 'docs/terraform-asm-mcp/**'
   pull_request:
 jobs:
   job:
@@ -31,7 +30,6 @@ jobs:
         # update this list as new terraform samples are added to the repo
         tf-sample: [
           'demos/asm-mcp-multi-clusters/terraform',
-          'docs/terraform-asm-mcp'
         ]
     steps:
       - uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11 # v4
