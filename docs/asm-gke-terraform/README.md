@@ -1,10 +1,10 @@
-## Managed Anthos Service Mesh on GKE with Terraform 
+## Managed Anthos Service Mesh on GKE with Terraform
 
-This is a general setup of a single cluster with Anthos Service Mesh using the native [GKE Fleet Terraform resource](https://registry.terraform.io/providers/hashicorp/google-beta/latest/docs/resources/gke_hub_feature) for the examples in the `docs` folder.
+This is a general setup of a single cluster with Anthos Service Mesh using the native [GKE Fleet Terraform resource](https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/gke_hub_feature) for the examples in the `docs` folder.
 
-The following will set up a GKE cluster with Anthos Service Mesh (ASM) with a _Managed Control Plane_ installed. 
+The following will set up a GKE cluster with Anthos Service Mesh (ASM) with a _Managed Control Plane_ installed.
 
-The following services will be required for this: 
+The following services will be required for this:
 * `mesh.googleapis.com`
 
 ### Prerequisites
@@ -14,39 +14,40 @@ The following services will be required for this:
 ## Quickstart with Terraform
 In your Cloud Shell, follow the steps outlined:
 
-### 1.  Clone this repo and cd to this directory
+### 1. Clone this repo and cd to this directory
 ```
 git clone https://github.com/GoogleCloudPlatform/anthos-service-mesh-samples
 cd anthos-service-mesh-samples/docs/asm-gke-terraform
 ```
-### 2. Set your Google Cloud Platform `PROJECT_ID`
+### 2. Configure the project to use
 
-Set the `PROJECT_ID` environment variable:
+Terraform will use the `GOOGLE_CLOUD_PROJECT` environment variable to set the default project to manage resources in.
+```
+gcloud config set project <YOUR_PROJECT_ID>
+GOOGLE_CLOUD_PROJECT="$(gcloud config get-value project)"
+export GOOGLE_CLOUD_PROJECT
+```
 
-To enable the above services, run the following in your terminal
+### 3. Enable the Cloud Resource Manager API
+
 ```
-export PROJECT_ID="<YOUR_PROJECT_ID>"
-gcloud config set project $PROJECT_ID
+gcloud services enable cloudresourcemanager.googleapis.com
 ```
-### 3.  Create a `variables.tfvars` to set your project ID for Terraform
-Run the following command to create a `variables.tfvars` file
-```
-echo "project_id = \"$PROJECT_ID\"" > terraform.tfvars
-```
+The google_project Terraform datasource uses this API to read project metadata.
 
 ### 4.  Deploy the Terrform module to set up your ASM on the GKE Cluster
 ```
 terraform init
-terraform plan 
-terraform apply 
+terraform plan
+terraform apply
 ```
 Enter `yes` to confirm the Terraform apply step.
 
 `terraform apply` will take a few minutes to provision on GCP
 
 ## Verify Anthos Service Mesh Installation
-### 1.  Verify that your GKE Cluster membership to a `Fleet` was successful 
-A **[Fleet](https://cloud.google.com/anthos/multicluster-management/fleets)** is the term used to logically organized clusters and other resources, for easier management of multi-clusters projects. 
+### 1.  Verify that your GKE Cluster membership to a `Fleet` was successful
+A **[Fleet](https://cloud.google.com/anthos/multicluster-management/fleets)** is the term used to logically organized clusters and other resources, for easier management of multi-clusters projects.
 ```
 gcloud container fleet memberships list --project $PROJECT_ID
 ```
