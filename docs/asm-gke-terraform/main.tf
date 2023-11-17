@@ -16,19 +16,11 @@
 
 resource "google_container_cluster" "cluster" {
   name                = "asm-cluster"
-  location            = var.zone
-  initial_node_count  = 1
+  location            = var.region
   resource_labels     = { mesh_id : "proj-${data.google_project.project.number}" }
   deletion_protection = false # Warning: Do not set deletion_protection to false for production clusters
-  workload_identity_config {
-    workload_pool = "${data.google_project.project.project_id}.svc.id.goog"
-  }
-  node_config {
-    machine_type = "e2-standard-4"
-  }
-  depends_on = [
-    google_project_service.project
-  ]
+
+  enable_autopilot = true
 }
 
 data "google_project" "project" {}
@@ -37,8 +29,14 @@ data "google_project" "project" {}
 
 # [START servicemesh_tf_configure_fleet]
 
+resource "google_project_service" "mesh_api" {
+  service = "mesh.googleapis.com"
+
+  disable_dependent_services = true
+}
+
 resource "google_gke_hub_membership" "membership" {
-  membership_id = "my-membership"
+  membership_id = google_container_cluster.cluster.name
   endpoint {
     gke_cluster {
       resource_link = "//container.googleapis.com/${google_container_cluster.cluster.id}"
@@ -51,7 +49,7 @@ resource "google_gke_hub_feature" "feature" {
   location = "global"
 
   depends_on = [
-    google_project_service.project
+    google_project_service.mesh_api
   ]
 }
 
@@ -62,12 +60,6 @@ resource "google_gke_hub_feature_membership" "feature_member" {
   mesh {
     management = "MANAGEMENT_AUTOMATIC"
   }
-}
-
-resource "google_project_service" "project" {
-  service = "mesh.googleapis.com"
-
-  disable_dependent_services = true
 }
 
 # [END servicemesh_tf_configure_fleet]
