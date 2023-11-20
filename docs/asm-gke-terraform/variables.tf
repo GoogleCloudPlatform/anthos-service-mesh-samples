@@ -12,8 +12,8 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-variable "zone" {
+variable "region" {
   type        = string
-  default     = "us-central1-a"
-  description = "The zone to host the cluster in (required if is a zonal cluster)"
+  default     = "us-central1"
+  description = "The region to host the cluster in (Autopilot clusters are always regional)"
 }
