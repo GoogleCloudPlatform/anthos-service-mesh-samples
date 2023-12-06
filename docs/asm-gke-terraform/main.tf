@@ -13,7 +13,6 @@
 # limitations under the License.
 
 # [START servicemesh_tf_create_gke_cluster]
-
 resource "google_container_cluster" "cluster" {
   name                = "asm-cluster"
   location            = var.region
@@ -21,6 +20,9 @@ resource "google_container_cluster" "cluster" {
   deletion_protection = false # Warning: Do not set deletion_protection to false for production clusters
 
   enable_autopilot = true
+  fleet {
+    project = data.google_project.project.name
+  }
 }
 
 data "google_project" "project" {}
@@ -28,20 +30,10 @@ data "google_project" "project" {}
 # [END servicemesh_tf_create_gke_cluster]
 
 # [START servicemesh_tf_configure_fleet]
-
 resource "google_project_service" "mesh_api" {
   service = "mesh.googleapis.com"
 
   disable_dependent_services = true
-}
-
-resource "google_gke_hub_membership" "membership" {
-  membership_id = google_container_cluster.cluster.name
-  endpoint {
-    gke_cluster {
-      resource_link = "//container.googleapis.com/${google_container_cluster.cluster.id}"
-    }
-  }
 }
 
 resource "google_gke_hub_feature" "feature" {
@@ -56,7 +48,8 @@ resource "google_gke_hub_feature" "feature" {
 resource "google_gke_hub_feature_membership" "feature_member" {
   location   = "global"
   feature    = google_gke_hub_feature.feature.name
-  membership = google_gke_hub_membership.membership.membership_id
+  membership = google_container_cluster.cluster.fleet.0.membership
+  membership_location = google_container_cluster.cluster.location
   mesh {
     management = "MANAGEMENT_AUTOMATIC"
   }
