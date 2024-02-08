@@ -14,7 +14,7 @@
 # limitations under the License.
 
 # [START servicemesh_canary_service_destination_vs_v1_destinationrule_productcatalogservice]
-apiVersion: networking.istio.io/v1alpha3
+apiVersion: networking.istio.io/v1beta1
 kind: DestinationRule
 metadata:
   name: productcatalogservice
@@ -27,7 +27,7 @@ spec:
 # [END servicemesh_canary_service_destination_vs_v1_destinationrule_productcatalogservice]
 ---
 # [START servicemesh_canary_service_destination_vs_v1_virtualservice_productcatalogservice]
-apiVersion: networking.istio.io/v1alpha3
+apiVersion: networking.istio.io/v1beta1
 kind: VirtualService
 metadata:
   name: productcatalogservice
