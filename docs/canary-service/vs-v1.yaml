@@ -13,7 +13,7 @@
 # limitations under the License.
 
 # [START servicemesh_canary_service_rollback_virtualservice_productcatalogservice]
-apiVersion: networking.istio.io/v1alpha3
+apiVersion: networking.istio.io/v1beta1
 kind: VirtualService
 metadata:
   name: productcatalogservice
