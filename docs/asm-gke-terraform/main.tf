@@ -16,7 +16,6 @@
 resource "google_container_cluster" "cluster" {
   name                = "asm-cluster"
   location            = var.region
-  resource_labels     = { mesh_id : "proj-${data.google_project.project.number}" }
   deletion_protection = false # Warning: Do not set deletion_protection to false for production clusters
 
   enable_autopilot = true
