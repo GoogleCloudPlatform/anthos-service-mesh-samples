@@ -1,4 +1,4 @@
-FROM python:3.12-slim as base
+FROM python:3.13-slim as base
 FROM base as builder
 RUN apt-get -qq update \
     && apt-get install -y --no-install-recommends \
