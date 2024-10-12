@@ -1,4 +1,4 @@
-FROM gcr.io/google-samples/istio-samples/helloserver/loadgen-base as final
+FROM us-docker.pkg.dev/google-samples/containers/csm/helloserver/loadgen-base as final
 
 # Enable unbuffered logging
 ENV PYTHONUNBUFFERED=1
