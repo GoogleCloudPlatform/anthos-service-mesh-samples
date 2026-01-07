@@ -58,7 +58,7 @@ export PROJECT_ID=${DEVSHELL_PROJECT_ID}
 
 Download resources you will be using in this lab.
 ```bash
-gsutil -m cp -r gs://${PROJECT_ID}/* ${WORKDIR}
+gcloud storage cp --recursive gs://${PROJECT_ID}/* ${WORKDIR}
 ```
 
 If you see a pop-up asking you to authorize Cloud Shell, click "Authorize".
