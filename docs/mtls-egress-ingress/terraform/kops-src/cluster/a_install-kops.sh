@@ -45,7 +45,7 @@ Linux*)
 esac
 
 echo "Generating kops bucket"
-gsutil mb gs://$PROJECT-kops-clusters
+gcloud storage buckets create gs://$PROJECT-kops-clusters
 
 
 
