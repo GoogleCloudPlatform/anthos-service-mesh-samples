@@ -29,7 +29,7 @@ uname_out="$(uname -s)"
 echo -e "Installing ASM for OS $uname_out into $TERRAFORM_ROOT"
 
 echo "Downloading ASM installation files"
-gsutil cp gs://gke-release/asm/istio-${ASM_SUFFIX}.tar.gz $TERRAFORM_ROOT/
+gcloud storage cp gs://gke-release/asm/istio-${ASM_SUFFIX}.tar.gz $TERRAFORM_ROOT/
 echo "Done downloading"
 echo "Unpacking download and preparing install"
 tar xzf $TERRAFORM_ROOT/istio-${ASM_SUFFIX}.tar.gz

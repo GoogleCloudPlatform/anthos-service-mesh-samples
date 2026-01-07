@@ -193,7 +193,7 @@ resource "null_resource" "kops-cluster-destroy" {
     command = <<EOF
 ./kops delete cluster server-cluster.k8s.local --yes --state=gs://${self.triggers.prdestroy}-kops-clusters
 gcloud container hub memberships delete server-cluster --quiet
-gsutil rm -r gs://${self.triggers.prdestroy}-kops-clusters
+gcloud storage rm --recursive gs://${self.triggers.prdestroy}-kops-clusters
 EOF
   }
 }
