@@ -15,6 +15,7 @@
 # limitations under the License.
 
 from http.server import BaseHTTPRequestHandler, HTTPServer
+import html
 import logging
 
 class S(BaseHTTPRequestHandler):
@@ -26,7 +27,7 @@ class S(BaseHTTPRequestHandler):
     def do_GET(self):
         logging.info("GET request,\nPath: %s\nHeaders:\n%s\n", str(self.path), str(self.headers))
         self._set_response()
-        self.wfile.write("Hello World! {}".format(self.path).encode('utf-8'))
+        self.wfile.write("Hello World! {}".format(html.escape(self.path)).encode('utf-8'))
 
 # HTTP Server runs on port 8080
 def run(server_class=HTTPServer, handler_class=S, port=8080):
